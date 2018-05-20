@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import json
+import random
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-from upload.models import Ques
+from upload.models import Ques, guide
+from django.http import HttpResponse, JsonResponse
 # Create your views here.
 
-<<<<<<< HEAD
+
 import datetime
 import time
 import os

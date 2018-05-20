@@ -11,13 +11,22 @@ exec(open("core.py").read())
 
 #磊哥你好
 #此处的id默认是数据库中题目的id
-def getAllSentences(questionId):
+def getAllSentences(questionId,wrong_choice):
 	needQues = list(Ques.objects.filter(id=questionId))
 	guideA = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesA))
 	guideB = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesB))
 	guideC = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesC))
 	guideD = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesD))
-	result = guideA + guideB + guideC + guideD
+    if wrong_choice == 1:
+        result = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesA))
+    elif wrong_choice == 2:
+        result = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesB))
+    elif wrong_choice == 3:
+        result = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesC))
+    elif wrong_choice == 4:
+        result = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesD))
+    else 
+        result = None
     return result
 
 #磊哥你好
@@ -37,10 +46,10 @@ def getAllAlgo():
 def algoSelect(userId,questionId):
     return getAllAlgo()[random.randint(0,len(getAllAlgo()))-1]
 
-def select_arm(userId,questionId):
+def select_arm(userId,questionId,wrong_choice):
     algo = algoSelect(userId,questionId)
     #algo = "ucb1"
-    sentences = getAllSentences(questionId)
+    sentences = getAllSentences(questionId,wrong_choice)
     value_dict = {}
     counts_list = []
     values_list = []
@@ -160,7 +169,7 @@ def updateInsert(questionId,chosen_arm,value_dict):
 if __name__ == "__main__":
     #print (getValue(3,'6516'))
     #print (algoSelect(15,18))
-    select_dict = select_arm(15,18)
+    select_dict = select_arm(15,18,1)
     userId = select_dict["userId"]
     questionId = select_dict["questionId"]
     sentences = select_dict["sentences"]
