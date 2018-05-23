@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^submit_set/',Set_views.submit_set, name="submit_set"),
 	url(r'^error_answer/',show_views.error_answer,name="error_answer"),
 	url(r'^makeSet/',Set_views.makeSet),
+	url(r'^after_login/',login_views.after_login),
 	url(r'^register/',login_views.nregister),
 	url(r'^face_reg_test/',face_reg_views.index,name="face_reg_index"),
 	url(r'^upload_snap_test/',face_reg_views.upload_snap,name="upload_snap_test"),

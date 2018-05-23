@@ -182,6 +182,10 @@
                         <h1 class="page-head-line">Gallery Example</h1>
                        <p><audio id="play" src="{{ question.voice }}" controls='controls'></audio></p>
 	                    <p><audio id="play1" src=""></audio></p>
+                        {#表情识别#}
+                        <video style="display: none" id="video" width="640" height="480" autoplay></video>
+                        <canvas style="display: none" id="canvas" width="640" height="480"></canvas>
+                        {#表情识别#}
                     </div>
                 </div>
                 <!-- /. ROW  -->
@@ -202,7 +206,7 @@
                     <div class="portfolio-item awesome mix_all" data-cat="awesome" >
 
                         <!--<img id="img1" src="{{ question.imageA.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:15%"> -->
-                        <img id="img1"src="{{ question.imageA.url }}" class="img-responsive " alt="" />
+                        <img id="img1"src="" class="img-responsive " alt="" />
                         <div class="overlay">
                             <a class="preview btn btn-info " title="Image Title Here" href="../static/img/portfolio/g.jpg"><i class="fa fa-plus fa-2x"></i></a>
 
@@ -212,7 +216,7 @@
                 <div class="col-md-6 ">
 
                     <div class="portfolio-item landscape mix_all" data-cat="landscape" >
-                        <img id="img1" src="{{ question.imageB.url }}" class="img-responsive " alt="" />
+                        <img id="img2" src="" class="img-responsive " alt="" />
                         <div class="overlay">
                             <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/b.jpg"><i class="fa fa-plus fa-2x"></i></a>
 
@@ -224,9 +228,7 @@
       <div class="col-md-6 ">
 
                     <div class="portfolio-item nature mix_all" data-cat="nature" >
-
-
-                        <img id="img1" src="{{ question.imageC.url }}" class="img-responsive " alt="" />
+                        <img id="img3" src="" class="img-responsive " alt="" />
                         <div class="overlay">
                             <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/c.png"><i class="fa fa-plus fa-2x"></i></a>
 
@@ -236,9 +238,7 @@
                 <div class="col-md-6 ">
 
                     <div class="portfolio-item nature mix_all" data-cat="nature" >
-
-
-                        <img id="img1" src="{{ question.imageD.url }}" class="img-responsive " alt="" />
+                        <img id="img4" src="" class="img-responsive " alt="" />
                         <div class="overlay">
                             <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/c.png"><i class="fa fa-plus fa-2x"></i></a>
 
@@ -248,12 +248,8 @@
                 </div>
 
             </div>
-
-
-
-                </div>
+        </div>
                
-
             </div>
             <!-- /. PAGE INNER  -->
         </div>
@@ -275,64 +271,220 @@
     <script src="../static/js/custom.js"></script>
      <!-- CUSTOM Gallery Call SCRIPTS -->
     <script src="../static/js/galleryCustom.js"></script>
-<script>
-		var test = true;
-		var Answer = "{{ question.question }}";
-		var audio = document.getElementById('play1');
-		var oImg1 = document.getElementById('img1');
-		oImg1.onclick = function(){
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script>
+        var pathA, pathB, pathC, pathD, pathVoice;
+        var desA, desB, desC, desD, Answer, guidePath;
+        var audio = document.getElementById('play1');
+        var audio1 = document.getElementById('play');
+        var oImg1 = document.getElementById('img1');
+        var oImg2 = document.getElementById('img2');
+        var oImg3 = document.getElementById('img3');
+        var oImg4 = document.getElementById('img4');
 
-			var strA = "{{ question.DesA }}";
-			var checkA = (strA == Answer);
-			if(checkA){
-				alert("你很厉害，知道这个是苹果！");
-			}else{
-				var dirA = "../media/guide/";
-				dirA = dirA + Answer + strB + "/1.mp3";
-				audio.src = dirB;
-				audio.play();
-			}
-		}
-		var oImg2 = document.getElementById('img2');
-		oImg2.onclick = function(){
-			var strB = "{{ question.DesB }}";
-			var checkB = (strB == Answer);
-			if(checkB){
-				alert("你很厉害，知道这个是桔子！");
-			}
-			else{
-				var dirB = "../media/guide/";
-				dirB = dirB + Answer + strB + "/1.mp3";
-				audio.src = dirB;
-				audio.play();
-			}
-		}
-		var oImg3 = document.getElementById('img3');
-		oImg3.onclick = function(){
-			var strC = "{{ question.DesC }}";
-			var checkC = (strC == Answer);
-			if(checkC){
-				alert("你很厉害，知道这个是梨！");
-			}else{
-				var dirC = "../media/guide/";
-				dirC = dirC + Answer + strC + "/1.mp3";
-				audio.src = dirC;
-				audio.play();
-			}
-		}
-		var oImg4 = document.getElementById('img4');
-		oImg4.onclick = function(){
-			var strD = "{{ question.DesD }}";
-			var checkD = (strD == Answer);
-			if(checkD){
-				alert("你很厉害，知道这个是菠萝！");
-			}else{
-				var dirD = "../media/guide/";
-				dirD = dirD + Answer + strD + "/1.mp3";
-				audio.src = dirD;
-				audio.play();
-			}
-		}
-	</script>
+        function get_next() {
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/get_next/",
+                data: {},
+                success: function (data) {
+                    Answer = data.namee;
+                    if (Answer == "") {
+                        alert("题目已经做完了");
+                    }
+                    pathA = data.imageA;
+                    desA = data.DesA;
+                    pathA = "/media/" + pathA;
+                    oImg1.src = pathA;
+
+                    pathB = data.imageB;
+                    desB = data.DesB;
+                    pathB = "/media/" + pathB;
+                    oImg2.src = pathB;
+
+                    pathC = data.imageC;
+                    desC = data.DesC;
+                    pathC = "/media/" + pathC;
+                    oImg3.src = pathC;
+
+                    pathD = data.imageD;
+                    desD = data.DesD;
+                    pathD = "/media/" + pathD;
+                    oImg4.src = pathD;
+
+                    pathVoice = data.voice;
+
+                    pathVoice = "/" + pathVoice;
+                    audio1.src = pathVoice;
+                },
+                error: function (data) {
+                    alert("Some error!");
+                }
+            });
+        }
+
+        get_next();
+
+        function error_answer(des) {
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/error_answer/",
+                data: {
+                    "right": Answer,
+                    "wrong": des
+                },
+                success: function (data) {
+                    if (data.guide == "") {
+                        alert("还没有这种情况的引导语");
+                    }
+                    else {
+                        guidePath = "/" + data.guide;
+                        audio.src = guidePath;
+                        audio.play();
+                    }
+                },
+                error: function (data) {
+                    alert("Some error!");
+                }
+            });
+        }
+
+
+        oImg1.onclick = function () {
+            var checkA = (desA == Answer);
+            if (checkA) {
+                 {#表情识别#}
+                get_feeling();
+                 {#表情识别#}
+                get_next();
+
+            } else {
+                error_answer(desA);
+            }
+        }
+
+        oImg2.onclick = function () {
+            var checkB = (desB == Answer);
+            if (checkB) {
+                 {#表情识别#}
+                get_feeling();
+                 {#表情识别#}
+                get_next();
+            }
+            else {
+                error_answer(desB);
+            }
+        }
+
+        oImg3.onclick = function () {
+            var checkC = (desC == Answer);
+            if (checkC) {
+                 {#表情识别#}
+                get_feeling();
+                 {#表情识别#}
+                get_next();
+            } else {
+                error_answer(desC);
+            }
+        }
+
+        oImg4.onclick = function () {
+            var checkD = (desD == Answer);
+            if (checkD) {
+                 {#表情识别#}
+                get_feeling();
+                 {#表情识别#}
+                get_next();
+            } else {
+                error_answer(desD);
+            }
+        }
+
+        {#表情识别#}
+        var HH = 0;
+        var mm = 0;
+        var ss = 0;
+        var str = '';
+        var aVideo = document.getElementById('video');
+        var aCanvas = document.getElementById('canvas');
+        var ctx = aCanvas.getContext('2d');
+
+        navigator.getUserMedia = navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia;//获取媒体对象（这里指摄像头）
+        navigator.getUserMedia({video: true}, gotStream, noStream);//参数1获取用户打开权限；参数二成功打开后调用，并传一个视频流对象，参数三打开失败后调用，传错误信息
+
+        function gotStream(stream) {
+            video.src = URL.createObjectURL(stream);
+            video.onerror = function () {
+                stream.stop();
+            };
+            stream.onended = noStream;
+            video.onloadedmetadata = function () {
+                {#alert('摄像头成功打开！');#}
+            };
+        }
+
+        function noStream(err) {
+            alert(err);
+        }
+
+        var timer = setInterval(function () {
+            str = "";
+            if (++ss == 60) {
+                if (++mm == 60) {
+                    HH++;
+                    mm = 0;
+                }
+                ss = 0;
+            }
+
+            if (ss % 10 == 0) {
+                ctx.drawImage(aVideo, 0, 0, 640, 480);
+                {#截取前面#}
+                snap_base64 = aCanvas.toDataURL("image/png").substring(22);
+                {#console.log(image.src);#}
+                {#上传截图#}
+                upload_snap(snap_base64);
+            }
+
+        }, 1000);
+
+        function upload_snap(snap_base64) {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "http://127.0.0.1:8000/upload_snap/",
+                data: {"snap_base64": snap_base64},
+                success: function (data) {
+                    {#alert("Success ! 结果为".concat(data.face_reg_test));#}
+                    console.log("Success ! 结果为".concat(data.face_reg.toString()))
+                },
+                error: function (data) {
+                    alert("Some error!");
+                }
+            });
+        }
+
+        function get_feeling() {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "http://127.0.0.1:8000/get_feeling/",
+                data: {},
+                success: function (data) {
+
+                    {#alert("Success ! 历史结果为".concat(data.feeling.toString()));#}
+                    console.log("Success ! 历史结果为".concat(data.feeling.toString()))
+                },
+                error: function (data) {
+                    alert("Some error!");
+                }
+            });
+        }
+
+        {#表情识别#}
+    </script>
 </body>
 </html>
