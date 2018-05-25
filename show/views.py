@@ -6,6 +6,8 @@ import random
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from upload.models import Ques, guide
+from makeSet.models import QuestionSet
+from login.models import register
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
 
@@ -129,3 +131,26 @@ def show(request):
 	questions = list(all_ques)
 	question = questions[0]
 	return render(request,'show/gallery.html',{"question":question})
+
+
+#所有套题
+def setDisplay(request):
+	sets = list(QuestionSet.objects.all())
+	return render(request,'show/allSet.html')
+#套题的分配
+def setArrange(request):
+	return render(request,'show/setArr.html')
+#所有患者
+def allGen(request):
+	return render(request,'show/allGen.html')
+
+
+def get_allGen(request):
+	Gen = list(register.objects.filter(res_id=1))
+	length = len(Gen)
+	ans = {}
+	ans["length"] = length
+	for i in range(length):
+		ans["gen" + str(i)] = str(Gen[i].res_username)
+		#toList.append(deepcopy(ans))	
+	return JsonResponse(ans)

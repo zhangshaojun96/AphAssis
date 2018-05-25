@@ -38,7 +38,7 @@ def upload(request):
 			voice = "media/voice/" + ques_str + '.mp3'
 		)
 		new_Ques.save()
-	return render(request,'upload/upload.html')
+	return render(request,'upload/upload1.html')
 
 @csrf_exempt
 def guide_upload(request):

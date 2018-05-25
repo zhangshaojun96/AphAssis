@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Bootstrap Advance Admin Template</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" />
+    <!-- PAGE LEVEL STYLES -->
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="../static/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">失语症辅助</a>
+            </div>
+            <!--右上角三个 
+            <div class="header-right">
+                <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+                <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
+                <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+            </div>
+            -->
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="../static/img/user.png" class="img-thumbnail" />
+
+                            <div class="inner-text">
+                                should be username 
+                            <br />
+                                <small>Welcome! </small>
+                            </div>
+                        </div>
+
+                    </li>
+
+
+                    <li>
+                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>菜单</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-desktop "></i>出题 <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/upload/"><i class="fa fa-plus"></i>添加单个题目</a>
+                            </li>
+                            <li>
+                                <a href="/makeSet/"><i class="fa fa-edit"></i>出套题</a>
+                            </li>
+                            <li>
+                                <a href="/guide_upload/"><i class="fa fa-comments-o"></i>上传引导语</a>
+                            </li>
+                        </ul>
+                    </li>
+                     <li>
+                        <a href="#"><i class="fa fa-yelp "></i>查看题库 <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/show/"><i class="fa fa-coffee"></i>所有题目</a>
+                            </li>
+                            <li>
+                                <a href="/setDisplay/"><i class="fa fa-eyedropper "></i>所有套题</a>
+                            </li>
+                        </ul>
+                    </li>
+                     <li>
+                        <a href="#"><i class="fa fa-circle-o "></i>患者情况 <span class="fa arrow"></span></a>
+                         <ul class="nav nav-second-level">
+                           
+                             <li>
+                                <a href="/allGen/"><i class="fa fa-bell "></i>所有患者 </a>
+                            </li>
+                             <li>
+                                <a href="/setArrange/"><i class="fa fa-comments-o "></i>套题分配情况</a>
+                            </li>  
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-head-line">所有患者</h1>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+                <div id="port-folio">
+                    <div class="row " >
+                        <ul id="filters" >
+						<li><span class="filter active" data-filter="landscape nature awesome">All </span></li>
+						<li><span class="filter active">/</span></li>
+						<li><span class="filter" data-filter="landscape">Landscape</span></li>
+						<li><span class="filter">/</span></li>
+						<li><span class="filter" data-filter="nature">Nature</span></li>
+						<li><span class="filter">/</span></li>
+						<li><span class="filter" data-filter="awesome">Awesome</span></li>
+					    </ul>
+                        <div class="row " style="padding-top: 70px;">
+                            <fieldset style="position:absolute;left:28%;top:45%;width:25%;height:75%" >
+                                <legend>所有患者</legend>
+                                <table border="1" width="100%" style="font-size: 25px">
+                                    <tr>
+                                        <td id="td1" width="80%" align="center" > Loading.. </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td2" width="80%" align="center" > Loading.. </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td3" width="80%" align="center" > Loading.. </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td4" width="80%" align="center" > Loading.. </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td5" width="80%" align="center" > Loading.. </td>
+                                    </tr>               
+                                </table>
+                                <br />
+                                <button type="button" onclick="subPage()"> 上一页 </button>
+                                <label id="pageNumber"> &nbsp 1 &nbsp </label>
+                                <button type="button" onclick="addPage()"> 下一页 </button><br>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="../static/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="../static/js/bootstrap.js"></script>
+     <!-- PAGE LEVEL SCRIPTS -->
+    <script src="../static/js/jquery.prettyPhoto.js"></script>
+    <script src="../static/js/jquery.mixitup.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="../static/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="../static/js/custom.js"></script>
+     <!-- CUSTOM Gallery Call SCRIPTS -->
+    <script src="../static/js/galleryCustom.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        var pageNum = 1;
+        var all_gen;
+        var all_length = 0;
+        function subPage()
+        {
+            if(pageNum <= 1)
+            {
+                alert("这是第一页!");
+            }
+            else
+            {
+                pageNum = pageNum - 1;
+                ques_display();
+                changePage();
+            }
+        }
+
+        function addPage()
+        {
+            if(pageNum > all_length / 5)
+            {
+                alert("这是最后一页");
+            }
+            else
+            {
+                pageNum = pageNum + 1;
+                ques_display();
+                changePage();
+            }
+        }
+        
+        function changePage()
+        {
+            var label = document.getElementById('pageNumber');
+            label.innerText = String(pageNum);
+        }
+        changePage();
+        //<!-- 可以用checked 这个属性来判断是不是选中了这题 -->
+        //可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
+        //input 有一个type域，如果是 "hidden",就是不显示
+        
+        function gen_display()
+        {
+            var gen_2_disp = 5;
+            var reduce = all_length % 5;
+            let final = (pageNum === parseInt(((all_length + 4) / 5)));
+            if(final)
+            {
+                if(reduce == 0)
+                {
+                    gen_2_disp = 5;    
+                }
+                else
+                {
+                    gen_2_disp = reduce;   
+                }
+                
+            }
+            var startNum = (pageNum - 1) * 5;
+            for(let i = 0;i < 5;i++)
+            {
+                var td = document.getElementById('td'+(i+1));
+                if(final && i >= reduce)
+                {
+                    td.innerText = "";
+                    td.type = "hidden";
+                }
+                else
+                {
+                    td.innerText = all_gen["gen"+(startNum+i)];
+                }
+                
+            }
+        }
+
+        function get_all() {
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8000/get_allGen/",
+                    data: {},
+                    success: function(data) {           
+                        //alert(data['ques0']);
+                        all_gen = data;
+                        all_length = data["length"];
+                        gen_display();
+                    },
+                    error: function(data) {
+                        alert("Some error!");
+                    }       
+                });
+            }       
+        get_all();
+    </script>
+</body>
+</html>
