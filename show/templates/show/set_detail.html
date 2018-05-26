@@ -97,16 +97,14 @@
                         </ul>
                     </li>
                 </ul>
-
             </div>
-
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">所有患者情况</h1>
+                        <h1 class="page-head-line">套题详情</h1>
                     </div>
                 </div>
                 <!-- /. ROW  -->
@@ -123,7 +121,7 @@
 					    </ul>
                         <div class="row " style="padding-top: 70px;">
                             <fieldset style="position:absolute;left:28%;top:45%;width:25%;height:75%" >
-                                <legend>所有患者</legend>
+                                <legend>套题详情,共有{{ detail.length }}题</legend>
                                 <table border="1" width="100%" style="font-size: 25px">
                                     <tr>
                                         <td id="td1" width="80%" align="center" > Loading.. </td>
@@ -150,9 +148,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /. PAGE INNER  -->
         </div>
-        <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->
     <!-- /. FOOTER  -->
@@ -172,9 +168,9 @@
     <script src="../static/js/galleryCustom.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
     <script type="text/javascript">
-        var pageNum = 1;
-        var all_gen;
-        var all_length = 0;
+        alert("a");
+        /*var pageNum = 1;
+        var all_length = {{ detail.length }};
         function subPage()
         {
             if(pageNum <= 1)
@@ -184,7 +180,7 @@
             else
             {
                 pageNum = pageNum - 1;
-                gen_display();
+                set_display();
                 changePage();
             }
         }
@@ -198,7 +194,7 @@
             else
             {
                 pageNum = pageNum + 1;
-                gen_display();
+                set_display();
                 changePage();
             }
         }
@@ -209,11 +205,12 @@
             label.innerText = String(pageNum);
         }
         changePage();
+
         //<!-- 可以用checked 这个属性来判断是不是选中了这题 -->
         //可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
         //input 有一个type域，如果是 "hidden",就是不显示
         
-        function gen_display()
+        function detail_display()
         {
             var gen_2_disp = 5;
             var reduce = all_length % 5;
@@ -228,7 +225,6 @@
                 {
                     gen_2_disp = reduce;   
                 }
-                
             }
             var startNum = (pageNum - 1) * 5;
             for(let i = 0;i < 5;i++)
@@ -241,29 +237,10 @@
                 }
                 else
                 {
-                    td.innerText = all_gen["gen"+(startNum+i)];
+                    td.innerText = {{ detail }}"套题" + String(all_sets["set"+(startNum+i)]+1);
                 }
-                
             }
-        }
-
-        function get_all() {
-                $.ajax({
-                    type: "POST",
-                    url: "http://127.0.0.1:8000/get_allGen/",
-                    data: {},
-                    success: function(data) {           
-                        //alert(data['ques0']);
-                        all_gen = data;
-                        all_length = data["length"];
-                        gen_display();
-                    },
-                    error: function(data) {
-                        alert("Some error!");
-                    }       
-                });
-            }       
-        get_all();
+        }*/
     </script>
 </body>
 </html>

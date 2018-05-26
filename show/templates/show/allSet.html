@@ -84,103 +84,81 @@
                             </li>
                         </ul>
                     </li>
-                     <li>
+                    <li>
                         <a href="#"><i class="fa fa-circle-o "></i>患者情况 <span class="fa arrow"></span></a>
-                         <ul class="nav nav-second-level">
-                           
-                             <li>
+                         <ul class="nav nav-second-level">       
+                            <li>
                                 <a href="/allGen/"><i class="fa fa-bell "></i>所有患者 </a>
                             </li>
-                             <li>
+                            <li>
                                 <a href="/setArrange/"><i class="fa fa-comments-o "></i>套题分配情况</a>
                             </li>  
                         </ul>
                     </li>
                 </ul>
-
             </div>
-
         </nav>
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Gallery Example</h1>
-                       <p><audio id="play" src="{{ question.voice }}" controls='controls'></audio></p>
-	                    <p><audio id="play1" src=""></audio></p>
-                        {#表情识别#}
-                        <video style="display: none" id="video" width="640" height="480" autoplay></video>
-                        <canvas style="display: none" id="canvas" width="640" height="480"></canvas>
-                        {#表情识别#}
+                        <h1 class="page-head-line">所有套题情况</h1>
                     </div>
                 </div>
                 <!-- /. ROW  -->
                 <div id="port-folio">
-                      <div class="row " >
-                          <ul id="filters" >
-						<li><span class="filter active" data-filter="landscape nature awesome">All </span></li>
-						<li><span class="filter active">/</span></li>
-						<li><span class="filter" data-filter="landscape">Landscape</span></li>
-						<li><span class="filter">/</span></li>
-						<li><span class="filter" data-filter="nature">Nature</span></li>
-						<li><span class="filter">/</span></li>
-						<li><span class="filter" data-filter="awesome">Awesome</span></li>
-					</ul>
-                 <div class="row " style="padding-top: 50px;">
-                <div class="col-md-6 ">
-
-                    <div class="portfolio-item awesome mix_all" data-cat="awesome" >
-
-                        <!--<img id="img1" src="{{ question.imageA.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:15%"> -->
-                        <img id="img1"src="" class="img-responsive " alt="" />
-                        <div class="overlay">
-                            <a class="preview btn btn-info " title="Image Title Here" href="../static/img/portfolio/g.jpg"><i class="fa fa-plus fa-2x"></i></a>
-
+                    <div class="row " >
+                        <div class="row " style="padding-top: 70px;">
+                            <fieldset style="position:absolute;left:28%;top:45%;width:25%;height:75%" >
+                                <legend>所有套题</legend>
+                                <table border="1" width="100%" style="font-size: 25px">
+                                    <tr>
+                                        <td id="td1" width="80%" align="center" > Loading.. </td>
+                                        <td width="20%"> 
+                                            <button id="v1" type="button" onclick="detail(this,0)">
+                                            详情</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td2" width="80%" align="center" > Loading.. </td>
+                                        <td width="20%"> 
+                                            <button id="v2" type="button" onclick="detail(this,1)">
+                                            详情</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td3" width="80%" align="center" > Loading.. </td>
+                                        <td width="20%"> 
+                                            <button id="v3" type="button" onclick="detail(this,2)">
+                                            详情</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td4" width="80%" align="center" > Loading.. </td>
+                                        <td width="20%"> 
+                                            <button id="v4" type="button" onclick="detail(this,3)">
+                                            详情</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td5" width="80%" align="center" > Loading.. </td>
+                                        <td width="20%"> 
+                                            <button id="v5" type="button" onclick="detail(this,4)">
+                                            详情</button>
+                                        </td>
+                                    </tr>               
+                                </table>
+                                <br />
+                                <button type="button" onclick="subPage()"> 上一页 </button>
+                                <label id="pageNumber"> &nbsp 1 &nbsp </label>
+                                <button type="button" onclick="addPage()"> 下一页 </button><br>
+                            </fieldset>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 ">
-
-                    <div class="portfolio-item landscape mix_all" data-cat="landscape" >
-                        <img id="img2" src="" class="img-responsive " alt="" />
-                        <div class="overlay">
-                            <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/b.jpg"><i class="fa fa-plus fa-2x"></i></a>
-
-                        </div>
-                    </div>
-                </div>
-                </div>
-  <div class="row " style="padding-top: 50px;">
-      <div class="col-md-6 ">
-
-                    <div class="portfolio-item nature mix_all" data-cat="nature" >
-                        <img id="img3" src="" class="img-responsive " alt="" />
-                        <div class="overlay">
-                            <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/c.png"><i class="fa fa-plus fa-2x"></i></a>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 ">
-
-                    <div class="portfolio-item nature mix_all" data-cat="nature" >
-                        <img id="img4" src="" class="img-responsive " alt="" />
-                        <div class="overlay">
-                            <a class="preview btn btn-info" title="Image Title Here" href="../static/img/portfolio/c.png"><i class="fa fa-plus fa-2x"></i></a>
-
-                        </div>
-                    </div>
-                </div>
-                </div>
-
             </div>
         </div>
-               
-            </div>
-            <!-- /. PAGE INNER  -->
-        </div>
-        <!-- /. PAGE WRAPPER  -->
     </div>
     <!-- /. WRAPPER  -->
     <!-- /. FOOTER  -->
@@ -199,219 +177,108 @@
      <!-- CUSTOM Gallery Call SCRIPTS -->
     <script src="../static/js/galleryCustom.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script>
-        var pathA, pathB, pathC, pathD, pathVoice;
-        var desA, desB, desC, desD, Answer, guidePath;
-        var audio = document.getElementById('play1');
-        var audio1 = document.getElementById('play');
-        var oImg1 = document.getElementById('img1');
-        var oImg2 = document.getElementById('img2');
-        var oImg3 = document.getElementById('img3');
-        var oImg4 = document.getElementById('img4');
+    <script type="text/javascript">
+        var pageNum = 1;
+        var all_sets;
+        var all_length = 0;
+        function subPage()
+        {
+            if(pageNum <= 1)
+            {
+                alert("这是第一页!");
+            }
+            else
+            {
+                pageNum = pageNum - 1;
+                set_display();
+                changePage();
+            }
+        }
 
-        function get_next() {
-            $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:8000/get_next/",
-                data: {},
-                success: function (data) {
-                    Answer = data.namee;
-                    if (Answer == "") {
-                        alert("题目已经做完了");
-                    }
-                    pathA = data.imageA;
-                    desA = data.DesA;
-                    pathA = "/media/" + pathA;
-                    oImg1.src = pathA;
+        function addPage()
+        {
+            if(pageNum > all_length / 5)
+            {
+                alert("这是最后一页");
+            }
+            else
+            {
+                pageNum = pageNum + 1;
+                set_display();
+                changePage();
+            }
+        }
 
-                    pathB = data.imageB;
-                    desB = data.DesB;
-                    pathB = "/media/" + pathB;
-                    oImg2.src = pathB;
+        function detail(vi,id)
+        {
+            //点击按钮之后应该跳到相应界面显示题目详情
+            let no = (pageNum - 1) * 5 + id;
+            location.href = '/set_detail/' + String(all_sets["set"+String(no)]);
+        }
+        
+        function changePage()
+        {
+            var label = document.getElementById('pageNumber');
+            label.innerText = String(pageNum);
+        }
+        changePage();
 
-                    pathC = data.imageC;
-                    desC = data.DesC;
-                    pathC = "/media/" + pathC;
-                    oImg3.src = pathC;
-
-                    pathD = data.imageD;
-                    desD = data.DesD;
-                    pathD = "/media/" + pathD;
-                    oImg4.src = pathD;
-
-                    pathVoice = data.voice;
-
-                    pathVoice = "/" + pathVoice;
-                    audio1.src = pathVoice;
-                },
-                error: function (data) {
-                    alert("Some error!");
+        //<!-- 可以用checked 这个属性来判断是不是选中了这题 -->
+        //可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
+        //input 有一个type域，如果是 "hidden",就是不显示
+        
+        function set_display()
+        {
+            var gen_2_disp = 5;
+            var reduce = all_length % 5;
+            let final = (pageNum === parseInt(((all_length + 4) / 5)));
+            if(final)
+            {
+                if(reduce == 0)
+                {
+                    gen_2_disp = 5;    
                 }
-            });
-        }
-
-        get_next();
-
-        function error_answer(des) {
-            $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:8000/error_answer/",
-                data: {
-                    "right": Answer,
-                    "wrong": des
-                },
-                success: function (data) {
-                    if (data.guide == "") {
-                        alert("还没有这种情况的引导语");
-                    }
-                    else {
-                        guidePath = "/" + data.guide;
-                        audio.src = guidePath;
-                        audio.play();
-                    }
-                },
-                error: function (data) {
-                    alert("Some error!");
+                else
+                {
+                    gen_2_disp = reduce;   
                 }
-            });
-        }
-
-
-        oImg1.onclick = function () {
-            var checkA = (desA == Answer);
-            if (checkA) {
-                 {#表情识别#}
-                get_feeling();
-                 {#表情识别#}
-                get_next();
-
-            } else {
-                error_answer(desA);
             }
-        }
-
-        oImg2.onclick = function () {
-            var checkB = (desB == Answer);
-            if (checkB) {
-                 {#表情识别#}
-                get_feeling();
-                 {#表情识别#}
-                get_next();
-            }
-            else {
-                error_answer(desB);
-            }
-        }
-
-        oImg3.onclick = function () {
-            var checkC = (desC == Answer);
-            if (checkC) {
-                 {#表情识别#}
-                get_feeling();
-                 {#表情识别#}
-                get_next();
-            } else {
-                error_answer(desC);
-            }
-        }
-
-        oImg4.onclick = function () {
-            var checkD = (desD == Answer);
-            if (checkD) {
-                 {#表情识别#}
-                get_feeling();
-                 {#表情识别#}
-                get_next();
-            } else {
-                error_answer(desD);
-            }
-        }
-
-        {#表情识别#}
-        var HH = 0;
-        var mm = 0;
-        var ss = 0;
-        var str = '';
-        var aVideo = document.getElementById('video');
-        var aCanvas = document.getElementById('canvas');
-        var ctx = aCanvas.getContext('2d');
-
-        navigator.getUserMedia = navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia;//获取媒体对象（这里指摄像头）
-        navigator.getUserMedia({video: true}, gotStream, noStream);//参数1获取用户打开权限；参数二成功打开后调用，并传一个视频流对象，参数三打开失败后调用，传错误信息
-
-        function gotStream(stream) {
-            video.src = URL.createObjectURL(stream);
-            video.onerror = function () {
-                stream.stop();
-            };
-            stream.onended = noStream;
-            video.onloadedmetadata = function () {
-                {#alert('摄像头成功打开！');#}
-            };
-        }
-
-        function noStream(err) {
-            alert(err);
-        }
-
-        var timer = setInterval(function () {
-            str = "";
-            if (++ss == 60) {
-                if (++mm == 60) {
-                    HH++;
-                    mm = 0;
+            var startNum = (pageNum - 1) * 5;
+            for(let i = 0;i < 5;i++)
+            {
+                var td = document.getElementById('td'+(i+1));
+                if(final && i >= reduce)
+                {
+                    td.innerText = "";
+                    td.type = "hidden";
+                    var vi = document.getElementById('v'+(i+1));
+                    vi.style="display:none";                
                 }
-                ss = 0;
-            }
-
-            if (ss % 10 == 0) {
-                ctx.drawImage(aVideo, 0, 0, 640, 480);
-                {#截取前面#}
-                snap_base64 = aCanvas.toDataURL("image/png").substring(22);
-                {#console.log(image.src);#}
-                {#上传截图#}
-                upload_snap(snap_base64);
-            }
-
-        }, 1000);
-
-        function upload_snap(snap_base64) {
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "http://127.0.0.1:8000/upload_snap/",
-                data: {"snap_base64": snap_base64},
-                success: function (data) {
-                    {#alert("Success ! 结果为".concat(data.face_reg_test));#}
-                    console.log("Success ! 结果为".concat(data.face_reg.toString()))
-                },
-                error: function (data) {
-                    alert("Some error!");
+                else
+                {
+                    var vi = document.getElementById('v'+(i+1));
+                    vi.style = "";
+                    td.innerText = "套题" + String(all_sets["set"+(startNum+i)]+1);
                 }
-            });
+            }
         }
 
-        function get_feeling() {
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: "http://127.0.0.1:8000/get_feeling/",
-                data: {},
-                success: function (data) {
-
-                    {#alert("Success ! 历史结果为".concat(data.feeling.toString()));#}
-                    console.log("Success ! 历史结果为".concat(data.feeling.toString()))
-                },
-                error: function (data) {
-                    alert("Some error!");
-                }
-            });
-        }
-
-        {#表情识别#}
+        function get_all() {
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8000/get_allSet/",
+                    data: {},
+                    success: function(data) {           
+                        all_sets = data;
+                        all_length = data["length"];
+                        set_display();
+                    },
+                    error: function(data) {
+                        alert("Some error!");
+                    }       
+                });
+            }       
+        get_all();
     </script>
 </body>
 </html>

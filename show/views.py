@@ -132,10 +132,23 @@ def show(request):
 	question = questions[0]
 	return render(request,'show/gallery.html',{"question":question})
 
+def set_detail(request,setid):
+	global questions
+	global length
+
+	qset = list(QuestionSet.objects.filter(setId=setid))
+	ques = qset[0].questions
+	s_ques = ques.split(",")
+	show = {}
+	show["length"] = len(s_ques)
+	for i in s_ques:
+		show[i] = "题目:" + questions[int(i)].question + "\n" + "A:" + questions[int(i)].DesA + " ,B:" + \
+					questions[int(i)].DesB + "\n" + "C:" + questions[int(i)].DesC + " ,D:" + \
+					questions[int(i)].DesD
+	return render(request,'show/set_detail.html',{"detail":show})
 
 #所有套题
 def setDisplay(request):
-	sets = list(QuestionSet.objects.all())
 	return render(request,'show/allSet.html')
 #套题的分配
 def setArrange(request):
@@ -144,6 +157,14 @@ def setArrange(request):
 def allGen(request):
 	return render(request,'show/allGen.html')
 
+def get_allSet(request):
+	sets = list(QuestionSet.objects.all())
+	length = len(sets)
+	ans = {}
+	ans["length"] = length
+	for i in range(length):
+		ans["set" + str(i)] = sets[i].setId
+	return JsonResponse(ans)
 
 def get_allGen(request):
 	Gen = list(register.objects.filter(res_id=1))

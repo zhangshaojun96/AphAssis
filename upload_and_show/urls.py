@@ -37,7 +37,9 @@ urlpatterns = [
 	url(r'^setDisplay/',show_views.setDisplay,name="setDisplay"),
 	url(r'^allGen/',show_views.allGen,name="allGen"),
 	url(r'^setArrange/',show_views.setArrange,name="setArrange"),
-	
+	url(r'^set_detail/(\d+)/',show_views.set_detail,name="setDetail"),
+	url(r'^get_allSet/',show_views.get_allSet,name="getAllSet"),
+
     url(r'^get_all/',Set_views.get_all, name="get_all"),
     url(r'^get_allGen/',show_views.get_allGen, name="get_allGen"),
     url(r'^submit_set/',Set_views.submit_set, name="submit_set"),
