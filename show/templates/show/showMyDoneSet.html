@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
@@ -61,42 +61,21 @@
 
 
                 <li>
-                    <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>菜单</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-desktop "></i>出题 <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-desktop "></i>查询 <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="/upload/"><i class="fa fa-plus"></i>添加单个题目</a>
+                            <a href="/view_allMyDoneSet/"><i class="fa fa-plus"></i>已完成套题</a>
                         </li>
                         <li>
-                            <a href="/makeSet/"><i class="fa fa-edit"></i>出套题</a>
-                        </li>
-                        <li>
-                            <a href="/guide_upload/"><i class="fa fa-comments-o"></i>上传引导语</a>
+                            <a href="//"><i class="fa fa-comments-o"></i>可视化分析</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-yelp "></i>查看题库 <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-desktop "></i>做题 <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="/show/"><i class="fa fa-coffee"></i>所有题目</a>
-                        </li>
-                        <li>
-                            <a href="/setDisplay/"><i class="fa fa-eyedropper "></i>所有套题</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-circle-o "></i>患者情况 <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-
-                        <li>
-                            <a href="/allGen/"><i class="fa fa-bell "></i>所有患者 </a>
-                        </li>
-                        <li>
-                            <a href="/setArrange/"><i class="fa fa-comments-o "></i>套题分配情况</a>
+                            <a href="/view_allMyToDoSet/"><i class="fa fa-plus"></i>未做套题</a>
                         </li>
                     </ul>
                 </li>
@@ -110,57 +89,50 @@
         <div id="page-inner">
             <div class="row">
                 <fieldset style="position:absolute;left:30%;top:15%;width:75%;height:75%">
-                    <legend>请给患者分配套题</legend>
-
+                    <legend>已完成训练</legend>
                     <form action="">
-                        <p>请在下拉框中选择患者</p>
-                        <select id="patientid">
-                            {% for x in patients %}
-                                <option value="{{ x.id }}">{{ x.res_username }}</option>
-                            {% endfor %}
-                        </select>
-
-                        <p>请在列表中勾选套题</p>
                         <table border="1" width="80%">
                             <tr>
                                 <td width="10%">id</td>
-                                <td width="80%">套题的描述</td>
-                                <td width="10%">操作</td>
+                                <td width="10%">套题</td>
+                                <td width="40%">描述</td>
+                                <td width="20%">布置时间</td>
+                                <td width="20%">操作</td>
                             </tr>
                             <tr>
                                 <td id="id1" width="10%">0</td>
-                                <td id="td1" width="80%"> Loading..</td>
-                                <td width="10%">
-                                    <input id="v1" align="center" type="checkbox" onclick="store(this,0)">
-                                </td>
+                                <td id="tdset1" width="10%">Loading..</td>
+                                <td id="tdsetdes1" width="40%"> Loading..</td>
+                                <td id="tdarrtime1" width="20%">Loading..</td>
+                                <td id="tdreview1" width="20%"><a id="op1" href="#">复习</a></td>
                             </tr>
                             <tr>
                                 <td id="id2" width="10%">0</td>
-                                <td id="td2" width="80%"> Loading..</td>
-                                <td width="10%">
-                                    <input id="v2" align="center" type="checkbox" onclick="store(this,1)">
-                                </td>
+                                <td id="tdset2" width="10%">Loading..</td>
+                                <td id="tdsetdes2" width="40%"> Loading..</td>
+                                <td id="tdarrtime2" width="20%">Loading..</td>
+                                <td id="tdreview2" width="20%"><a id="op2" href="#">复习</a></td>
                             </tr>
                             <tr>
                                 <td id="id3" width="10%">0</td>
-                                <td id="td3" width="80%"> Loading..</td>
-                                <td width="10%">
-                                    <input id="v3" align="center" type="checkbox" onclick="store(this,2)">
-                                </td>
+                                <td id="tdset3" width="10%">Loading..</td>
+                                <td id="tdsetdes3" width="40%"> Loading..</td>
+                                <td id="tdarrtime3" width="20%">Loading..</td>
+                                <td id="tdreview3" width="20%"><a id="op3" href="#">复习</a></td>
                             </tr>
                             <tr>
                                 <td id="id4" width="10%">0</td>
-                                <td id="td4" width="80%"> Loading..</td>
-                                <td width="10%">
-                                    <input id="v4" align="center" type="checkbox" onclick="store(this,3)">
-                                </td>
+                                <td id="tdset4" width="10%">Loading..</td>
+                                <td id="tdsetdes4" width="40%"> Loading..</td>
+                                <td id="tdarrtime4" width="20%">Loading..</td>
+                                <td id="tdreview4" width="20%"><a id="op4" href="#">复习</a></td>
                             </tr>
                             <tr>
                                 <td id="id5" width="10%">0</td>
-                                <td id="td5" width="80%"> Loading..</td>
-                                <td width="10%">
-                                    <input id="v5" align="center" type="checkbox" onclick="store(this,4)">
-                                </td>
+                                <td id="tdset5" width="10%">Loading..</td>
+                                <td id="tdsetdes5" width="40%"> Loading..</td>
+                                <td id="tdarrtime5" width="20%">Loading..</td>
+                                <td id="tdreview5" width="20%"><a id="op5" href="#">复习</a></td>
                             </tr>
 
                         </table>
@@ -171,22 +143,19 @@
                             <button type="button" onclick="addPage()"> 下一页</button>
                             <br>
                         </div>
-                        <div class="row">
-                            <button type="submit" onclick="submitArr()"
-                                    style="position:absolute;left:65%;top:60%;width:10%;height:10%">
-                                提交套题
-                            </button>
-
-                        </div>
 
                     </form>
                 </fieldset>
             </div>
 
+
         </div>
-        <!-- /. PAGE INNER  -->
     </div>
-    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. PAGE INNER  -->
+
+
+<!-- /. PAGE WRAPPER  -->
 </div>
 <!-- /. WRAPPER  -->
 <!-- /. FOOTER  -->
@@ -205,6 +174,8 @@
 <!-- CUSTOM Gallery Call SCRIPTS -->
 <script src="../static/js/galleryCustom.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+
 <script>
 
     var pageNum = 1;
@@ -235,25 +206,12 @@
         }
     }
 
-    function store(vi, id) {
-        if (vi.checked) {
-            setsCheck[(pageNum - 1) * 5 + id] = true;
-        }
-        else {
-            setsCheck[(pageNum - 1) * 5 + id] = false;
-        }
-    }
-
     function changePage() {
         var label = document.getElementById('pageNumber');
         label.innerText = String(pageNum);
     }
 
     changePage();
-    //
-    <!-- 可以用checked 这个属性来判断是不是选中了这题 -->
-    //可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
-    //input 有一个type域，如果是 "hidden",就是不显示
 
     function sets_display() {
         var ques_2_disp = 5;
@@ -268,29 +226,31 @@
             }
 
         }
+
+
         var startNum = (pageNum - 1) * 5;
         for (let i = 0; i < 5; i++) {
             var id = document.getElementById('id' + (i + 1));
-            var td = document.getElementById('td' + (i + 1));
+            var tdset = document.getElementById('tdset' + (i + 1));
+            var tdsetdes = document.getElementById('tdsetdes' + (i + 1));
+            var tdarrtime = document.getElementById('tdarrtime' + (i + 1));
+            var op = document.getElementById('op' + (i + 1));
 
-            if (final && i >= reduce) {
+            if ((final && i >= reduce) || all_length == 0) {
                 id.innerText = ""
-                td.innerText = "";
-                var vi = document.getElementById('v' + (i + 1));
-                vi.type = "hidden";
+                tdset.innerText = "";
+                tdsetdes.innerText = "";
+                tdarrtime.innerText = "";
+                op.innerText = "";
             }
             else {
                 id.innerText = all_sets["id" + (startNum + i)];
-                td.innerText = all_sets["setDes" + (startNum + i)] + "  " + "----共" + all_sets["count" + (startNum + i)] + "道题";
+                tdset.innerText = all_sets["arr_set" + (startNum + i)];
+                tdsetdes.innerText = all_sets["setdes" + (startNum + i)];
+                tdarrtime.innerText = all_sets["arr_datetime" + (startNum + i)];
+                op.innerText = "复习";
+                op.href = "####" + all_sets["id" + (startNum + i)]
 
-                var vi = document.getElementById('v' + (i + 1));
-                vi.type = "checkbox";
-                if (setsCheck[startNum + i]) {
-                    vi.checked = true;
-                }
-                else {
-                    vi.checked = false;
-                }
             }
 
         }
@@ -299,16 +259,13 @@
     function get_all() {
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:8000/get_allSets/",
+            url: "http://127.0.0.1:8000/get_allMyDoneSet/",
             data: {},
             success: function (data) {
                 //alert(data['ques0']);
                 all_sets = data;
                 all_length = data["length"];
                 sets_display();
-                for (let i = 0; i < all_length; i++) {
-                    setsCheck[i] = false;
-                }
             },
             error: function (data) {
                 alert("Some error!");
@@ -318,36 +275,6 @@
 
     get_all();
 
-    function submitArr() {
-        var patientid = document.getElementById('patientid').value;
-        var number = 0;
-
-        for (let i = 0; i < all_length; i++) {
-            if (setsCheck[i] == true) {
-                res.push(all_sets["id" + i]);
-                number = number + 1;
-            }
-        }
-
-        if (number > 0) {
-            $.ajax({
-                type: "POST",
-                url: "http://127.0.0.1:8000/submit_arr/",
-                data: {"setsCheck": String(res), "userid": String(patientid)},
-                success: function (data) {
-                    alert(data["status"]);
-                },
-                error: function (data) {
-                    {#alert("Some error!");#}
-                    alert(data["status"]);
-                }
-            });
-        }
-        else {
-            alert("你还没有选套题!!");
-        }
-
-    }
 
 </script>
 </body>

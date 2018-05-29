@@ -1,23 +1,188 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Responsive Bootstrap Advance Admin Template</title>
 
-<head> upload file </head>
-
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet"/>
+    <!-- PAGE LEVEL STYLES -->
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet"/>
+    <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet"/>
+    <!--CUSTOM MAIN STYLES-->
+    <link href="../static/css/custom.css" rel="stylesheet"/>
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+</head>
 <body>
-<h1> 上传题目 </h1>
-<form action='/upload/' method='post' enctype='multipart/form-data'>
-	{% csrf_token %}
-	<p> ImageA<input type="file" name="imageA"> </p>
-	<p> Description A<input type="text" name="desA"></p>
-	<p> ImageB<input type="file" name="imageB"> </p>
-	<p> Description B<input type="text" name="desB"></p>
-	<p> ImageC<input type="file" name="imageC"> </p>
-	<p> Description C<input type="text" name="desC"></p>
-	<p> ImageD<input type="file" name="imageD"> </p>
-	<p> Description D<input type="text" name="desD"></p>
-	<p> Question <input type="text" name="question"> </p>
-	<p><input type="submit" value="submit"></p>
-</form>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">失语症辅助</a>
+        </div>
+        <!--右上角三个
+        <div class="header-right">
+            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
+            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+        </div>
+        -->
+    </nav>
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li>
+                    <div class="user-img-div">
+                        <img src="../static/img/user.png" class="img-thumbnail"/>
+
+                        <div class="inner-text">
+                            {% if classid == 0 %}
+                                患者: {{ username }}
+                            {% elif classid == 1 %}
+                                医生: {{ username }}
+                            {% endif %}
+                            <br/>
+                            <small>Welcome!</small>
+                        </div>
+                    </div>
+                </li>
+                {#                //医生可见#}
+                {% if classid == 1 %}
+                    <li>
+                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>菜单</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-desktop "></i>出题 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/upload/"><i class="fa fa-plus"></i>添加单个题目</a>
+                            </li>
+                            <li>
+                                <a href="/makeSet/"><i class="fa fa-edit"></i>出套题</a>
+                            </li>
+                            <li>
+                                <a href="/guide_upload/"><i class="fa fa-comments-o"></i>上传引导语</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-yelp "></i>查看题库 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/show/"><i class="fa fa-coffee"></i>所有题目</a>
+                            </li>
+                            <li>
+                                <a href="/setDisplay/"><i class="fa fa-eyedropper "></i>所有套题</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o "></i>患者情况 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="/allGen/"><i class="fa fa-bell "></i>所有患者 </a>
+                            </li>
+                            <li>
+                                <a href="/setArrange/"><i class="fa fa-comments-o "></i>套题分配情况</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {#                    患者可见#}
+                {% elif classid == 0 %}
+                    <li>
+                        <a href="#"><i class="fa fa-desktop "></i>查询 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/view_allMyDoneSet/"><i class="fa fa-plus"></i>已完成套题</a>
+                            </li>
+                            <li>
+                                <a href="/view_allMyDoneSet/"><i class="fa fa-comments-o"></i>可视化分析</a>
+                            </li>
+                        </ul>
+                    </li>
+                      <li>
+                        <a href="#"><i class="fa fa-desktop "></i>做题 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/view_allMyToDoSet/"><i class="fa fa-plus"></i>未做套题</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <fieldset style="position:absolute;left:30%;top:15%;width:75%;height:75%">
+                    <legend>上传题目</legend>
+                    <form action='/upload/' method='post' enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        <table border="0.5" width="60%">
+                            <tr>
+                                <p> 问题 <input type="text" name="question"></p>
+                            </tr>
+                            <tr>
+                                <td width="40%"><p> 图片1 <input type="file" name="imageA"></p></td>
+                                <td width="60%"><p> 描述1 <input type="text" name="desA"></p></td>
+                            </tr>
+                            <tr>
+                                <td width="40%"><p> 图片2 <input type="file" name="imageB"></p></td>
+                                <td width="60%"><p> 描述2 <input type="text" name="desB"></p></td>
+                            </tr>
+                            <tr>
+                                <td width="40%"><p> 图片3 <input type="file" name="imageC"></p></td>
+                                <td width="60%"><p> 描述3 <input type="text" name="desC"></p></td>
+                            </tr>
+                            <tr>
+                                <td width="40%"><p> 图片4 <input type="file" name="imageD"></p></td>
+                                <td width="60%"><p> 描述4 <input type="text" name="desD"></p></td>
+                            </tr>
+                            <tr>
+                                <p><input type="submit" value="提交"
+                                          style="position:absolute;left:65%;top:50%;width:10%;height:10%">
+                                </p>
+                            </tr>
+                        </table>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- /. PAGE INNER  -->
+<!-- /. WRAPPER  -->
+<!-- /. FOOTER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="../static/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="../static/js/bootstrap.js"></script>
+<!-- PAGE LEVEL SCRIPTS -->
+<script src="../static/js/jquery.prettyPhoto.js"></script>
+<script src="../static/js/jquery.mixitup.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="../static/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="../static/js/custom.js"></script>
+<!-- CUSTOM Gallery Call SCRIPTS -->
+<script src="../static/js/galleryCustom.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 
 </body>
 </html>
+

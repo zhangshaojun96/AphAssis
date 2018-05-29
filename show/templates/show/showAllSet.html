@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
@@ -91,7 +91,6 @@
                 <li>
                     <a href="#"><i class="fa fa-circle-o "></i>患者情况 <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-
                         <li>
                             <a href="/allGen/"><i class="fa fa-bell "></i>所有患者 </a>
                         </li>
@@ -101,60 +100,60 @@
                     </ul>
                 </li>
             </ul>
-
         </div>
-
     </nav>
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div id="page-inner">
-            <!-- /. ROW  -->
-            <div id="port-folio">
-                <div class="row ">
-                    {#                        <ul id="filters" >#}
-                    {#						<li><span class="filter active" data-filter="landscape nature awesome">All </span></li>#}
-                    {#						<li><span class="filter active">/</span></li>#}
-                    {#						<li><span class="filter" data-filter="landscape">Landscape</span></li>#}
-                    {#						<li><span class="filter">/</span></li>#}
-                    {#						<li><span class="filter" data-filter="nature">Nature</span></li>#}
-                    {#						<li><span class="filter">/</span></li>#}
-                    {#						<li><span class="filter" data-filter="awesome">Awesome</span></li>#}
-                    {#					    </ul>#}
-                    <div class="row " style="position:absolute;left:30%;top:15%;width:75%;height:75%">
-                        <fieldset>
-                            <legend>所有患者</legend>
-                            <table border="1" width="50%" align="center" style="font-size: 25px">
-                                <tr>
-                                    <td id="td1" width="80%" align="center"> Loading..</td>
-                                </tr>
-                                <tr>
-                                    <td id="td2" width="80%" align="center"> Loading..</td>
-                                </tr>
-                                <tr>
-                                    <td id="td3" width="80%" align="center"> Loading..</td>
-                                </tr>
-                                <tr>
-                                    <td id="td4" width="80%" align="center"> Loading..</td>
-                                </tr>
-                                <tr>
-                                    <td id="td5" width="80%" align="center"> Loading..</td>
-                                </tr>
-                            </table>
-                            <br/>
-                            <div class="row" align="center">
-                                <button type="button" onclick="subPage()"> 上一页</button>
-                                <label id="pageNumber"> &nbsp 1 &nbsp </label>
-                                <button type="button" onclick="addPage()"> 下一页</button>
-                                <br>
-                            </div>
+            <div class="row">
+                <table align="center" width="800" border=1 bordercolor="#00ff99">
+                    <tbody>
+                    <tr>
+                        <td colspan="6" align="center">套题列表</td>
+                    </tr>
+                    <tr>
+                        <td width="10%">id</td>
+                        <td width="40%">套题描述</td>
+                        <td width="20%">题目数量</td>
+                        <td width="20%">操作</td>
+                    </tr>
+                    {% for row in posts.object_list %}
+                        <tr>
+                            <td width="10%">{{ row.id }}</td>
+                            <td width="40%">{{ row.setDes }}</td>
+                            <td width="20%">{{ row.count }}</td>
+                            <td width="20%"><a href="">查看详情</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="6" align="center">
+                            {% if posts.has_previous %}
+                                <a href="/setDisplay?p={{ posts.previous_page_number }}">上一页</a>
+                            {% else %}
+                                <a href="#">上一页</a>
+                            {% endif %}
 
-                        </fieldset>
-                    </div>
-                </div>
+                            {% if posts.has_next %}
+                                <a href="/setDisplay?p={{ posts.next_page_number }}">下一页</a>
+                            {% endif %}
+
+                            <span>
+                               {{ posts.number }} / {{ posts.paginator.num_pages }}
+                            </span>
+
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
-        <!-- /. PAGE INNER  -->
     </div>
+    <!-- /. PAGE INNER  -->
+
+
     <!-- /. PAGE WRAPPER  -->
 </div>
 <!-- /. WRAPPER  -->
@@ -174,89 +173,6 @@
 <!-- CUSTOM Gallery Call SCRIPTS -->
 <script src="../static/js/galleryCustom.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-<script type="text/javascript">
-    var pageNum = 1;
-    var all_gen;
-    var all_length = 0;
 
-    function subPage() {
-        if (pageNum <= 1) {
-            alert("这是第一页!");
-        }
-        else {
-            pageNum = pageNum - 1;
-            gen_display();
-            changePage();
-        }
-    }
-
-    function addPage() {
-        if (pageNum > all_length / 5) {
-            alert("这是最后一页");
-        }
-        else {
-            pageNum = pageNum + 1;
-            gen_display();
-            changePage();
-        }
-    }
-
-    function changePage() {
-        var label = document.getElementById('pageNumber');
-        label.innerText = String(pageNum);
-    }
-
-    changePage();
-    //
-    <!-- 可以用checked 这个属性来判断是不是选中了这题 -->
-    //可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
-    //input 有一个type域，如果是 "hidden",就是不显示
-
-    function gen_display() {
-        var gen_2_disp = 5;
-        var reduce = all_length % 5;
-        let final = (pageNum === parseInt(((all_length + 4) / 5)));
-        if (final) {
-            if (reduce == 0) {
-                gen_2_disp = 5;
-            }
-            else {
-                gen_2_disp = reduce;
-            }
-
-        }
-        var startNum = (pageNum - 1) * 5;
-        for (let i = 0; i < 5; i++) {
-            var td = document.getElementById('td' + (i + 1));
-            if (final && i >= reduce) {
-                td.innerText = "";
-                td.type = "hidden";
-            }
-            else {
-                td.innerText = all_gen["gen" + (startNum + i)];
-            }
-
-        }
-    }
-
-    function get_all() {
-        $.ajax({
-            type: "POST",
-            url: "http://127.0.0.1:8000/get_allGen/",
-            data: {},
-            success: function (data) {
-                //alert(data['ques0']);
-                all_gen = data;
-                all_length = data["length"];
-                gen_display();
-            },
-            error: function (data) {
-                alert("Some error!");
-            }
-        });
-    }
-
-    get_all();
-</script>
 </body>
 </html>

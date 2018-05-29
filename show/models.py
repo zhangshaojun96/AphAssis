@@ -19,3 +19,11 @@ class Recom_guide(models.Model):
 	current_arm = models.IntegerField(default=0)
 	next_update = models.IntegerField(default=0)
 	r = models.IntegerField(default=0)
+
+class Arrange_set(models.Model):
+    userid = models.IntegerField(default=0)
+    set = models.IntegerField(default=0)
+    dateTime = models.DateTimeField(auto_now_add=True)
+    # 0 未做  1 完成
+    status = models.IntegerField(default=0)
+

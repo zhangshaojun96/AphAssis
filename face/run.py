@@ -3,7 +3,7 @@ import face.CNN_MODEL as cnn
 import cv2
 import face.FACE as FACE
 
-cascPath = "/home/ll/dev/workspace/python/AphAssis/face/haarcascade_frontalface_default.xml"
+cascPath = "/home/stones/source/git/AphAssis/face/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
 sess = cnn.Initialize()
 

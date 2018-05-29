@@ -407,8 +407,8 @@
 							  alert("重复用户名");
 							else  {
 
-								alert("成功");
-								location.href = 'http://www.baidu.com';
+								{#alert("成功le");#}
+								location.href = '/register';
 							}
 						},
 				error : function error()
@@ -429,7 +429,7 @@
 							if (data.status == "failed")
 							  alert(data.reason);
 							if (data.status == "success") {
-								alert(data.reason);
+								{#alert(data.reason);#}
 								location.href = '/after_login/';
 							}
 						},

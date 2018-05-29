@@ -155,6 +155,11 @@
                                 <button type="button" onclick="addPage()"> 下一页 </button><br>
                             </fieldset>
                         </div>
+                        <div class="row " style="padding-top: 70px;">
+                            <p name="ar1" id="ar1" style="position:absolute;left:70%;top:50%;width:20%;height:50%">
+                                
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,10 +182,14 @@
      <!-- CUSTOM Gallery Call SCRIPTS -->
     <script src="../static/js/galleryCustom.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
     <script type="text/javascript">
+        var no;
         var pageNum = 1;
         var all_sets;
         var all_length = 0;
+        var ques_count;
+        var ques_detail;
         function subPage()
         {
             if(pageNum <= 1)
@@ -212,10 +221,41 @@
         function detail(vi,id)
         {
             //点击按钮之后应该跳到相应界面显示题目详情
-            let no = (pageNum - 1) * 5 + id;
-            location.href = '/set_detail/' + String(all_sets["set"+String(no)]);
+            no = (pageNum - 1) * 5 + id;
+            get_detail();
         }
+
+        function detail_display()
+        {
+            var line1 = "<br> 题目数量:" + String(ques_count) + "<br/>";
+            for(let i = 0;i < ques_count;i++)
+            {
+                line1 = line1 + String(i+1)+" 题目:" + set_detail[String(i)+"q"] + "</br>";
+                line1 = line1 + "A." + set_detail[String(i) + "A"] + "  " + "B." + set_detail[String(i) + "B"];
+                line1 = line1 + "  C." + set_detail[String(i) + "C"] + "  " + "D." + set_detail[String(i) + "D"] + "<br/><br/>";
+            }
+            document.getElementById("ar1").innerHTML = line1;
+        }
+
+        function get_detail() {
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8000/get_detail/",
+                    data: {
+                        "setno" : no
+                    },
+                    success: function(data) {           
+                        ques_count = data["length"];
+                        set_detail = data;
+                        detail_display();
+                    },
+                    error: function(data) {
+                        alert("Some error!");
+                    }       
+                });
+            }
         
+
         function changePage()
         {
             var label = document.getElementById('pageNumber');

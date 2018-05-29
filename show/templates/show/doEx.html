@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>训练</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet"/>
+    <!-- PAGE LEVEL STYLES -->
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet"/>
+    <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet"/>
+    <!--CUSTOM MAIN STYLES-->
+    <link href="../static/css/custom.css" rel="stylesheet"/>
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">失语症辅助</a>
+        </div>
+        <!--右上角三个
+        <div class="header-right">
+            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
+            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+        </div>
+        -->
+    </nav>
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li>
+                    <div class="user-img-div">
+                        <img src="../static/img/user.png" class="img-thumbnail"/>
+
+                        <div class="inner-text">
+                            {% if classid == 0 %}
+                                患者: {{ username }}
+                            {% elif classid == 1 %}
+                                医生: {{ username }}
+                            {% endif %}
+                            <br/>
+                            <small>Welcome!</small>
+                            <small id="emotions">loading...</small>
+                        </div>
+                    </div>
+
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-desktop "></i>查询 <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/view_allMyDoneSet/"><i class="fa fa-plus"></i>已完成套题</a>
+                        </li>
+                        <li>
+                            <a href="//"><i class="fa fa-comments-o"></i>可视化分析</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-desktop "></i>做题 <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/view_allMyToDoSet/"><i class="fa fa-plus"></i>未做套题</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-10">
+                    <h3 class="page-head-line">请按照语音提示选择图片</h3>
+                    <p>
+                        <audio id="play" src="{{ question.voice }}" controls='controls'></audio>
+                    </p>
+                    <p>
+                        <audio id="play1" src=""></audio>
+                    </p>
+                    {#表情识别#}
+                    <video style="display: none" id="video" width="640" height="480" autoplay></video>
+                    <canvas style="display: none" id="canvas" width="640" height="480"></canvas>
+                    {#表情识别#}
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div id="port-folio">
+                <div class="row ">
+                    <div class="row " style="padding-top: 30px;">
+                        <div class="col-md-5 ">
+
+                            <div class="portfolio-item awesome mix_all" data-cat="awesome">
+
+                                <!--<img id="img1" src="{{ question.imageA.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:15%"> -->
+                                <img id="img1" src="" class="img-responsive " alt=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5 ">
+
+                            <div class="portfolio-item landscape mix_all" data-cat="landscape">
+                                <img id="img2" src="" class="img-responsive " alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row " style="padding-top: 50px;">
+                        <div class="col-md-5 ">
+
+                            <div class="portfolio-item nature mix_all" data-cat="nature">
+                                <img id="img3" src="" class="img-responsive " alt=""/>
+                            </div>
+                        </div>
+                        <div class="col-md-5 ">
+
+                            <div class="portfolio-item nature mix_all" data-cat="nature">
+                                <img id="img4" src="" class="img-responsive " alt=""/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- /. FOOTER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="../static/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="../static/js/bootstrap.js"></script>
+<!-- PAGE LEVEL SCRIPTS -->
+<script src="../static/js/jquery.prettyPhoto.js"></script>
+<script src="../static/js/jquery.mixitup.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="../static/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="../static/js/custom.js"></script>
+<!-- CUSTOM Gallery Call SCRIPTS -->
+<script src="../static/js/galleryCustom.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+    var pathA, pathB, pathC, pathD, pathVoice;
+    var desA, desB, desC, desD, Answer, guidePath;
+    var audio = document.getElementById('play1');
+    var audio1 = document.getElementById('play');
+    var oImg1 = document.getElementById('img1');
+    var oImg2 = document.getElementById('img2');
+    var oImg3 = document.getElementById('img3');
+    var oImg4 = document.getElementById('img4');
+
+    function get_next(typeid) {
+        console.log({{ setid }})
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8000/get_nextToDo/",
+            data: {
+                'type': typeid, 'setid':{{setid}}
+            },
+            success: function (data) {
+                Answer = data.namee;
+                if (Answer == "") {
+                    alert("题目已经做完了");
+                    location.href = '/after_login/';
+                }
+                pathA = data.imageA;
+                desA = data.DesA;
+                pathA = "/media/" + pathA;
+                oImg1.src = pathA;
+
+                pathB = data.imageB;
+                desB = data.DesB;
+                pathB = "/media/" + pathB;
+                oImg2.src = pathB;
+
+                pathC = data.imageC;
+                desC = data.DesC;
+                pathC = "/media/" + pathC;
+                oImg3.src = pathC;
+
+                pathD = data.imageD;
+                desD = data.DesD;
+                pathD = "/media/" + pathD;
+                oImg4.src = pathD;
+
+                pathVoice = data.voice;
+
+                pathVoice = "/" + pathVoice;
+                audio1.src = pathVoice;
+            },
+            error: function (data) {
+                alert("Some error!");
+            }
+        });
+    }
+
+    get_next(0);
+
+
+    function error_answer(des) {
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8000/error_answer/",
+            data: {
+                "right": Answer,
+                "wrong": des
+            },
+            success: function (data) {
+                if (data.guide == "") {
+                    alert("还没有这种情况的引导语");
+                }
+                else {
+                    guidePath = "/" + data.guide;
+                    audio.src = guidePath;
+                    audio.play();
+                }
+            },
+            error: function (data) {
+                alert("Some error!");
+            }
+        });
+    }
+
+
+    oImg1.onclick = function () {
+        var checkA = (desA == Answer);
+        if (checkA) {
+            {#表情识别#}
+            get_feeling();
+            {#表情识别#}
+            get_next(1);
+
+        } else {
+            error_answer(desA);
+        }
+    }
+
+    oImg2.onclick = function () {
+        var checkB = (desB == Answer);
+        if (checkB) {
+            {#表情识别#}
+            get_feeling();
+            {#表情识别#}
+            get_next(1);
+        }
+        else {
+            error_answer(desB);
+        }
+    }
+
+    oImg3.onclick = function () {
+        var checkC = (desC == Answer);
+        if (checkC) {
+            {#表情识别#}
+            get_feeling();
+            {#表情识别#}
+            get_next(1);
+        } else {
+            error_answer(desC);
+        }
+    }
+
+    oImg4.onclick = function () {
+        var checkD = (desD == Answer);
+        if (checkD) {
+            {#表情识别#}
+            get_feeling();
+            {#表情识别#}
+            get_next(1);
+        } else {
+            error_answer(desD);
+        }
+    }
+
+    {#表情识别#}
+    var HH = 0;
+    var mm = 0;
+    var ss = 0;
+    var str = '';
+    var aVideo = document.getElementById('video');
+    var aCanvas = document.getElementById('canvas');
+    var ctx = aCanvas.getContext('2d');
+
+    navigator.getUserMedia = navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia;//获取媒体对象（这里指摄像头）
+    navigator.getUserMedia({video: true}, gotStream, noStream);//参数1获取用户打开权限；参数二成功打开后调用，并传一个视频流对象，参数三打开失败后调用，传错误信息
+
+    function gotStream(stream) {
+        video.src = URL.createObjectURL(stream);
+        video.onerror = function () {
+            stream.stop();
+        };
+        stream.onended = noStream;
+        video.onloadedmetadata = function () {
+            {#alert('摄像头成功打开！');#}
+        };
+    }
+
+    function noStream(err) {
+        alert(err);
+    }
+
+    var timer = setInterval(function () {
+        str = "";
+        if (++ss == 60) {
+            if (++mm == 60) {
+                HH++;
+                mm = 0;
+            }
+            ss = 0;
+        }
+
+        if (ss % 5 == 0) {
+            ctx.drawImage(aVideo, 0, 0, 640, 480);
+            {#截取前面#}
+            snap_base64 = aCanvas.toDataURL("image/png").substring(22);
+            {#console.log(image.src);#}
+            {#上传截图#}
+            upload_snap(snap_base64);
+            get_feeling();
+        }
+
+    }, 1000);
+
+    function upload_snap(snap_base64) {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "http://127.0.0.1:8000/upload_snap/",
+            data: {"snap_base64": snap_base64},
+            success: function (data) {
+                {#alert("Success ! 结果为".concat(data.face_reg_test));#}
+                console.log("Success ! 结果为".concat(data.face_reg.toString()))
+            },
+            error: function (data) {
+                alert("Some error!");
+            }
+        });
+    }
+
+    function get_feeling() {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "http://127.0.0.1:8000/get_feeling/",
+            data: {},
+            success: function (data) {
+                var emotions = document.getElementById('emotions');
+                var res = data.feeling[0];
+                var show_emotion = "loading..";
+                if (res == 0) {
+                    show_emotion = "表情为：平常"
+                } else if (res == 1) {
+                    show_emotion = "表情为：高兴"
+                } else {
+                    show_emotion = "表情为：不高兴"
+                }
+
+
+                emotions.innerText = show_emotion;
+                {#alert("Success ! 历史结果为".concat(data.feeling.toString()));#}
+                console.log("Success ! 历史结果为".concat(data.feeling.toString()))
+
+            },
+            error: function (data) {
+                alert("Some error!");
+            }
+        });
+    }
+
+    {#表情识别#}
+</script>
+</body>
+</html>

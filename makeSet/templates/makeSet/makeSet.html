@@ -1,207 +1,345 @@
 <!-- makeSet.html -->
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Responsive Bootstrap Advance Admin Template</title>
 
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet"/>
+    <!-- PAGE LEVEL STYLES -->
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet"/>
+    <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet"/>
+    <!--CUSTOM MAIN STYLES-->
+    <link href="../static/css/custom.css" rel="stylesheet"/>
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+</head>
 <body>
-	
-	<form action="">
-		<fieldset style="position:absolute;left:12%;top:15%;width:15%;height:75%" >
-			<legend>所有题目</legend>
-			<table border="1" width="100%">
-				<tr>
-					<td id="td1" width="80%"> Loading.. </td>
-					<td width="20%"> 
-						<input id="v1" type="checkbox" onclick="store(this,0)">
-					</td>
-				</tr>
-				<tr>
-					<td id="td2" width="80%"> Loading.. </td>
-					<td width="20%"> 
-						<input id="v2" type="checkbox" onclick="store(this,1)">
-					</td>
-				</tr>
-				<tr>
-					<td id="td3" width="80%"> Loading.. </td>
-					<td width="20%"> 
-						<input id="v3" type="checkbox" onclick="store(this,2)">
-					</td>
-				</tr>
-				<tr>
-					<td id="td4" width="80%"> Loading.. </td>
-					<td width="20%"> 
-						<input id="v4" type="checkbox" onclick="store(this,3)">
-					</td>
-				</tr>
-				<tr>
-					<td id="td5" width="80%"> Loading.. </td>
-					<td width="20%"> 
-						<input id="v5" type="checkbox" onclick="store(this,4)">
-					</td>
-				</tr>				
-			</table>
-			<br />
-			<button type="button" onclick="subPage()"> 上一页 </button>
-			<label id="pageNumber"> &nbsp 1 &nbsp </label>
-			<button type="button" onclick="addPage()"> 下一页 </button><br>
-		</fieldset>
-	</form>
-	<button type="submit" onclick="submitSet()" style="position:absolute;left:33%;top:48%;width:10%;height:10%">Submit</button>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">失语症辅助</a>
+        </div>
+        <!--右上角三个
+        <div class="header-right">
+            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
+            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+        </div>
+        -->
+    </nav>
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li>
+                    <div class="user-img-div">
+                        <img src="../static/img/user.png" class="img-thumbnail"/>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	<script type="text/javascript">
-		var pageNum = 1;
-		var all_ques;
-		var all_length = 0;
-		var quesCheck = new Array();
-		function subPage()
-		{
-			if(pageNum <= 1)
-			{
-				alert("这是第一页!");
-			}
-			else
-			{
-				pageNum = pageNum - 1;
-				ques_display();
-				changePage();
-			}
-		}
+                        <div class="inner-text">
+                            {% if classid == 0 %}
+                                患者: {{ username }}
+                            {% elif classid == 1 %}
+                                医生: {{ username }}
+                            {% endif %}
+                            <br/>
+                            <small>Welcome!</small>
+                        </div>
+                    </div>
 
-		function addPage()
-		{
-			if(pageNum > all_length / 5)
-			{
-				alert("这是最后一页");
-			}
-			else
-			{
-				pageNum = pageNum + 1;
-				ques_display();
-				changePage();
-			}
-		}
-		
-		function store(vi,id)
-		{
-			if(vi.checked)
-			{	
-				quesCheck[(pageNum-1)*5 + id] = true;
-			}
-			else
-			{
-				quesCheck[(pageNum-1)*5 + id] = false;
-			}
-		}
-		function changePage()
-		{
-			var label = document.getElementById('pageNumber');
-			label.innerText = String(pageNum);
-		}
-		changePage();
-	//<!-- 可以用checked 这个属性来判断是不是选中了这题 -->
-	//可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
-	//input 有一个type域，如果是 "hidden",就是不显示
-	
-	function ques_display()
-	{
-		var ques_2_disp = 5;
-		var reduce = all_length % 5;
-		let final = (pageNum === parseInt(((all_length + 4) / 5)));
-		if(final)
-		{
-			if(reduce == 0)
-			{
-				ques_2_disp = 5;	
-			}
-			else
-			{
-				ques_2_disp = reduce;	
-			}
-			
-		}
-		var startNum = (pageNum - 1) * 5;
-		for(let i = 0;i < 5;i++)
-		{
-			var td = document.getElementById('td'+(i+1));
-			if(final && i >= reduce)
-			{
-				td.innerText = "";
-				var vi = document.getElementById('v'+(i+1));
-				vi.type = "hidden";
-			}
-			else
-			{
-				td.innerText = "题目：" + all_ques["ques"+(startNum+i)]+"\n" + "A:" + all_ques["DesA"+(startNum+i)]
-							+ "B:" + all_ques["DesB" + (startNum+i)] + "\n" + "C:" + all_ques["DesC"+(startNum+i)]
-							+ "D:" + all_ques["DesD" + (startNum+i)];	
-				var vi = document.getElementById('v'+(i+1));	
-				vi.type = "checkbox";
-				if(quesCheck[startNum+i])
-				{
-					vi.checked = true;
-				}
-				else
-				{
-					vi.checked = false;
-				}
-			}
-			
-		}
-	}
+                </li>
 
-	function get_all() {
-			$.ajax({
-				type: "POST",
-				url: "http://127.0.0.1:8000/get_all/",
-				data: {},
-				success: function(data) {			
-					//alert(data['ques0']);
-					all_ques = data;
-					all_length = data["length"];
-					ques_display();
-					for(let i = 0;i < all_length;i++)
-					{
-						quesCheck[i] = false;
-					}
-				},
-				error: function(data) {
-					alert("Some error!");
-				}		
-			});
-		}		
-	
-	get_all();
 
-	function submitSet() {
-		var number = 0;
-		for(let i = 0;i < all_length;i++)
-		{
-			if(quesCheck[i] == true)
-			{
-				number = number + 1;
-			}
-		}
-		if(number > 0)
-		{
-			$.ajax({
-				type: "POST",
-				url: "http://127.0.0.1:8000/submit_set/",
-				data: {"quesCheck": String(quesCheck)},
-				success: function(data) {			
-					alert(data["status"]);
-				},
-				error: function(data) {
-					alert("Some error!");
-				}		
-			});
-		}
-		else
-		{
-			alert("你还没有选题!!");
-		}
-	}		
+                <li>
+                    <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>菜单</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-desktop "></i>出题 <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/upload/"><i class="fa fa-plus"></i>添加单个题目</a>
+                        </li>
+                        <li>
+                            <a href="/makeSet/"><i class="fa fa-edit"></i>出套题</a>
+                        </li>
+                        <li>
+                            <a href="/guide_upload/"><i class="fa fa-comments-o"></i>上传引导语</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-yelp "></i>查看题库 <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/show/"><i class="fa fa-coffee"></i>所有题目</a>
+                        </li>
+                        <li>
+                            <a href="/setDisplay/"><i class="fa fa-eyedropper "></i>所有套题</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-circle-o "></i>患者情况 <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
 
-	</script>
+                        <li>
+                            <a href="/allGen/"><i class="fa fa-bell "></i>所有患者 </a>
+                        </li>
+                        <li>
+                            <a href="//"><i class="fa fa-comments-o "></i>套题分配情况</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <fieldset style="position:absolute;left:30%;top:15%;width:75%;height:75%">
+                    <legend>请从下列题目中选择</legend>
+
+                    <form action="">
+                        <table border="1" width="80%">
+                            <tr>
+                                <td id="td1" width="80%"> Loading..</td>
+                                <td width="20%">
+                                    <input id="v1" align="center" type="checkbox" onclick="store(this,0)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="td2" width="80%"> Loading..</td>
+                                <td width="20%">
+                                    <input id="v2" align="center" type="checkbox" onclick="store(this,1)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="td3" width="80%"> Loading..</td>
+                                <td width="20%">
+                                    <input id="v3" align="center" type="checkbox" onclick="store(this,2)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="td4" width="80%"> Loading..</td>
+                                <td width="20%">
+                                    <input id="v4" align="center" type="checkbox" onclick="store(this,3)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="td5" width="80%"> Loading..</td>
+                                <td width="20%">
+                                    <input id="v5" type="checkbox" onclick="store(this,4)">
+                                </td>
+                            </tr>
+
+                        </table>
+                        <br/>
+                        <div class="row" align="center">
+                            <button type="button" onclick="subPage()"> 上一页</button>
+                            <label id="pageNumber"> &nbsp 1 &nbsp </label>
+                            <button type="button" onclick="addPage()"> 下一页</button>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <input type="text" style="position:absolute;left:0%;top:40%;width:40%;height:10%"
+                                   id="setDes"
+                                   placeholder="请输入套题描述信息（不超过100字）">
+                            <button type="submit" onclick="submitSet()"
+                                    style="position:absolute;left:65%;top:40%;width:10%;height:10%">
+                                提交套题
+                            </button>
+
+                        </div>
+
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+
+
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- /. FOOTER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="../static/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="../static/js/bootstrap.js"></script>
+<!-- PAGE LEVEL SCRIPTS -->
+<script src="../static/js/jquery.prettyPhoto.js"></script>
+<script src="../static/js/jquery.mixitup.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="../static/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="../static/js/custom.js"></script>
+<!-- CUSTOM Gallery Call SCRIPTS -->
+<script src="../static/js/galleryCustom.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 
 </body>
+</html>
 
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript">
+    var pageNum = 1;
+    var all_ques;
+    var all_length = 0;
+    var quesCheck = new Array();
+    var res = new Array();
+
+    function subPage() {
+        if (pageNum <= 1) {
+            alert("这是第一页!");
+        }
+        else {
+            pageNum = pageNum - 1;
+            ques_display();
+            changePage();
+        }
+    }
+
+    function addPage() {
+        if (pageNum > all_length / 5) {
+            alert("这是最后一页");
+        }
+        else {
+            pageNum = pageNum + 1;
+            ques_display();
+            changePage();
+        }
+    }
+
+    function store(vi, id) {
+        if (vi.checked) {
+            quesCheck[(pageNum - 1) * 5 + id] = true;
+        }
+        else {
+            quesCheck[(pageNum - 1) * 5 + id] = false;
+        }
+    }
+
+    function changePage() {
+        var label = document.getElementById('pageNumber');
+        label.innerText = String(pageNum);
+    }
+
+    changePage();
+    //
+    <!-- 可以用checked 这个属性来判断是不是选中了这题 -->
+    //可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
+    //input 有一个type域，如果是 "hidden",就是不显示
+
+    function ques_display() {
+        var ques_2_disp = 5;
+        var reduce = all_length % 5;
+        let final = (pageNum === parseInt(((all_length + 4) / 5)));
+        if (final) {
+            if (reduce == 0) {
+                ques_2_disp = 5;
+            }
+            else {
+                ques_2_disp = reduce;
+            }
+
+        }
+        var startNum = (pageNum - 1) * 5;
+        for (let i = 0; i < 5; i++) {
+            var td = document.getElementById('td' + (i + 1));
+            if (final && i >= reduce) {
+                td.innerText = "";
+                var vi = document.getElementById('v' + (i + 1));
+                vi.type = "hidden";
+            }
+            else {
+                td.innerText = "题目：" + all_ques["ques" + (startNum + i)] + "  " + "A:" + all_ques["DesA" + (startNum + i)]
+                    + "B:" + all_ques["DesB" + (startNum + i)] + "C:" + all_ques["DesC" + (startNum + i)]
+                    + "D:" + all_ques["DesD" + (startNum + i)];
+                var vi = document.getElementById('v' + (i + 1));
+                vi.type = "checkbox";
+                if (quesCheck[startNum + i]) {
+                    vi.checked = true;
+                }
+                else {
+                    vi.checked = false;
+                }
+            }
+
+        }
+    }
+
+    function get_all() {
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8000/get_all/",
+            data: {},
+            success: function (data) {
+                //alert(data['ques0']);
+                all_ques = data;
+                all_length = data["length"];
+                ques_display();
+                for (let i = 0; i < all_length; i++) {
+                    quesCheck[i] = false;
+                }
+            },
+            error: function (data) {
+                alert("Some error!");
+            }
+        });
+    }
+
+    get_all();
+
+    function submitSet() {
+        var des = document.getElementById('setDes');
+        if (des.value.length == 0) {
+            alert("你还没有写套题描述!!");
+        } else {
+            var number = 0;
+            for (let i = 0; i < all_length; i++) {
+                if (quesCheck[i] == true) {
+                    number = number + 1;
+                    res.push(all_ques["id" + i]);
+                }
+            }
+            if (number > 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:8000/submit_set/",
+                    data: {"quesCheck": String(res), "setDes": String(des.value)},
+                    success: function (data) {
+                        alert(data["status"]);
+                    },
+                    error: function (data) {
+                        {#alert("Some error!");#}
+                        alert(data["status"]);
+                    }
+                });
+            }
+            else {
+                alert("你还没有选题!!");
+            }
+        }
+
+    }
+
+</script>
+</body>
 </html>
