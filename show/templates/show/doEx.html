@@ -163,7 +163,8 @@
 <script src="../static/js/galleryCustom.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script type="text/javascript">
-
+    var no = 0;
+    var used_time = 0;  //单位是秒
     var pathA, pathB, pathC, pathD, pathVoice;
     var desA, desB, desC, desD, Answer, guidePath;
     var audio = document.getElementById('play1');
@@ -179,9 +180,12 @@
             type: "POST",
             url: "http://127.0.0.1:8000/get_nextToDo/",
             data: {
-                'type': typeid, 'setid':{{setid}}
+                'type': typeid, 
+                'time': used_time,
+                'setid':{{setid}}
             },
             success: function (data) {
+                no = no + 1;
                 Answer = data.namee;
                 if (Answer == "") {
                     alert("题目已经做完了");
@@ -226,6 +230,7 @@
             type: "POST",
             url: "http://127.0.0.1:8000/error_answer/",
             data: {
+                "no" : no,
                 "right": Answer,
                 "wrong": des
             },
@@ -327,6 +332,7 @@
     }
 
     var timer = setInterval(function () {
+        used_time++;
         str = "";
         if (++ss == 60) {
             if (++mm == 60) {

@@ -26,4 +26,7 @@ class Arrange_set(models.Model):
     dateTime = models.DateTimeField(auto_now_add=True)
     # 0 未做  1 完成
     status = models.IntegerField(default=0)
+    #如果做了的话,记录时间
+    usedTime = models.FloatField(default=0.0)
+    wrong_ques = models.CharField(max_length=300,null=True)
 

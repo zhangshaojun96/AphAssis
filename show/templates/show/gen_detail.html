@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
@@ -56,7 +56,6 @@
                             <small>Welcome!</small>
                         </div>
                     </div>
-
                 </li>
 
 
@@ -112,37 +111,35 @@
                         <td colspan="6" align="center">套题列表</td>
                     </tr>
                     <tr>
-                        <td width="10%">id</td>
-                        <td width="40%">套题描述</td>
-                        <td width="20%">题目数量</td>
-                        <td width="20%">操作</td>
+                        <td width="10%">套题描述</td>
+                        <td width="40%">是否完成</td>
+                        <td width="20%">所花时间</td>
+                        <td width="20%">错题</td>
                     </tr>
-                    {% for row in posts.object_list %}
+                    {% for row in detail.object_list %}
                         <tr>
-                            <td width="10%">{{ row.id }}</td>
-                            <td width="40%">{{ row.setDes }}</td>
-                            <td width="20%">{{ row.count }}</td>
-                            <td width="20%"><a href="">查看详情</a>
+                            <td width="10%">{{ row.name }}</td>
+                            <td width="40%">{{ row.status }}</td>
+                            <td width="20%">{{ row.time }}s</td>
+                            <td width="20%"><a href="">{{ row.wrong }}</a>
                             </td>
                         </tr>
                     {% endfor %}
                     <tr>
                         <td colspan="6" align="center">
                             {% if posts.has_previous %}
-                                <a href="/setDisplay?p={{ posts.previous_page_number }}">上一页</a>
+                                <a href="/gen_detail?p={{ posts.previous_page_number }}">上一页</a>
                             {% else %}
                                 <a href="#">上一页</a>
                             {% endif %}
 
                             {% if posts.has_next %}
-                                <a href="/setDisplay?p={{ posts.next_page_number }}">下一页</a>
+                                <a href="/gen_detail?p={{ posts.next_page_number }}">下一页</a>
                             {% endif %}
 
                             <span>
                                {{ posts.number }} / {{ posts.paginator.num_pages }}
                             </span>
-
-
                         </td>
                     </tr>
                     </tbody>

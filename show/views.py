@@ -12,7 +12,7 @@ from login.models import register
 from django.http import HttpResponse, JsonResponse
 import datetime, time
 # Create your views here.
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import datetime
 import time
@@ -26,6 +26,7 @@ number = int(0)
 questions = []
 length = 0
 question = None
+wrong_q = []
 
 '''
 def show(request):
@@ -75,6 +76,8 @@ def get_next(request):
 
 @csrf_exempt
 def error_answer(request):
+    error_no = request.POST.get('no',None)
+    wrong_q.append(err_no)
     right = request.POST.get('right', None)
     wrong = request.POST.get('wrong', None)
     Guider = list(guide.objects.filter(right_answer=right, wrong_answer=wrong))
@@ -114,8 +117,8 @@ def upload_snap(request):
         # 分析图片，记录表情
         res = get_emotion(snap_base64)
         regs.extend(res)
-        print("表情为： ")
-        print(res)
+        ##print("表情为： ")
+        ##print(res)
         return JsonResponse({"face_reg_test": res})
 
 
@@ -126,8 +129,8 @@ def get_feeling(request):
         # 深拷贝
         tmp = regs[:]
         regs.clear()
-        print("历史表情: ")
-        print(tmp)
+        ##print("历史表情: ")
+        ##print(tmp)
         if len(tmp) == 0:
             tmp = [0]
         return JsonResponse({"feeling": tmp})
@@ -210,7 +213,7 @@ def setDisplay(request):
         tmp['questions'] = str(item.questions).split(',')
         setlist.append(tmp)
     # 使用分页组件  分页显示
-    from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+    
     # 全部数据:USER_LIST,=>得出共有多少条数据
     # per_page: 每页显示条目数量
     # count:    数据总个数
@@ -301,10 +304,13 @@ def get_nextToDo(request):
     global questions
     global length
     global question
+    global wrong_q
 
+    userid = request.session['userid']
     setid = request.POST.get("setid", None)
     print("current set id : " + str(setid))
     typeid = request.POST.get("type", None)  # type==0  初始化
+
     if int(typeid) == 0:
         print('get next to do......init ')
         ques_set = QuestionSet.objects.get(id=setid)
@@ -313,6 +319,7 @@ def get_nextToDo(request):
         for ques_id in ques_list:
             ques = Ques.objects.get(id=ques_id)
             questions.append(ques)
+
     print('get next to do......next')
     if number < length:
         question = questions[number]
@@ -331,6 +338,19 @@ def get_nextToDo(request):
     if number < length:
         number += 1
     else:
+        #print("store start")
+        time_used = request.POST.get("time",None)
+        record_wrong = set(wrong_q)
+        print(record_wrong)
+        w_str = str(record_wrong)
+        w_str = w_str[4:-1]
+        arrange = list(Arrange_set.objects.filter(userid=userid,set=setid))
+        #print(len(arrange))
+        arrange[0].usedTime = time_used
+        arrange[0].wrong_ques = w_str
+        arrange[0].status = 1
+        arrange[0].save()
+        #print("store end")
         number = 0
         length = 0
         questions = []
@@ -412,12 +432,96 @@ def view_allMyDoneSet(request):
 
     return render(request, 'show/showMyDoneSet.html', {'username': username, 'classid': classid})
 
+def gen_detail(request):
+	need_gen_str = request.GET.get('p')
+	need_gen_no = int(need_gen_str,10)
+	all_sets = list(QuestionSet.objects.all())
+	gens = list(register.objects.filter(res_id=0))   #获取所有患者,为了之后显示患者的其他信息
+	need_gen = gens[need_gen_no]	
+	#print(need_gen.id)
+	sets = list(Arrange_set.objects.filter(userid=need_gen.id))  #获取这个人对应的所有套题
+	#print("len %d\n",len(sets))
+	detail = []
+	#下面是患者在每套题的情况
+	for item in sets:   
+		temp = {}
+		temp["status"] = item.status
+		temp["name"] = all_sets[item.set].setDes
+		temp["time"] = item.usedTime
+		w_str = str(item.wrong_ques)
+		if len(w_str) > 10:
+			w_str = w_str[0:6]
+			w_str = w_str + ".."
+		temp["wrong"] = w_str
+		detail.append(temp)
+
+	current_page = request.GET.get('p')
+    # Paginator对象，里面封装了上面那些值，把USER_LIST对象传过来了，显示10页
+	paginator = Paginator(detail, 3)
+
+	try:
+        # page对象
+        # posts配置对象(current_page用户可能填些不合法的字段）
+        # paginator通过拿到了page对象，把current_page传进来
+		posts = paginator.page(current_page)
+        # has_next              是否有下一页
+        # next_page_number      下一页页码
+        # has_previous          是否有上一页
+        # previous_page_number  上一页页码
+        # object_list           分页之后的数据列表,已经切片好的数据
+        # number                当前页
+        # paginator             paginator对象
+
+    # 表示你填的东西不是个整数
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+    # 空页的时候，表示你看完了，显示最后一页
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
+
+	username = request.session['username']
+	classid = request.session['classid']
+	return render(request,'show/gen_detail.html',{'detail':posts,'username':username,'classid':classid})
 
 # 所有患者
 def allGen(request):
+    i = 0
+    gens = list(register.objects.filter(res_id=0))
+    genList = []
+    for item in gens:
+        temp = {}
+        temp['id'] = i
+        temp['name'] = item.res_username
+        genList.append(temp)
+        i = i + 1
+
+    current_page = request.GET.get('p')
+    # Paginator对象，里面封装了上面那些值，把USER_LIST对象传过来了，显示10页
+    paginator = Paginator(genList, 3)
+
+    try:
+        # page对象
+        # posts配置对象(current_page用户可能填些不合法的字段）
+        # paginator通过拿到了page对象，把current_page传进来
+        posts = paginator.page(current_page)
+        # has_next              是否有下一页
+        # next_page_number      下一页页码
+        # has_previous          是否有上一页
+        # previous_page_number  上一页页码
+        # object_list           分页之后的数据列表,已经切片好的数据
+        # number                当前页
+        # paginator             paginator对象
+
+    # 表示你填的东西不是个整数
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    # 空页的时候，表示你看完了，显示最后一页
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
     username = request.session['username']
     classid = request.session['classid']
-    return render(request, 'show/allGen.html', {'username': username, 'classid': classid})
+    return render(request, 'show/allGen.html', {'posts':posts,'username': username, 'classid': classid})
 
 
 def get_allGen(request):
@@ -435,6 +539,8 @@ def get_allGen(request):
 def submit_arr(request):
     l = request.POST.get("setsCheck", None).split(',')
     patientid = request.POST.get("userid", None)
+    print(patientid)
+
     for i in l:
         new_arr = Arrange_set(
             userid=int(patientid),

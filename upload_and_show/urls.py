@@ -38,6 +38,7 @@ urlpatterns = [
                   url(r'^setDisplay/', show_views.setDisplay, name="setDisplay"),
                   url(r'^allGen/', show_views.allGen, name="allGen"),
                   url(r'^setArrange/', show_views.setArrange, name="setArrange"),
+                  url(r'^gen_detail/',show_views.gen_detail,name="gen_detail"),
 
                   url(r'^get_all/', Set_views.get_all, name="get_all"),
                   url(r'^get_allGen/', show_views.get_allGen, name="get_allGen"),
@@ -54,6 +55,7 @@ urlpatterns = [
 
                   url(r'^error_answer/', show_views.error_answer, name="error_answer"),
                   url(r'^makeSet/', Set_views.makeSet),
+                  url(r'^login/',login_views.login),
                   url(r'^after_login/', login_views.after_login),
                   url(r'^register/', login_views.nregister),
                   url(r'^face_reg_test/', face_reg_views.index, name="face_reg_index"),

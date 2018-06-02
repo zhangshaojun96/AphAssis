@@ -31,14 +31,14 @@ def upload_snap(request):
             os.remove(dest)
         with open(dest, "wb+") as destination:
             destination.write(snap)
-        print("截图保存在" + dest)
+        #print("截图保存在" + dest)
         # 分析图片，记录表情，这里只是模拟收到即可
         random.seed(time.time())
         res = random.randint(-1, 1)
         regs.append(res)
-        print("表情为： " + str(res))
-        print("list: ")
-        print(regs)
+        #print("表情为： " + str(res))
+        #print("list: ")
+        #print(regs)
         return JsonResponse({"face_reg": str(res)})
 
 # 获取表情列表
@@ -48,6 +48,6 @@ def get_feeling(request):
         # 深拷贝
         tmp=regs[:]
         regs.clear()
-        print("历史 list: ")
-        print(tmp)
+        ##print("历史 list: ")
+        ##print(tmp)
         return JsonResponse({"feeling": tmp})

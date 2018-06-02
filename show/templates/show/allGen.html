@@ -111,44 +111,43 @@
             <!-- /. ROW  -->
             <div id="port-folio">
                 <div class="row ">
-                    {#                        <ul id="filters" >#}
-                    {#						<li><span class="filter active" data-filter="landscape nature awesome">All </span></li>#}
-                    {#						<li><span class="filter active">/</span></li>#}
-                    {#						<li><span class="filter" data-filter="landscape">Landscape</span></li>#}
-                    {#						<li><span class="filter">/</span></li>#}
-                    {#						<li><span class="filter" data-filter="nature">Nature</span></li>#}
-                    {#						<li><span class="filter">/</span></li>#}
-                    {#						<li><span class="filter" data-filter="awesome">Awesome</span></li>#}
-                    {#					    </ul>#}
-                    <div class="row " style="position:absolute;left:30%;top:15%;width:75%;height:75%">
-                        <fieldset>
-                            <legend>所有患者</legend>
-                            <table border="1" width="50%" align="center" style="font-size: 25px">
+                    
+                    <div class="row " style="position:absolute;left:25%;top:18%;width:75%;height:75%">
+                        <table align="center" width="600" border=1 bordercolor="#00ff99">
+                            <tbody>
+                            <tr>
+                                <td colspan="6" align="center">所有病人</td>
+                            </tr>
+                            <tr>
+                                <td width="40%" align="center">患者姓名</td>
+                                <td width="20%" align="center">操作</td>
+                            </tr>
+                            {% for row in posts.object_list %}
                                 <tr>
-                                    <td id="td1" width="80%" align="center"> Loading..</td>
+                                    <td width="40%" align="center">{{ row.name }}</td>
+                                    <td width="20%" align="center"><a href="/gen_detail?p={{ row.id }}">查看详情</a>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td id="td2" width="80%" align="center"> Loading..</td>
-                                </tr>
-                                <tr>
-                                    <td id="td3" width="80%" align="center"> Loading..</td>
-                                </tr>
-                                <tr>
-                                    <td id="td4" width="80%" align="center"> Loading..</td>
-                                </tr>
-                                <tr>
-                                    <td id="td5" width="80%" align="center"> Loading..</td>
-                                </tr>
-                            </table>
-                            <br/>
-                            <div class="row" align="center">
-                                <button type="button" onclick="subPage()"> 上一页</button>
-                                <label id="pageNumber"> &nbsp 1 &nbsp </label>
-                                <button type="button" onclick="addPage()"> 下一页</button>
-                                <br>
-                            </div>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="6" align="center">
+                                    {% if posts.has_previous %}
+                                        <a href="/allGen?p={{ posts.previous_page_number }}">上一页</a>
+                                    {% else %}
+                                        <a href="#">上一页</a>
+                                    {% endif %}
 
-                        </fieldset>
+                                    {% if posts.has_next %}
+                                        <a href="/allGen?p={{ posts.next_page_number }}">下一页</a>
+                                    {% endif %}
+
+                                    <span>
+                                       {{ posts.number }} / {{ posts.paginator.num_pages }}
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -201,6 +200,11 @@
         }
     }
 
+    function genDetail(number)
+    {
+        location.herf = "/genDetail/" + string(number+5*pageNum);
+    }
+
     function changePage() {
         var label = document.getElementById('pageNumber');
         label.innerText = String(pageNum);
@@ -223,14 +227,15 @@
             else {
                 gen_2_disp = reduce;
             }
-
         }
         var startNum = (pageNum - 1) * 5;
         for (let i = 0; i < 5; i++) {
             var td = document.getElementById('td' + (i + 1));
+            var td1 = document.getElementById('td' + (i+1) + '1');
             if (final && i >= reduce) {
                 td.innerText = "";
                 td.type = "hidden";
+                td1.type = "hidden";
             }
             else {
                 td.innerText = all_gen["gen" + (startNum + i)];

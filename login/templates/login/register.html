@@ -1,444 +1,146 @@
 <!DOCTYPE html>
-
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-
-<!-- BEGIN HEAD -->
-
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8" />
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Bootstrap Advance Admin Template</title>
 
-	<title>Metronic | Login Page</title>
-
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-
-	<meta content="" name="description" />
-
-	<meta content="" name="author" />
-
-	<!-- BEGIN GLOBAL MANDATORY STYLES -->
-
-	<link href="../static/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-	<link href="../static/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
-
-	<link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
-	<link href="../static/css/style-metro.css" rel="stylesheet" type="text/css"/>
-
-	<link href="../static/css/style.css" rel="stylesheet" type="text/css"/>
-
-	<link href="../static/css/style-responsive.css" rel="stylesheet" type="text/css"/>
-
-	<link href="../static/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
-
-	<link href="../static/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-
-	<!-- END GLOBAL MANDATORY STYLES -->
-
-	<!-- BEGIN PAGE LEVEL STYLES -->
-
-	<link href="../static/css/login.css" rel="stylesheet" type="text/css"/>
-
-	<!-- END PAGE LEVEL STYLES -->
-
-	<link rel="shortcut icon" href="../static/image/favicon.ico" />
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
 </head>
-
-<!-- END HEAD -->
-
-<!-- BEGIN BODY -->
-
-<body class="login">
-
-	<!-- BEGIN LOGO -->
-
-	<div class="logo">
-
-		<img src="../static/image/logo-big.png" alt="" />
-
-	</div>
-
-	<!-- END LOGO -->
-
-	<!-- BEGIN LOGIN -->
-
-	<div class="content">
-
-		<!-- BEGIN LOGIN FORM -->
-
-
-
-			<h3 class="form-title">登录</h3>
-
-			<div class="alert alert-error hide">
-
-				<button class="close" data-dismiss="alert"></button>
-
-				<span>输入用户名和密码.</span>
-
-			</div>
-
-			<div class="control-group">
-
-				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-user"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username" id="username"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="control-group">
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-lock"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="密码" name="password" id="password"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="form-actions">
-
-				<label class="checkbox">
-
-				<input type="checkbox" name="remember" value="1"/> 记住我
-
-				</label>
-
-				<button type="submit" class="btn green pull-right" onclick="login()">
-
-				登录 <i class="m-icon-swapright m-icon-white"></i>
-
-				</button>
-
-			</div>
-
-			<div class="forget-password">
-
-				<h4>忘记密码 ?</h4>
-
-				<p>
-
-					no worries, click <a href="javascript:;" class="" id="forget-password">here</a>
-
-					to reset your password.
-
-				</p>
-
-			</div>
-
-			<div class="create-account">
-
-				<p>
-
-					&nbsp;
-
-					<a href="javascript:;" id="register-btn" class="">Create an account</a>
-
-				</p>
-
-			</div>
-
-
-
-		<!-- END LOGIN FORM -->
-
-		<!-- BEGIN FORGOT PASSWORD FORM -->
-
-
-			<h3 class="">Forget Password ?</h3>
-
-			<p>Enter your e-mail address below to reset your password.</p>
-
-			<div class="control-group">
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-envelope"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email" />
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="form-actions">
-
-				<button type="button" id="back-btn" class="btn">
-
-				<i class="m-icon-swapleft"></i> Back
-
-				</button>
-
-				<button type="submit" class="btn green pull-right">
-
-				提交<i class="m-icon-swapright m-icon-white"></i>
-
-				</button>
-
-			</div>
-
-
-
-		<!-- END FORGOT PASSWORD FORM -->
-
-		<!-- BEGIN REGISTRATION FORM -->
-
-			<h3 class="">注册</h3>
-
-
-			<div class="control-group">
-
-				<label class="control-label visible-ie8 visible-ie9">用户名</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-user"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username" id="res_username"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="control-group">
-
-				<label class="control-label visible-ie8 visible-ie9">密码</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-lock"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="password"  placeholder="密码" name="password" id="res_password"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="control-group">
-
-				<label class="control-label visible-ie8 visible-ie9">确认密码</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-ok"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="确认密码" name="rpassword"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="control-group">
-                <div class="control-group">
-
-				<label class="control-label visible-ie8 visible-ie9">id</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-user"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="用户id"   id="res_id"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-
-				<label class="control-label visible-ie8 visible-ie9">邮箱</label>
-
-				<div class="controls">
-
-					<div class="input-icon left">
-
-						<i class="icon-envelope"></i>
-
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="邮箱" name="email" id="res_email"/>
-
-					</div>
-
-				</div>
-
-			</div>
-
-
-			<div class="form-actions">
-
-				<button id="register-back-btn" type="button" class="btn">
-
-				<i class="m-icon-swapleft"></i>  返回
-
-				</button>
-                	<a href="javascript:register()" class="btn green pull-right">注册</a>
-				<button type="submit" id="register-submit-btn" class="btn green pull-right">
-
-				注册 <i class="m-icon-swapright m-icon-white"></i>
-
-				</button>
-
-			</div>
-
-
-
-		<!-- END REGISTRATION FORM -->
-
-	</div>
-
-	<!-- END LOGIN -->
-
-	<!-- BEGIN COPYRIGHT -->
-
-	<div class="copyright">
-
-		2018 &copy; BH
-
-	</div>
-
-	<!-- END COPYRIGHT -->
-
-	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-
-	<!-- BEGIN CORE PLUGINS -->
-
-	<script src="../static/js/jquery-1.10.1.min.js" type="text/javascript"></script>
-
-	<script src="../static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-
-	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-
-	<script src="../static/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-
-	<script src="../static/js/bootstrap.min.js" type="text/javascript"></script>
-
-	<!--[if lt IE 9]>
-
-	<script src="media/js/excanvas.min.js"></script>
-
-	<script src="media/js/respond.min.js"></script>
-
-	<![endif]-->
-
-	<script src="../static/js/jquery.slimscroll.min.js" type="text/javascript"></script>
-
-	<script src="../static/js/jquery.blockui.min.js" type="text/javascript"></script>
-
-	<script src="../static/js/jquery.cookie.min.js" type="text/javascript"></script>
-
-	<script src="../static/js/jquery.uniform.min.js" type="text/javascript" ></script>
-
-	<!-- END CORE PLUGINS -->
-
-	<!-- BEGIN PAGE LEVEL PLUGINS -->
-
-	<script src="../static/js/jquery.validate.min.js" type="text/javascript"></script>
-
-	<!-- END PAGE LEVEL PLUGINS -->
-
-	<!-- BEGIN PAGE LEVEL SCRIPTS -->
-
-	<script src="../static/js/app.js" type="text/javascript"></script>
-
-	<script src="../static/js/login.js" type="text/javascript"></script>
-
-	<!-- END PAGE LEVEL SCRIPTS --> 
-
-	<script>
-
-		jQuery(document).ready(function() {
-
-		  App.init();
-
-		  Login.init();
-
-		});
+<body style="background-color: #E2E2E2;">
+    <div class="container">
+        <div class="row text-center " style="padding-top:100px;">
+            <div class="col-md-12">
+                <img src="../static/img/aph_login.png" />
+            </div>
+        </div>
+         <div class="row ">
+
+                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+
+                            <div class="panel-body">
+                                <form role="form">
+                                    <hr />
+                                    <h2>注册</h2>
+                                    <br />
+                                     <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
+                                            <input type="text" class="form-control" placeholder="用户名"  id="res_username"/>
+                                     </div>
+                                    <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                            <input type="password" class="form-control"  placeholder="密码"  id="res_password"/>
+                                    </div>
+                                    <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                            <input type="password" class="form-control"  placeholder="确认密码"  id="res_rpassword"/>
+                                    </div>
+                                    <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                            <input type="text" class="form-control"  placeholder="邮箱"  id="res_email"/>
+                                    </div>
+                                     <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                            <input type="text" class="form-control"  placeholder="年龄"  id="age"/>
+                                    </div>
+                                     <div class="form-group input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                                            <input type="text" class="form-control"  placeholder="职业"  id="profession"/>
+                                    </div>
+                                     <div class="form-group">
+                                            <label>学历</label>
+                                            <select class="form-control" id="education">
+                                                <option value="0">小学</option>
+                                                <option value="1">初中</option>
+                                                <option value="2">高中</option>
+                                                <option value="3">本科</option>
+                                                <option value="4">专科</option>
+                                                <option value="5">硕士</option>
+                                                <option value="6">博士</option>
+                                            </select>
+                                    </div>
+                                    <div class="form-group">
+                                            <label>用户类别</label>
+                                            <select class="form-control" id="type">
+                                                <option value="0">患者</option>
+                                                <option value="1">医生</option>
+                                                <option value="2">开发者</option>
+                                            </select>
+                                    </div>
+                                     <a  class="btn btn-primary" onclick="register()">注册</a>
+                                      <a  href="/login/">登录</a>
+                                    </form>
+                            </div>
+
+                        </div>
+
+
+        </div>
+    </div>
+        <script src="../static/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="../static/js/bootstrap.js"></script>
+    <script src="../static/js/md5.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="../static/js/jquery.metisMenu.js"></script>
+       <!-- CUSTOM SCRIPTS -->
+    <script>
 		function register(){
-		     var res_email=$('#res_email').val();
-		     var res_username=$('#res_username').val();
-		     var res_password=$('#res_password').val();
-             var res_id=$('#res_id').val();
+        var res_email=$('#res_email').val();
+        var res_username=$('#res_username').val();
+        var res_password= hex_md5($('#res_password').val());
+        var res_rpassword= hex_md5($('#res_rpassword').val());
+        var res_type=$('#type option:selected') .val();
+        var age= $('#age').val();
+        var profession= $('#profession').val();
+        var education= $('#education option:selected') .val();
+       var re =/[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
+        var re1 =/^(?:[1-9][0-9]?|1[01][0-9]|120)$/;
+        if(res_username==""){
+            alert("用户名不能为空");
+        } ;
+        if(res_password.length<6){
+            alert("密码不能小于6位");
+        }else{
+              if(res_password!=res_rpassword){
+                alert("两次输入的密码不同");
+                return 0;
+              }
+        }
+         if(!re.test(res_email)){
+               alert(res_email+"邮箱输入错误");
+                return;
+         }
+           if(!re1.test(age)){
+               alert("年龄的范围在1到120岁之间");
+                return;
+         }
 		     $.ajax({
 				type:'post',
-				url:'login',
-				data:'&res_email='+res_email+'&res_username='+res_username+'&res_password='+res_password+'&type='+"1"+'&res_id='+res_id,
-				success : function success(data)
-						{
-							if (data == "failed")
-							  alert("重复用户名");
-							else  {
-
-								{#alert("成功le");#}
-								location.href = '/register';
-							}
-						},
-				error : function error()
-				{
-					swal('数据发送失败','请检查网络连接','error');
-				}
-			});
-		}
-        function login(){
-		     var username=$('#username').val();
-		     var password=$('#password').val();
-		     $.ajax({
-				type:'post',
-				url:'login',
-				data:'&username='+username+'&password='+password+'&type='+"2",
+				url:'',
+				data:'&res_email='+res_email+'&res_username='+res_username+'&res_password='+res_password+'&res_type='+res_type+'&age='+age+'&profession='+profession+'&education='+education,
 				success : function success(data)
 						{
 							if (data.status == "failed")
 							  alert(data.reason);
 							if (data.status == "success") {
-								{#alert(data.reason);#}
-								location.href = '/after_login/';
+								alert(data.reason);
+								location.href = '/index/';
 							}
 						},
 				error : function error()
 				{
-					swal('数据发送失败','请检查网络连接','error');
+					alert('数据发送失败','请检查网络连接','error');
 				}
 			});
 		}
+
 	</script>
 
 	<!-- END JAVASCRIPTS -->
