@@ -6,6 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 from upload.models import Ques
 from upload.models import guide
 from aip import AipSpeech
+from django.http import HttpResponse, JsonResponse
+import re
 
 APP_ID = '11055836'
 API_KEY = 'lwEPvnwUvc2thvOY9G0IkqjV'
@@ -61,10 +63,78 @@ def guide_upload(request):
         new_guide = guide(
             right_answer=right,
             wrong_answer=wrong,
-            tips="media/voice/" + guidance + ".mp3"
+            tips="media/guide/" + guidance + ".mp3"
         )
         new_guide.save()
+    return JsonResponse({"status": 1})
+
+
+# 增加引导语界面
+def addGuideline(request):
     username = request.session['username']
     classid = request.session['classid']
+    option_list = list(Ques.objects.all())
+    ans = set()
+    for item in option_list:
+        if item.DesA not in ans:
+            ans.add(item.DesA)
+        if item.DesB not in ans:
+            ans.add(item.DesB)
+        if item.DesC not in ans:
+            ans.add(item.DesC)
+        if item.DesD not in ans:
+            ans.add(item.DesD)
+    res = list(ans)
+    return render(request, 'addGuideline.html', {'username': username, 'classid': classid, 'options': res})
 
-    return render(request, 'upload/upload_guide.html', {'username': username, 'classid': classid})
+
+# 查询引导语界面
+def viewGuideline(request):
+    username = request.session['username']
+    classid = request.session['classid']
+    return render(request, 'viewGuideline.html', {'username': username, 'classid': classid})
+
+
+# 删除引导语界面
+def delGuideline(request):
+    username = request.session['username']
+    classid = request.session['classid']
+    return render(request, 'delGuideline.html', {'username': username, 'classid': classid})
+
+
+# 获取特定引导语
+def get_specificGuide(request):
+    right = str(request.POST.get("right", None))
+    wrong = str(request.POST.get("wrong", None))
+
+    guide_list = list(guide.objects.filter(right_answer=right, wrong_answer=wrong))
+    length = len(guide_list)
+    ans = {}
+    ans["length"] = length
+    regex = r'media/guide/(.*).mp3'
+
+    for i in range(length):
+        ans['id' + str(i)] = str(guide_list[i].id)
+        ans['right' + str(i)] = str(guide_list[i].right_answer)
+        ans["wrong" + str(i)] = str(guide_list[i].wrong_answer)
+        ans["guide" + str(i)] = str(extractData(regex, guide_list[i].tips))
+    return JsonResponse(ans)
+
+
+def extractData(regex, content, index=1):
+    r = '0'
+    p = re.compile(regex)
+    m = p.search(content)
+    if m:
+        r = m.group(index)
+    return r
+
+
+# 删除特定引导语
+def submit_GuideDel(request):
+    if request.method == 'POST':
+        l = request.POST.get("setsCheck", None).split(',')
+        for i in l:
+            guideline = guide.objects.filter(id=i).delete()
+
+    return JsonResponse({"status": 1})

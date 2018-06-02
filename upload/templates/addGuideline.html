@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Responsive Bootstrap Advance Admin Template</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet"/>
+    <!-- PAGE LEVEL STYLES -->
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet"/>
+    <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet"/>
+    <!--CUSTOM MAIN STYLES-->
+    <link href="../static/css/custom.css" rel="stylesheet"/>
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">失语症辅助</a>
+        </div>
+        <!--右上角三个
+        <div class="header-right">
+            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
+            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
+        </div>
+        -->
+    </nav>
+    <!-- /. NAV TOP  -->
+    <!-- /. NAV TOP  -->
+    <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+                <li>
+                    <div class="user-img-div">
+                        <img src="../static/img/user.png" class="img-thumbnail"/>
+
+                        <div class="inner-text">
+                            {% if classid == 0 %}
+                                患者: {{ username }}
+                            {% elif classid == 1 %}
+                                医生: {{ username }}
+                            {% endif %}
+
+                            <br/>
+                            <small>Welcome!</small>
+                        </div>
+                    </div>
+
+                </li>
+                {#                //医生可见#}
+                {% if classid == 1 %}
+                    <li>
+                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>菜单</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-desktop "></i>出题 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/upload"><i class="fa fa-plus"></i>添加单个题目</a>
+                            </li>
+                            <li>
+                                <a href="/makeSet"><i class="fa fa-edit"></i>出套题</a>
+                            </li>
+                            <li>
+                                <a href="/addGuideline/"><i class="fa fa-plus"></i>添加引导语</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-yelp "></i>查看题库 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/show"><i class="fa fa-coffee"></i>所有题目</a>
+                            </li>
+                            <li>
+                                <a href="/setDisplay/"><i class="fa fa-eyedropper "></i>所有套题</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-circle-o "></i>患者情况 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="/allGen/"><i class="fa fa-bell "></i>所有患者 </a>
+                            </li>
+                            <li>
+                                <a href="/setArrange/"><i class="fa fa-comments-o "></i>套题分配情况</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {#                    患者可见#}
+                {% elif classid == 0 %}
+                    <li>
+                        <a href="#"><i class="fa fa-desktop "></i>查询 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/view_allMyDoneSet/"><i class="fa fa-plus"></i>已完成套题</a>
+                            </li>
+                            <li>
+                                <a href="/view_allMyDoneSet/"><i class="fa fa-comments-o"></i>可视化分析</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-desktop "></i>做题 <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/view_allMyToDoSet/"><i class="fa fa-plus"></i>未做套题</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <fieldset style="position:absolute;left:30%;top:15%;width:75%;height:75%">
+                    <legend>请添加引导语</legend>
+
+                    <form action="">
+                        <p>选择正确选项</p>
+                        <select id="right">
+                            {% for x in options %}
+                                <option value="{{ x }}">{{ x }}</option>
+                            {% endfor %}
+                        </select>
+                        <p>选择患者选项</p>
+                        <select id="wrong">
+                            {% for x in options %}
+                                <option value="{{ x }}">{{ x }}</option>
+                            {% endfor %}
+                        </select>
+
+
+                        <br/>
+
+                        <div class="row" align="center">
+                            <button type="button" onclick="viewGuide()" style="position:absolute;left:70%"
+                            >
+                                查询相关引导语
+                            </button>
+
+                        </div>
+
+                    </form>
+                    <br/>
+                    <br/>
+                    <p>以下是已存在的相关引导语</p>
+                    <table border="1" width="80%">
+                        <tr>
+                            <td width="5%">id</td>
+                            <td width="15%">正确选项</td>
+                            <td width="15%">患者选项</td>
+                            <td width="60%">引导语</td>
+                            <td width="5%">勾选</td>
+                        </tr>
+                        <tr>
+                            <td id="id1" width="5%">0</td>
+                            <td id="tdright1" width="15%"> Loading..</td>
+                            <td id="tdwrong1" width="15%"> Loading..</td>
+                            <td id="tdguide1" width="60%"> Loading..</td>
+                            <td width="5%">
+                                <input id="v1" align="center" type="checkbox" onclick="store(this,0)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="id2" width="5%">0</td>
+                            <td id="tdright2" width="15%"> Loading..</td>
+                            <td id="tdwrong2" width="15%"> Loading..</td>
+                            <td id="tdguide2" width="60%"> Loading..</td>
+                            <td width="5%">
+                                <input id="v2" align="center" type="checkbox" onclick="store(this,1)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="id3" width="5%">0</td>
+                            <td id="tdright3" width="15%"> Loading..</td>
+                            <td id="tdwrong3" width="15%"> Loading..</td>
+                            <td id="tdguide3" width="60%"> Loading..</td>
+                            <td width="5%">
+                                <input id="v3" align="center" type="checkbox" onclick="store(this,2)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="id4" width="5%">0</td>
+                            <td id="tdright4" width="15%"> Loading..</td>
+                            <td id="tdwrong4" width="15%"> Loading..</td>
+                            <td id="tdguide4" width="60%"> Loading..</td>
+                            <td width="5%">
+                                <input id="v4" align="center" type="checkbox" onclick="store(this,3)">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="id5" width="5%">0</td>
+                            <td id="tdright5" width="15%"> Loading..</td>
+                            <td id="tdwrong5" width="15%"> Loading..</td>
+                            <td id="tdguide5" width="60%"> Loading..</td>
+                            <td width="5%">
+                                <input id="v5" align="center" type="checkbox" onclick="store(this,4)">
+                            </td>
+                        </tr>
+
+                    </table>
+                    <div class="row" align="center">
+                        <button type="button" onclick="subPage()"> 上一页</button>
+                        <label id="pageNumber"> &nbsp 1 &nbsp </label>
+                        <button type="button" onclick="addPage()"> 下一页</button>
+                        <br>
+                    </div>
+                    <br/>
+                    <div class="row" align="center">
+                        <button type="button" onclick="delGuide()" style="position:absolute;left:70%">
+                            删除勾选的引导语
+                        </button>
+
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row" align="left" style="width: 80%">
+                        <input id="newguide" type="text"
+                               placeholder="请输入你要添加的引导语内容" size="80"/>
+
+                    </div>
+                    <br/>
+                    <div class="row" align="center">
+                        <button type="button" onclick="uploadGuide()" style="position:absolute;left:70%"
+                        >
+                            上传引导语
+                        </button>
+
+                    </div>
+                </fieldset>
+            </div>
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- /. FOOTER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="../static/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="../static/js/bootstrap.js"></script>
+<!-- PAGE LEVEL SCRIPTS -->
+<script src="../static/js/jquery.prettyPhoto.js"></script>
+<script src="../static/js/jquery.mixitup.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="../static/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="../static/js/custom.js"></script>
+<!-- CUSTOM Gallery Call SCRIPTS -->
+<script src="../static/js/galleryCustom.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script>
+
+    var pageNum = 1;
+    var all_sets;
+    var all_length = 0;
+    var setsCheck = new Array();
+    var res = new Array();
+
+    function subPage() {
+        if (pageNum <= 1) {
+            alert("这是第一页!");
+        }
+        else {
+            pageNum = pageNum - 1;
+            sets_display(1);
+            changePage();
+        }
+    }
+
+    function addPage() {
+        if (pageNum > all_length / 5) {
+            alert("这是最后一页");
+        }
+        else {
+            pageNum = pageNum + 1;
+            sets_display(1);
+            changePage();
+        }
+    }
+
+    function store(vi, id) {
+        if (vi.checked) {
+            setsCheck[(pageNum - 1) * 5 + id] = true;
+        }
+        else {
+            setsCheck[(pageNum - 1) * 5 + id] = false;
+        }
+    }
+
+    function changePage() {
+        var label = document.getElementById('pageNumber');
+        label.innerText = String(pageNum);
+    }
+
+    changePage();
+    //
+    <!-- 可以用checked 这个属性来判断是不是选中了这题 -->
+    //可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
+    //input 有一个type域，如果是 "hidden",就是不显示
+
+    function sets_display(typeid) {
+        var ques_2_disp = 5;
+        var reduce = all_length % 5;
+        let final = (pageNum === parseInt(((all_length + 4) / 5)));
+        if (final) {
+            if (reduce == 0) {
+                ques_2_disp = 5;
+            }
+            else {
+                ques_2_disp = reduce;
+            }
+
+        }
+        var startNum = (pageNum - 1) * 5;
+        for (let i = 0; i < 5; i++) {
+
+            var id = document.getElementById('id' + (i + 1));
+            var tdright = document.getElementById('tdright' + (i + 1));
+            var tdwrong = document.getElementById('tdwrong' + (i + 1));
+            var tdguide = document.getElementById('tdguide' + (i + 1));
+
+            if (final && i >= reduce || all_length == 0) {
+                id.innerText = ""
+                tdright.innerText = "";
+                tdwrong.innerText = "";
+                tdguide.innerText = "";
+                var vi = document.getElementById('v' + (i + 1));
+                vi.type = "hidden";
+            }
+            else {
+                id.innerText = all_sets["id" + (startNum + i)];
+                tdright.innerText = all_sets["right" + (startNum + i)];
+                tdwrong.innerText = all_sets["wrong" + (startNum + i)];
+                tdguide.innerText = all_sets["guide" + (startNum + i)];
+                if (typeid == 0) {
+                    var vi = document.getElementById('v' + (i + 1));
+                    vi.type = "checkbox";
+                    vi.checked = false;
+
+                } else {
+                    var vi = document.getElementById('v' + (i + 1));
+                    vi.type = "checkbox";
+                    if (setsCheck[startNum + i]) {
+                        vi.checked = true;
+                    }
+                    else {
+                        vi.checked = false;
+                    }
+                }
+
+            }
+
+        }
+    }
+
+    sets_display();
+
+    function viewGuide() {
+        var right_answer = document.getElementById('right').value;
+        var wrong_answer = document.getElementById('wrong').value;
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8000/get_specificGuide/",
+            data: {'right': right_answer, 'wrong': wrong_answer},
+            success: function (data) {
+                //alert(data['ques0']);
+                all_sets = data;
+                all_length = data["length"];
+                sets_display(0);
+                for (let i = 0; i < all_length; i++) {
+                    setsCheck[i] = false;
+                }
+            },
+            error: function (data) {
+                alert("Some error!");
+            }
+        });
+        return false;
+    }
+
+    function uploadGuide() {
+        var right_answer = document.getElementById('right').value;
+        var wrong_answer = document.getElementById('wrong').value;
+        var newguide = document.getElementById('newguide').value;
+
+
+        if (newguide.length != 0) {
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/guide_upload/",
+                data: {"right": String(right_answer), "wrong": String(wrong_answer), 'guide': String(newguide)},
+                success: function (data) {
+                    viewGuide();
+                    alert("上传成功");
+                },
+                error: function (data) {
+                    {#alert("Some error!");#}
+                    alert(data["status"]);
+                }
+            });
+        }
+        else {
+            alert("你还没有填写引导语!!");
+        }
+        return false;
+
+    }
+
+    function delGuide() {
+        var number = 0;
+
+        for (let i = 0; i < all_length; i++) {
+            if (setsCheck[i] == true) {
+                res.push(all_sets["id" + i]);
+                number = number + 1;
+            }
+        }
+
+        if (number > 0) {
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/submit_GuideDel/",
+                data: {"setsCheck": String(res)},
+                success: function (data) {
+                    viewGuide();
+                    alert('删除成功');
+                },
+                error: function (data) {
+                    {#alert("Some error!");#}
+                    alert(data["status"]);
+                }
+            });
+        }
+        else {
+            alert("你还没有选套题!!");
+        }
+        return false;
+
+
+    }
+
+</script>
+</body>
+</html>
