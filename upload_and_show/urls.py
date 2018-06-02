@@ -34,6 +34,12 @@ urlpatterns = [
                   url(r'show/', show_views.show),
                   url(r'^upload/', upload_views.upload),
                   url(r'^guide_upload/', upload_views.guide_upload),
+                  url(r'^addGuideline/', upload_views.addGuideline, name="addGuideline"),
+                  url(r'^viewGuideline/', upload_views.viewGuideline, name="viewGuideline"),
+                  url(r'^delGuideline/', upload_views.delGuideline, name="delGuideline"),
+                  url(r'^get_specificGuide/', upload_views.get_specificGuide, name="get_specificGuide"),
+                  url(r'^submit_GuideDel/', upload_views.submit_GuideDel, name="submit_GuideDel"),
+
                   url(r'^get_next/', show_views.get_next, name="get_next"),
                   url(r'^setDisplay/', show_views.setDisplay, name="setDisplay"),
                   url(r'^allGen/', show_views.allGen, name="allGen"),
