@@ -1,149 +1,156 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-      <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Responsive Bootstrap Advance Admin Template</title>
 
     <!-- BOOTSTRAP STYLES-->
-    <link href="../static/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../../static/css/bootstrap.css" rel="stylesheet"/>
     <!-- FONTAWESOME STYLES-->
-    <link href="../static/css/font-awesome.css" rel="stylesheet" />
+    <link href="../../../static/css/font-awesome.css" rel="stylesheet"/>
     <!-- GOOGLE FONTS-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
 
 </head>
 <body style="background-color: #E2E2E2;">
-    <div class="container">
-        <div class="row text-center " style="padding-top:100px;">
-            <div class="col-md-12">
-                <img src="../static/img/aph_login.png" />
-            </div>
-        </div>
-         <div class="row ">
-
-                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-
-                            <div class="panel-body">
-                                <form role="form">
-                                    <hr />
-                                    <h2>注册</h2>
-                                    <br />
-                                     <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-                                            <input type="text" class="form-control" placeholder="用户名"  id="res_username"/>
-                                     </div>
-                                    <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control"  placeholder="密码"  id="res_password"/>
-                                    </div>
-                                    <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="password" class="form-control"  placeholder="确认密码"  id="res_rpassword"/>
-                                    </div>
-                                    <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="text" class="form-control"  placeholder="邮箱"  id="res_email"/>
-                                    </div>
-                                     <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="text" class="form-control"  placeholder="年龄"  id="age"/>
-                                    </div>
-                                     <div class="form-group input-group">
-                                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
-                                            <input type="text" class="form-control"  placeholder="职业"  id="profession"/>
-                                    </div>
-                                     <div class="form-group">
-                                            <label>学历</label>
-                                            <select class="form-control" id="education">
-                                                <option value="0">小学</option>
-                                                <option value="1">初中</option>
-                                                <option value="2">高中</option>
-                                                <option value="3">本科</option>
-                                                <option value="4">专科</option>
-                                                <option value="5">硕士</option>
-                                                <option value="6">博士</option>
-                                            </select>
-                                    </div>
-                                    <div class="form-group">
-                                            <label>用户类别</label>
-                                            <select class="form-control" id="type">
-                                                <option value="0">患者</option>
-                                                <option value="1">医生</option>
-                                                <option value="2">开发者</option>
-                                            </select>
-                                    </div>
-                                     <a  class="btn btn-primary" onclick="register()">注册</a>
-                                      <a  href="/login/">登录</a>
-                                    </form>
-                            </div>
-
-                        </div>
-
-
+<div class="container">
+    <div class="row text-center " style="padding-top:100px;">
+        <div class="col-md-12">
+            <img width="200" height="200" src="../../../static/image/Tree.jpeg"/>
         </div>
     </div>
-        <script src="../static/js/jquery-1.10.2.js"></script>
-    <!-- BOOTSTRAP SCRIPTS -->
-    <script src="../static/js/bootstrap.js"></script>
-    <script src="../static/js/md5.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="../static/js/jquery.metisMenu.js"></script>
-       <!-- CUSTOM SCRIPTS -->
-    <script>
-		function register(){
-        var res_email=$('#res_email').val();
-        var res_username=$('#res_username').val();
-        var res_password= hex_md5($('#res_password').val());
-        var res_rpassword= hex_md5($('#res_rpassword').val());
-        var res_type=$('#type option:selected') .val();
-        var age= $('#age').val();
-        var profession= $('#profession').val();
-        var education= $('#education option:selected') .val();
-       var re =/[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
-        var re1 =/^(?:[1-9][0-9]?|1[01][0-9]|120)$/;
-        if(res_username==""){
+    <div class="row ">
+
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+
+            <div class="panel-body">
+                <form role="form">
+                    <hr/>
+                    <h2>注册</h2>
+                    <br/>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                        <input type="text" class="form-control" placeholder="用户名" id="res_username"/>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="密码" id="res_password"/>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" class="form-control" placeholder="确认密码" id="res_rpassword"/>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="text" class="form-control" placeholder="邮箱" id="res_email"/>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="text" class="form-control" placeholder="年龄" id="age"/>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="text" class="form-control" placeholder="职业" id="profession"/>
+                    </div>
+                    <div class="form-group">
+                        <label>学历</label>
+                        <select class="form-control" id="education">
+                            <option value="0">小学</option>
+                            <option value="1">初中</option>
+                            <option value="2">高中</option>
+                            <option value="3">本科</option>
+                            <option value="4">专科</option>
+                            <option value="5">硕士</option>
+                            <option value="6">博士</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>用户类别</label>
+                        <select class="form-control" id="type">
+                            <option value="0">患者</option>
+                            <option value="1">医生</option>
+                            <option value="2">开发者</option>
+                        </select>
+                    </div>
+                    <a class="btn btn-primary" onclick="register()">注册</a>
+                    <a href="/login/">登录</a>
+                </form>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<script src="../../../static/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="../../../static/js/bootstrap.js"></script>
+<script src="../../../static/js/md5.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="../../../static/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script>
+    function register() {
+        console.log("what is ?");
+        var res_email = $('#res_email').val();
+
+        var res_username = $('#res_username').val();
+        var res_password = hex_md5($('#res_password').val());
+        var res_rpassword = hex_md5($('#res_rpassword').val());
+        var res_type = $('#type option:selected').val();
+        var age = $('#age').val();
+        var profession = $('#profession').val();
+        var education = $('#education option:selected').val();
+        var re = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
+        var re1 = /^(?:[1-9][0-9]?|1[01][0-9]|120)$/;
+
+        if (res_username == "") {
             alert("用户名不能为空");
-        } ;
-        if(res_password.length<6){
+            return 0;
+        }
+        if (res_password.length < 6) {
             alert("密码不能小于6位");
-        }else{
-              if(res_password!=res_rpassword){
+            return 0;
+        } else {
+            if (res_password != res_rpassword) {
                 alert("两次输入的密码不同");
                 return 0;
-              }
+            }
         }
-         if(!re.test(res_email)){
-               alert(res_email+"邮箱输入错误");
-                return;
-         }
-           if(!re1.test(age)){
-               alert("年龄的范围在1到120岁之间");
-                return;
-         }
-		     $.ajax({
-				type:'post',
-				url:'',
-				data:'&res_email='+res_email+'&res_username='+res_username+'&res_password='+res_password+'&res_type='+res_type+'&age='+age+'&profession='+profession+'&education='+education,
-				success : function success(data)
-						{
-							if (data.status == "failed")
-							  alert(data.reason);
-							if (data.status == "success") {
-								alert(data.reason);
-								location.href = '/index/';
-							}
-						},
-				error : function error()
-				{
-					alert('数据发送失败','请检查网络连接','error');
-				}
-			});
-		}
+        if (!re.test(res_email)) {
+            alert(res_email + "邮箱输入错误");
+            return 0;
+        }
+        if (!re1.test(age)) {
+            alert("年龄的范围在1到120岁之间");
+            return 0;
+        }
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "http://127.0.0.1:8000/register/",
+            data: {
+                'res_email': res_email, 'res_username': res_username, 'res_password': res_password,
+                'res_type': res_type, 'age': age, 'profession': profession, 'education': education
+            },
+            success: function success(data) {
+                if (data.status == "failed")
+                    alert(data.reason);
+                if (data.status == "success") {
+                    alert(data.reason);
+                    location.href = '/login/';
+                }
+            },
+            error: function error() {
+                alert('数据发送失败', '请检查网络连接', 'error');
+            }
+        });
+    }
 
-	</script>
+</script>
 
-	<!-- END JAVASCRIPTS -->
+<!-- END JAVASCRIPTS -->
 
 </body>
 

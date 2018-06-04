@@ -76,8 +76,8 @@ def get_next(request):
 
 @csrf_exempt
 def error_answer(request):
-    error_no = request.POST.get('no',None)
-    wrong_q.append(err_no)
+    error_no = request.POST.get('no', None)
+    wrong_q.append(error_no)
     right = request.POST.get('right', None)
     wrong = request.POST.get('wrong', None)
     Guider = list(guide.objects.filter(right_answer=right, wrong_answer=wrong))
@@ -213,7 +213,7 @@ def setDisplay(request):
         tmp['questions'] = str(item.questions).split(',')
         setlist.append(tmp)
     # 使用分页组件  分页显示
-    
+
     # 全部数据:USER_LIST,=>得出共有多少条数据
     # per_page: 每页显示条目数量
     # count:    数据总个数
@@ -338,19 +338,19 @@ def get_nextToDo(request):
     if number < length:
         number += 1
     else:
-        #print("store start")
-        time_used = request.POST.get("time",None)
+        # print("store start")
+        time_used = request.POST.get("time", None)
         record_wrong = set(wrong_q)
         print(record_wrong)
         w_str = str(record_wrong)
         w_str = w_str[4:-1]
-        arrange = list(Arrange_set.objects.filter(userid=userid,set=setid))
-        #print(len(arrange))
+        arrange = list(Arrange_set.objects.filter(userid=userid, set=setid))
+        # print(len(arrange))
         arrange[0].usedTime = time_used
         arrange[0].wrong_ques = w_str
         arrange[0].status = 1
         arrange[0].save()
-        #print("store end")
+        # print("store end")
         number = 0
         length = 0
         questions = []
@@ -398,6 +398,8 @@ def get_allMyDoneSet(request):
     return JsonResponse(ans)
 
 
+
+
 # 获取要做的所有任务
 def get_allMyToDoSet(request):
     userid = request.session['userid']
@@ -432,56 +434,58 @@ def view_allMyDoneSet(request):
 
     return render(request, 'show/showMyDoneSet.html', {'username': username, 'classid': classid})
 
+
 def gen_detail(request):
-	need_gen_str = request.GET.get('p')
-	need_gen_no = int(need_gen_str,10)
-	all_sets = list(QuestionSet.objects.all())
-	gens = list(register.objects.filter(res_id=0))   #获取所有患者,为了之后显示患者的其他信息
-	need_gen = gens[need_gen_no]	
-	#print(need_gen.id)
-	sets = list(Arrange_set.objects.filter(userid=need_gen.id))  #获取这个人对应的所有套题
-	#print("len %d\n",len(sets))
-	detail = []
-	#下面是患者在每套题的情况
-	for item in sets:   
-		temp = {}
-		temp["status"] = item.status
-		temp["name"] = all_sets[item.set].setDes
-		temp["time"] = item.usedTime
-		w_str = str(item.wrong_ques)
-		if len(w_str) > 10:
-			w_str = w_str[0:6]
-			w_str = w_str + ".."
-		temp["wrong"] = w_str
-		detail.append(temp)
+    need_gen_str = request.GET.get('p')
+    need_gen_no = int(need_gen_str, 10)
+    all_sets = list(QuestionSet.objects.all())
+    gens = list(register.objects.filter(res_id=0))  # 获取所有患者,为了之后显示患者的其他信息
+    need_gen = gens[need_gen_no]
+    # print(need_gen.id)
+    sets = list(Arrange_set.objects.filter(userid=need_gen.id))  # 获取这个人对应的所有套题
+    # print("len %d\n",len(sets))
+    detail = []
+    # 下面是患者在每套题的情况
+    for item in sets:
+        temp = {}
+        temp["status"] = item.status
+        temp["name"] = all_sets[item.set].setDes
+        temp["time"] = item.usedTime
+        w_str = str(item.wrong_ques)
+        if len(w_str) > 10:
+            w_str = w_str[0:6]
+            w_str = w_str + ".."
+        temp["wrong"] = w_str
+        detail.append(temp)
 
-	current_page = request.GET.get('p')
+    current_page = request.GET.get('p')
     # Paginator对象，里面封装了上面那些值，把USER_LIST对象传过来了，显示10页
-	paginator = Paginator(detail, 3)
+    paginator = Paginator(detail, 3)
 
-	try:
+    try:
         # page对象
         # posts配置对象(current_page用户可能填些不合法的字段）
         # paginator通过拿到了page对象，把current_page传进来
-		posts = paginator.page(current_page)
-        # has_next              是否有下一页
-        # next_page_number      下一页页码
-        # has_previous          是否有上一页
-        # previous_page_number  上一页页码
-        # object_list           分页之后的数据列表,已经切片好的数据
-        # number                当前页
-        # paginator             paginator对象
+        posts = paginator.page(current_page)
+    # has_next              是否有下一页
+    # next_page_number      下一页页码
+    # has_previous          是否有上一页
+    # previous_page_number  上一页页码
+    # object_list           分页之后的数据列表,已经切片好的数据
+    # number                当前页
+    # paginator             paginator对象
 
     # 表示你填的东西不是个整数
-	except PageNotAnInteger:
-		posts = paginator.page(1)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
     # 空页的时候，表示你看完了，显示最后一页
-	except EmptyPage:
-		posts = paginator.page(paginator.num_pages)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
 
-	username = request.session['username']
-	classid = request.session['classid']
-	return render(request,'show/gen_detail.html',{'detail':posts,'username':username,'classid':classid})
+    username = request.session['username']
+    classid = request.session['classid']
+    return render(request, 'show/gen_detail.html', {'detail': posts, 'username': username, 'classid': classid})
+
 
 # 所有患者
 def allGen(request):
@@ -521,7 +525,7 @@ def allGen(request):
 
     username = request.session['username']
     classid = request.session['classid']
-    return render(request, 'show/allGen.html', {'posts':posts,'username': username, 'classid': classid})
+    return render(request, 'show/allGen.html', {'posts': posts, 'username': username, 'classid': classid})
 
 
 def get_allGen(request):

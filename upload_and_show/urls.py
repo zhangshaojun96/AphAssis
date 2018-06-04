@@ -62,6 +62,7 @@ urlpatterns = [
                   url(r'^error_answer/', show_views.error_answer, name="error_answer"),
                   url(r'^makeSet/', Set_views.makeSet),
                   url(r'^login/',login_views.login),
+                  url(r'^logout/', login_views.logout),
                   url(r'^after_login/', login_views.after_login),
                   url(r'^register/', login_views.nregister),
                   url(r'^face_reg_test/', face_reg_views.index, name="face_reg_index"),

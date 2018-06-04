@@ -20,141 +20,61 @@
 </head>
 <body>
 <div id="wrapper">
-    <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">失语症辅助</a>
-        </div>
-        <!--右上角三个
-        <div class="header-right">
-            <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i class="fa fa-envelope-o fa-2x"></i></a>
-            <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i class="fa fa-bars fa-2x"></i></a>
-            <a href="login.html" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
-        </div>
-        -->
-    </nav>
-    <!-- /. NAV TOP  -->
-    <nav class="navbar-default navbar-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav" id="main-menu">
-                <li>
-                    <div class="user-img-div">
-                        <img src="../static/img/user.png" class="img-thumbnail"/>
+    {% include 'nav_left.html' %}
 
-                        <div class="inner-text">
-                            {% if classid == 0 %}
-                                患者: {{ username }}
-                            {% elif classid == 1 %}
-                                医生: {{ username }}
-                            {% endif %}
-                            <br/>
-                            <small>Welcome!</small>
-                        </div>
-                    </div>
+</div>
 
-                </li>
+</nav>
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+    <div id="page-inner">
+        <!-- /. ROW  -->
+        <div id="port-folio">
+            <div class="row ">
 
-
-                <li>
-                    <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>菜单</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-desktop "></i>出题 <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="/upload/"><i class="fa fa-plus"></i>添加单个题目</a>
-                        </li>
-                        <li>
-                            <a href="/makeSet/"><i class="fa fa-edit"></i>出套题</a>
-                        </li>
-                        <li>
-                            <a href="/addGuideline/"><i class="fa fa-plus"></i>添加引导语</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-yelp "></i>查看题库 <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="/show/"><i class="fa fa-coffee"></i>所有题目</a>
-                        </li>
-                        <li>
-                            <a href="/setDisplay/"><i class="fa fa-eyedropper "></i>所有套题</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-circle-o "></i>患者情况 <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-
-                        <li>
-                            <a href="/allGen/"><i class="fa fa-bell "></i>所有患者 </a>
-                        </li>
-                        <li>
-                            <a href="/setArrange/"><i class="fa fa-comments-o "></i>套题分配情况</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-        </div>
-
-    </nav>
-    <!-- /. NAV SIDE  -->
-    <div id="page-wrapper">
-        <div id="page-inner">
-            <!-- /. ROW  -->
-            <div id="port-folio">
-                <div class="row ">
-                    
-                    <div class="row " style="position:absolute;left:25%;top:18%;width:75%;height:75%">
-                        <table align="center" width="600" border=1 bordercolor="#00ff99">
-                            <tbody>
+                <div class="row " style="position:absolute;left:25%;top:18%;width:75%;height:75%">
+                    <table align="center" width="600" border=1 bordercolor="#00ff99">
+                        <tbody>
+                        <tr>
+                            <td colspan="6" align="center">所有病人</td>
+                        </tr>
+                        <tr>
+                            <td width="40%" align="center">患者姓名</td>
+                            <td width="20%" align="center">操作</td>
+                        </tr>
+                        {% for row in posts.object_list %}
                             <tr>
-                                <td colspan="6" align="center">所有病人</td>
-                            </tr>
-                            <tr>
-                                <td width="40%" align="center">患者姓名</td>
-                                <td width="20%" align="center">操作</td>
-                            </tr>
-                            {% for row in posts.object_list %}
-                                <tr>
-                                    <td width="40%" align="center">{{ row.name }}</td>
-                                    <td width="20%" align="center"><a href="/gen_detail?p={{ row.id }}">查看详情</a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            <tr>
-                                <td colspan="6" align="center">
-                                    {% if posts.has_previous %}
-                                        <a href="/allGen?p={{ posts.previous_page_number }}">上一页</a>
-                                    {% else %}
-                                        <a href="#">上一页</a>
-                                    {% endif %}
-
-                                    {% if posts.has_next %}
-                                        <a href="/allGen?p={{ posts.next_page_number }}">下一页</a>
-                                    {% endif %}
-
-                                    <span>
-                                       {{ posts.number }} / {{ posts.paginator.num_pages }}
-                                    </span>
+                                <td width="40%" align="center">{{ row.name }}</td>
+                                <td width="20%" align="center"><a href="/gen_detail?p={{ row.id }}">查看详情</a>
                                 </td>
                             </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="6" align="center">
+                                {% if posts.has_previous %}
+                                    <a href="/allGen?p={{ posts.previous_page_number }}">上一页</a>
+                                {% else %}
+                                    <a href="#">上一页</a>
+                                {% endif %}
+
+                                {% if posts.has_next %}
+                                    <a href="/allGen?p={{ posts.next_page_number }}">下一页</a>
+                                {% endif %}
+
+                                <span>
+                                       {{ posts.number }} / {{ posts.paginator.num_pages }}
+                                    </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <!-- /. PAGE INNER  -->
     </div>
-    <!-- /. PAGE WRAPPER  -->
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
 </div>
 <!-- /. WRAPPER  -->
 <!-- /. FOOTER  -->
@@ -200,9 +120,8 @@
         }
     }
 
-    function genDetail(number)
-    {
-        location.herf = "/genDetail/" + string(number+5*pageNum);
+    function genDetail(number) {
+        location.herf = "/genDetail/" + string(number + 5 * pageNum);
     }
 
     function changePage() {
@@ -231,7 +150,7 @@
         var startNum = (pageNum - 1) * 5;
         for (let i = 0; i < 5; i++) {
             var td = document.getElementById('td' + (i + 1));
-            var td1 = document.getElementById('td' + (i+1) + '1');
+            var td1 = document.getElementById('td' + (i + 1) + '1');
             if (final && i >= reduce) {
                 td.innerText = "";
                 td.type = "hidden";
@@ -262,6 +181,19 @@
     }
 
     get_all();
+
+
+
+</script>
+<script>
+    function confirmAct() {
+        var msg = "您真的确定要退出吗？\n\n请确认！";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 </script>
 </body>
 </html>
