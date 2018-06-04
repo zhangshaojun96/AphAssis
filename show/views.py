@@ -28,11 +28,6 @@ length = 0
 question = None
 wrong_q = []
 
-'''
-def show(request):
-	return render(request,'show/showImg.html')
-'''
-
 
 def index(request):
     return render(request, 'show/index.html')
@@ -136,16 +131,64 @@ def get_feeling(request):
         return JsonResponse({"feeling": tmp})
 
 
-# def show(request):
-#     all_ques = Ques.objects.all()
-#     questions = list(all_ques)
-#     question = questions[0]
-#     username = request.session['username']
-#     classid = request.session['classid']
-#
-#     return render(request, 'show/gallery.html', {"question": question,'username': username,'classid': classid})
+# 显示套题详情
+def set_detail(request):
+    if request.method == 'GET':
+        id = request.GET.get('id', None)
+        m = QuestionSet.objects.get(id=id)
+        if m:
+            questions = list()
+            questions_id = m.questions.split(',')
+            for quesid in questions_id:
+                ques = Ques.objects.get(id=quesid)
+                ques.imageA = '/media/' + ques.imageA.__str__()
+                ques.imageB = '/media/' + ques.imageB.__str__()
+                ques.imageC = '/media/' + ques.imageC.__str__()
+                ques.imageD = '/media/' + ques.imageD.__str__()
+                questions.append(ques)
+
+            count = len(questions)
+            # 使用分页组件  分页显示
+            from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+            # 全部数据:USER_LIST,=>得出共有多少条数据
+            # per_page: 每页显示条目数量
+            # count:    数据总个数
+            # num_pages:总页数
+            # page_range:总页数的索引范围，如: (1,10),(1,200)
+            # page:     page对象 (是否具有下一页，是否有上一页)
+
+            current_page = request.GET.get('p')
+            # Paginator对象，里面封装了上面那些值，把USER_LIST对象传过来了，显示10页
+            paginator = Paginator(questions, 3)
+            try:
+                # page对象
+                # posts配置对象(current_page用户可能填些不合法的字段）
+                # paginator通过拿到了page对象，把current_page传进来
+                posts = paginator.page(current_page)
+                # has_next              是否有下一页
+                # next_page_number      下一页页码
+                # has_previous          是否有上一页
+                # previous_page_number  上一页页码
+                # object_list           分页之后的数据列表,已经切片好的数据
+                # number                当前页
+                # paginator             paginator对象
+
+            # 表示你填的东西不是个整数
+            except PageNotAnInteger:
+                posts = paginator.page(1)
+            # 空页的时候，表示你看完了，显示最后一页
+            except EmptyPage:
+                posts = paginator.page(paginator.num_pages)
+
+            username = request.session['username']
+            classid = request.session['classid']
+
+            return render(request, 'show/set_detail.html', {'posts': posts, 'username': username, 'classid': classid,'setid':id})
+        else:
+            return render(request, 'login/login.html')
 
 
+# 显示全部题目
 def show(request):
     all_ques = Ques.objects.all()
     questions = list(all_ques)
@@ -193,12 +236,27 @@ def show(request):
     return render(request, 'show/showAllEx.html', {'posts': posts, 'username': username, 'classid': classid})
 
 
-# # 所有套题
-# def setDisplay(request):
-#     sets = list(QuestionSet.objects.all())
-#     username = request.session['username']
-#     classid = request.session['classid']
-#     return render(request, 'show/allSet.html', {'username': username, 'classid': classid})
+# 套题的分配
+def setArrange(request):
+    # 获取全部的套题
+    # sets = list(QuestionSet.objects.all())
+    # setlist = []
+    #
+    # for item in sets:
+    #     tmp = {}
+    #     tmp['id'] = item.setId
+    #     tmp['setDes'] = item.setDes
+    #     tmp['count'] = len(str(item.questions).split(','))
+    #     tmp['questions'] = str(item.questions).split(',')
+    #     setlist.append(tmp)
+
+    # 获取全部的患者
+    patients = list(register.objects.filter(res_id=0))
+    username = request.session['username']
+    classid = request.session['classid']
+    return render(request, 'show/setArr.html',
+                  {'username': username, 'classid': classid, 'patients': patients})
+
 
 # 所有套题
 def setDisplay(request):
@@ -207,10 +265,11 @@ def setDisplay(request):
 
     for item in sets:
         tmp = {}
-        tmp['id'] = item.setId
+        tmp['id'] = item.id
         tmp['setDes'] = item.setDes
         tmp['count'] = len(str(item.questions).split(','))
         tmp['questions'] = str(item.questions).split(',')
+        tmp['href'] = '/set_detail?id=' + str(item.id)
         setlist.append(tmp)
     # 使用分页组件  分页显示
 
@@ -249,30 +308,8 @@ def setDisplay(request):
     return render(request, 'show/showAllSet.html', {'posts': posts, 'username': username, 'classid': classid})
 
 
-# 套题的分配
-def setArrange(request):
-    # 获取全部的套题
-    # sets = list(QuestionSet.objects.all())
-    # setlist = []
-    #
-    # for item in sets:
-    #     tmp = {}
-    #     tmp['id'] = item.setId
-    #     tmp['setDes'] = item.setDes
-    #     tmp['count'] = len(str(item.questions).split(','))
-    #     tmp['questions'] = str(item.questions).split(',')
-    #     setlist.append(tmp)
-
-    # 获取全部的患者
-    patients = list(register.objects.filter(res_id=0))
-    username = request.session['username']
-    classid = request.session['classid']
-    return render(request, 'show/setArr.html',
-                  {'username': username, 'classid': classid, 'patients': patients})
-
-
+# 获取全部的套题
 def get_allSets(request):
-    # 获取全部的套题
     sets = list(QuestionSet.objects.all())
 
     ans = {}
@@ -292,14 +329,14 @@ def doEx(request):
     setid = request.GET.get('setid')
     username = request.session['username']
     classid = request.session['classid']
-    print('do ex set id: ' + str(setid))
+    # print('do ex set id: ' + str(setid))
     return render(request, 'show/doEx.html', {'username': username, 'classid': classid, 'setid': setid})
 
 
 # 获取指定id的套题的题目的下一道题
 @csrf_exempt
 def get_nextToDo(request):
-    print('get next to do......')
+    # print('get next to do......')
     global number
     global questions
     global length
@@ -308,11 +345,11 @@ def get_nextToDo(request):
 
     userid = request.session['userid']
     setid = request.POST.get("setid", None)
-    print("current set id : " + str(setid))
+    # print("current set id : " + str(setid))
     typeid = request.POST.get("type", None)  # type==0  初始化
 
     if int(typeid) == 0:
-        print('get next to do......init ')
+        # print('get next to do......init ')
         ques_set = QuestionSet.objects.get(id=setid)
         ques_list = ques_set.questions.split(',')
         length = len(ques_list)
@@ -320,7 +357,7 @@ def get_nextToDo(request):
             ques = Ques.objects.get(id=ques_id)
             questions.append(ques)
 
-    print('get next to do......next')
+    # print('get next to do......next')
     if number < length:
         question = questions[number]
         ques = str(question.question)
@@ -333,15 +370,15 @@ def get_nextToDo(request):
         imageD = str(question.imageD)
         DesD = str(question.DesD)
         voice = str(question.voice)
-    print('number : ' + str(number))
-    print('length : ' + str(length))
+    # print('number : ' + str(number))
+    # print('length : ' + str(length))
     if number < length:
         number += 1
     else:
         # print("store start")
         time_used = request.POST.get("time", None)
         record_wrong = set(wrong_q)
-        print(record_wrong)
+        # print(record_wrong)
         w_str = str(record_wrong)
         w_str = w_str[4:-1]
         arrange = list(Arrange_set.objects.filter(userid=userid, set=setid))
@@ -382,7 +419,7 @@ def get_nextToDo(request):
 # 获取已经完成的所有任务
 def get_allMyDoneSet(request):
     userid = request.session['userid']
-    print('current user id ": ' + str(userid))
+    # print('current user id ": ' + str(userid))
     arrs = list(Arrange_set.objects.filter(userid=userid, status=1).order_by("-dateTime"))
     length = len(arrs)
     ans = {}
@@ -398,12 +435,10 @@ def get_allMyDoneSet(request):
     return JsonResponse(ans)
 
 
-
-
 # 获取要做的所有任务
 def get_allMyToDoSet(request):
     userid = request.session['userid']
-    print('current user id ": ' + str(userid))
+    # print('current user id ": ' + str(userid))
     arrs = list(Arrange_set.objects.filter(userid=userid, status=0).order_by("-dateTime"))
     length = len(arrs)
     ans = {}
@@ -435,10 +470,11 @@ def view_allMyDoneSet(request):
     return render(request, 'show/showMyDoneSet.html', {'username': username, 'classid': classid})
 
 
+# 显示患者的详细信息
 def gen_detail(request):
     need_gen_str = request.GET.get('p')
     need_gen_no = int(need_gen_str, 10)
-    all_sets = list(QuestionSet.objects.all())
+    all_sets = QuestionSet.objects.all()
     gens = list(register.objects.filter(res_id=0))  # 获取所有患者,为了之后显示患者的其他信息
     need_gen = gens[need_gen_no]
     # print(need_gen.id)
@@ -448,14 +484,21 @@ def gen_detail(request):
     # 下面是患者在每套题的情况
     for item in sets:
         temp = {}
-        temp["status"] = item.status
-        temp["name"] = all_sets[item.set].setDes
-        temp["time"] = item.usedTime
-        w_str = str(item.wrong_ques)
-        if len(w_str) > 10:
-            w_str = w_str[0:6]
-            w_str = w_str + ".."
-        temp["wrong"] = w_str
+        if item.status == 0:
+            temp['status'] = '未完成'
+            temp["time"] = '--'
+            temp["wrong"] = '--'
+        else:
+            temp['status'] = '已完成'
+            temp["time"] = str(item.usedTime) + '秒'
+            w_str = str(item.wrong_ques)
+            if len(w_str) > 10:
+                w_str = w_str[0:6]
+                w_str = w_str + ".."
+            temp["wrong"] = w_str
+
+        # print(len(all_sets.filter(setId=item.set)))
+        temp["name"] = all_sets.filter(id=item.set)[0].setDes
         detail.append(temp)
 
     current_page = request.GET.get('p')
@@ -543,7 +586,7 @@ def get_allGen(request):
 def submit_arr(request):
     l = request.POST.get("setsCheck", None).split(',')
     patientid = request.POST.get("userid", None)
-    print(patientid)
+    # print(patientid)
 
     for i in l:
         new_arr = Arrange_set(

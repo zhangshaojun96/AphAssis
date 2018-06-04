@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Responsive Bootstrap Advance Admin Template</title>
+    <title>查看全部套题</title>
 
     <!-- BOOTSTRAP STYLES-->
     <link href="../static/css/bootstrap.css" rel="stylesheet"/>
@@ -41,7 +41,7 @@
                             <td width="10%">{{ row.id }}</td>
                             <td width="40%">{{ row.setDes }}</td>
                             <td width="20%">{{ row.count }}</td>
-                            <td width="20%"><a href="">查看详情</a>
+                            <td width="20%"><a href="{{ row.href }}">查看详情</a>
                             </td>
                         </tr>
                     {% endfor %}

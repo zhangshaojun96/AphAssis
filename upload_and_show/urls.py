@@ -45,6 +45,7 @@ urlpatterns = [
                   url(r'^allGen/', show_views.allGen, name="allGen"),
                   url(r'^setArrange/', show_views.setArrange, name="setArrange"),
                   url(r'^gen_detail/',show_views.gen_detail,name="gen_detail"),
+                  url(r'^set_detail/', show_views.set_detail, name="set_detail"),
 
                   url(r'^get_all/', Set_views.get_all, name="get_all"),
                   url(r'^get_allGen/', show_views.get_allGen, name="get_allGen"),

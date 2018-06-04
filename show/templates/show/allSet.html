@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Responsive Bootstrap Advance Admin Template</title>
+    <title>查看套题</title>
 
     <!-- BOOTSTRAP STYLES-->
     <link href="../static/css/bootstrap.css" rel="stylesheet"/>
@@ -161,14 +161,16 @@
     function get_detail() {
         $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:8000/get_detail/",
+            url: "http://127.0.0.1:8000/set_detail/",
             data: {
-                "setno": no
+                {#"id": all_sets["id" + String(no)]#}
+
             },
             success: function (data) {
-                ques_count = data["length"];
-                set_detail = data;
-                detail_display();
+                {#ques_count = data["length"];#}
+                {#set_detail = data;#}
+                {#detail_display();#}
+                location = "/set_detail?id=" + all_sets["id" + String(no)];
             },
             error: function (data) {
                 alert("Some error!");
@@ -183,11 +185,6 @@
     }
 
     changePage();
-
-    //
-    <!-- 可以用checked 这个属性来判断是不是选中了这题 -->
-    //可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
-    //input 有一个type域，如果是 "hidden",就是不显示
 
     function set_display() {
         var gen_2_disp = 5;
@@ -235,7 +232,6 @@
     }
 
     get_all();
-
 
 
 </script>

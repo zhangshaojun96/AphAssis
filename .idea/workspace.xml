@@ -2,90 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b566028c-b89d-41e8-b702-fa3b8aed8c4f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/login/templates/nav_left.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makeSet/templates/makeSet/nav_left.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/show/templates/show/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/show/templates/show/nav_left.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/image/Tree.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/md5.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/upload/templates/nav_left.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788633.0720377.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788638.5231667.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788641.2350693.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788643.6981587.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788645.7049325.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788649.817229.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788651.8045642.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788653.8174515.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788655.7901394.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788657.808606.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788659.8201842.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788661.8172815.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788663.7891352.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788665.8270051.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788667.8278582.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788669.8259082.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788671.8278341.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788673.8300142.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788675.8385212.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788677.8399048.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788679.838812.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788681.8139825.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788683.8310754.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788685.8356586.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788687.843233.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788689.8047097.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788691.8272898.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788693.8342564.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788695.8352368.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788697.8392093.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788699.848682.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788701.8594372.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788703.8624747.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788705.8520088.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788707.8505538.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/1525788709.8408337.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/migrations/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/login/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/templates/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login/templates/login/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/login/templates/login/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makeSet/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/makeSet/migrations/0002_questionset_setdes.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/makeSet/templates/makeSet/makeSet.html" beforeDir="false" afterPath="$PROJECT_DIR$/makeSet/templates/makeSet/makeSet.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/migrations/0002_arrange_set.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/migrations/0003_auto_20180602_0827.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/migrations/0004_auto_20180602_1028.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/migrations/0005_auto_20180602_1029.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/allGen.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/allGen.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/allSet.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/allSet.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/doEx.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/doEx.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/gallery.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/gen_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/gen_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/show/templates/show/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/setArr.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/setArr.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/set_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/set_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/showAllEx.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/showAllEx.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/showAllSet.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/showAllSet.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/templates/show/showImg.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/showImg.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/showMyDoneSet.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/showMyDoneSet.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/templates/show/showMyToDoSet.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/templates/show/showMyToDoSet.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/show/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/show/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/font-awesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/font-awesome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/migrations/0002_auto_20180410_1211.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/migrations/0003_auto_20180413_0854.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/migrations/0004_guide.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/migrations/0005_guide_tips.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/migrations/0006_recom_guide.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/migrations/0007_delete_recom_guide.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/md5.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/md5.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/upload/templates/addGuideline.html" beforeDir="false" afterPath="$PROJECT_DIR$/upload/templates/addGuideline.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/upload/templates/upload/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/upload/templates/upload/upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/templates/upload/upload1.html" beforeDir="false" afterPath="$PROJECT_DIR$/upload/templates/upload/upload1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/templates/upload/upload_guide.html" beforeDir="false" afterPath="$PROJECT_DIR$/upload/templates/upload/upload_guide.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/upload_and_show/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/upload_and_show/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -135,56 +73,76 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="nav_left.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/login/templates/nav_left.html">
+      <file leaf-file-name="showAllSet.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/show/templates/show/showAllSet.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="114" column="6" lean-forward="true" selection-start-line="114" selection-start-column="6" selection-end-line="114" selection-end-column="6" />
+            <state relative-caret-position="436">
+              <caret line="43" column="59" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav_left.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/makeSet/templates/makeSet/nav_left.html">
+      <file leaf-file-name="set_detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/show/templates/show/set_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="107" column="88" lean-forward="true" selection-start-line="107" selection-start-column="88" selection-end-line="107" selection-end-column="88" />
+            <state relative-caret-position="570">
+              <caret line="65" column="51" lean-forward="true" selection-start-line="65" selection-start-column="51" selection-end-line="65" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav_left.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/show/templates/show/nav_left.html">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/show/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="93" column="12" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+            <state relative-caret-position="878">
+              <caret line="187" column="54" lean-forward="true" selection-start-line="187" selection-start-column="54" selection-end-line="187" selection-end-column="54" />
+              <folding>
+                <element signature="e#882#1846#0" />
+                <element signature="e#1893#2340#0" />
+                <element signature="e#2436#3112#0" />
+                <element signature="e#3167#3393#0" />
+                <element signature="e#7140#7769#0" />
+                <element signature="e#8228#8490#0" />
+                <element signature="e#8557#10984#0" />
+                <element signature="e#11022#11697#0" />
+                <element signature="e#11749#12424#0" />
+                <element signature="e#12474#12652#0" />
+                <element signature="e#12703#12881#0" />
+                <element signature="e#12931#14828#0" />
+                <element signature="e#14635#15816#0" />
+                <element signature="e#15848#16102#0" />
+                <element signature="e#16147#16441#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav_left.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/upload/templates/nav_left.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="111" column="13" lean-forward="true" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
+      <file leaf-file-name="upload_ques" pinned="false" current-in-tab="true">
+        <entry file="das://b11cc150-9570-4915-8a3a-01c4fff752bd/schema/main/table/upload_ques">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/show/templates/show/index.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/upload_and_show/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
+            <state relative-caret-position="122">
+              <caret line="33" column="44" lean-forward="true" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+              <folding>
+                <element signature="e#650#709#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/login/templates/index.html">
+      <file leaf-file-name="allSet.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/show/templates/show/allSet.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-206">
-              <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+            <state relative-caret-position="364">
+              <caret line="172" column="39" selection-start-line="172" selection-start-column="29" selection-end-line="172" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -224,6 +182,13 @@
       <find>fa</find>
       <find>set</find>
       <find>home</find>
+      <find>detail</find>
+      <find>get_detail</find>
+      <find>set_display</find>
+      <find>print</find>
+      <find>ar1</find>
+      <find>set_detail</find>
+      <find>post</find>
     </findStrings>
     <replaceStrings>
       <replace>../static</replace>
@@ -256,37 +221,37 @@
         <option value="$PROJECT_DIR$/show/templates/show/addGuideline.html" />
         <option value="$PROJECT_DIR$/upload/views.py" />
         <option value="$PROJECT_DIR$/login/models.py" />
-        <option value="$PROJECT_DIR$/login/templates/login/register.html" />
-        <option value="$PROJECT_DIR$/login/templates/login/login.html" />
         <option value="$PROJECT_DIR$/static/nav_left.html" />
         <option value="$PROJECT_DIR$/upload/templates/upload/upload1.html" />
         <option value="$PROJECT_DIR$/upload/templates/upload/upload_guide.html" />
         <option value="$PROJECT_DIR$/static/css/font-awesome.css" />
-        <option value="$PROJECT_DIR$/show/views.py" />
         <option value="$PROJECT_DIR$/login/views.py" />
-        <option value="$PROJECT_DIR$/upload_and_show/urls.py" />
         <option value="$PROJECT_DIR$/login/templates/hh.html" />
-        <option value="$PROJECT_DIR$/login/templates/index.html" />
-        <option value="$PROJECT_DIR$/makeSet/templates/makeSet/makeSet.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/allGen.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/allSet.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/doEx.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/gallery.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/gen_detail.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/index.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/set_detail.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/setArr.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/showAllEx.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/showAllSet.html" />
         <option value="$PROJECT_DIR$/show/templates/show/showImg.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/showMyDoneSet.html" />
-        <option value="$PROJECT_DIR$/show/templates/show/showMyToDoSet.html" />
-        <option value="$PROJECT_DIR$/upload/templates/upload/upload.html" />
-        <option value="$PROJECT_DIR$/upload/templates/addGuideline.html" />
         <option value="$PROJECT_DIR$/login/templates/nav_left.html" />
         <option value="$PROJECT_DIR$/makeSet/templates/makeSet/nav_left.html" />
         <option value="$PROJECT_DIR$/show/templates/show/nav_left.html" />
         <option value="$PROJECT_DIR$/upload/templates/nav_left.html" />
+        <option value="$PROJECT_DIR$/login/templates/login/login.html" />
+        <option value="$PROJECT_DIR$/login/templates/login/register.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/doEx.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/gallery.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/index.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/showAllEx.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/showMyDoneSet.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/showMyToDoSet.html" />
+        <option value="$PROJECT_DIR$/upload/templates/addGuideline.html" />
+        <option value="$PROJECT_DIR$/upload/templates/upload/upload.html" />
+        <option value="$PROJECT_DIR$/login/templates/index.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/allGen.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/setArr.html" />
+        <option value="$PROJECT_DIR$/makeSet/templates/makeSet/makeSet.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/gen_detail.html" />
+        <option value="$PROJECT_DIR$/show/templates/show/allSet.html" />
+        <option value="$PROJECT_DIR$/upload_and_show/urls.py" />
+        <option value="$PROJECT_DIR$/show/templates/show/showAllSet.html" />
+        <option value="$PROJECT_DIR$/show/views.py" />
+        <option value="$PROJECT_DIR$/show/templates/show/set_detail.html" />
       </list>
     </option>
   </component>
@@ -455,10 +420,10 @@
       <recent name="D:\PycharmProjects\AphAssis-master\templates" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/show/templates/show" />
       <recent name="$PROJECT_DIR$/makeSet/templates/makeSet" />
       <recent name="$PROJECT_DIR$/upload/templates" />
       <recent name="$PROJECT_DIR$/login/templates" />
-      <recent name="$PROJECT_DIR$/show/templates/show" />
       <recent name="$PROJECT_DIR$/static/js" />
     </key>
   </component>
@@ -517,7 +482,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527903444625</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="修改注册登录，重新生成数据库;增加退出系统;把左侧公共导航栏  提出来，放到了nav_left.html 中">
+      <created>1528104620709</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1528104620709</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -536,13 +508,14 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32777777" />
       <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.21909633" side_tool="true" weight="0.4077778" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.78090364" visible="true" weight="0.26666668" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.77919865" weight="0.4211111" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.78090364" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.77919865" weight="0.41111112" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.21666667" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.78090364" weight="0.3588889" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2753623" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="12" sideWeight="0.49445865" visible="true" weight="0.28" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15089513" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="5" visible="true" weight="0.022165388" />
+      <window_info anchor="right" id="Database" order="5" visible="true" weight="0.05541347" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32907075" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4969743" weight="0.39869282" />
@@ -554,7 +527,6 @@
       <window_info anchor="right" id="Mongo Explorer" order="4" weight="0.33509833" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Database Console" order="12" sideWeight="0.49445865" weight="0.28" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.32352942" />
     </layout>
@@ -593,20 +565,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="增加 引导语的增删差" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加 引导语的增删差" />
+    <MESSAGE value="修改注册登录，重新生成数据库&#10;增加退出系统&#10;把左侧公共导航栏  提出来，放到了nav_left.html 中" />
+    <MESSAGE value="修改注册登录，重新生成数据库;增加退出系统;把左侧公共导航栏  提出来，放到了nav_left.html 中" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改注册登录，重新生成数据库;增加退出系统;把左侧公共导航栏  提出来，放到了nav_left.html 中" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/img/prettyPhoto/dark_rounded/btnNext.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/img/slideshow/1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/img/slideshow/2.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -655,13 +623,6 @@
     <entry file="file://$PROJECT_DIR$/upload_and_show/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="das://b11cc150-9570-4915-8a3a-01c4fff752bd/schema/main/table/upload_ques">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://b11cc150-9570-4915-8a3a-01c4fff752bd/schema/main/table/upload_guide">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -690,13 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/login/templates/login/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="72" column="44" selection-start-line="72" selection-start-column="44" selection-end-line="72" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://b11cc150-9570-4915-8a3a-01c4fff752bd/schema/main/table/login_register">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -711,24 +665,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="80" column="13" lean-forward="true" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/upload/templates/upload/upload1.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/templates/upload/upload_guide.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -739,33 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/show/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="399" selection-start-line="399" selection-end-line="399" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload_and_show/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="64" column="49" lean-forward="true" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
-          <folding>
-            <element signature="e#650#709#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="36" column="47" lean-forward="true" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/login/templates/hh.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -773,129 +686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/makeSet/templates/makeSet/makeSet.html">
+    <entry file="file://$PROJECT_DIR$/upload/templates/nav_left.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="270" column="9" selection-start-line="270" selection-start-column="9" selection-end-line="270" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/allGen.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="196" column="9" selection-start-line="196" selection-start-column="9" selection-end-line="196" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/allSet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="250" column="9" selection-start-line="250" selection-start-column="9" selection-end-line="250" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/doEx.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="350" column="9" selection-start-line="350" selection-start-column="9" selection-end-line="350" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/gallery.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="352" column="9" selection-start-line="352" selection-start-column="9" selection-end-line="352" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/gen_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="100" column="9" selection-start-line="100" selection-start-column="9" selection-end-line="100" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/set_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="176" column="9" selection-start-line="176" selection-start-column="9" selection-end-line="176" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/setArr.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="277" column="9" selection-start-line="277" selection-start-column="9" selection-end-line="277" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/showAllEx.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="114" column="9" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/showAllSet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="102" column="9" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/showImg.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="243" column="9" selection-start-line="243" selection-start-column="9" selection-end-line="243" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/showMyDoneSet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="225" column="9" selection-start-line="225" selection-start-column="9" selection-end-line="225" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/showMyToDoSet.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="224" column="9" selection-start-line="224" selection-start-column="9" selection-end-line="224" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/templates/upload/upload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/upload/templates/addGuideline.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="355" lean-forward="true" selection-start-line="355" selection-end-line="355" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-206">
-          <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login/templates/nav_left.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="114" column="6" lean-forward="true" selection-start-line="114" selection-start-column="6" selection-end-line="114" selection-end-column="6" />
+        <state relative-caret-position="473">
+          <caret line="111" column="13" lean-forward="true" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -906,17 +700,222 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/show/templates/show/nav_left.html">
+    <entry file="file://$PROJECT_DIR$/login/templates/nav_left.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="93" column="12" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+        <state relative-caret-position="1395">
+          <caret line="93" column="21" lean-forward="true" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/upload/templates/nav_left.html">
+    <entry file="file://$PROJECT_DIR$/login/templates/login/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="111" column="13" lean-forward="true" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
+        <state relative-caret-position="75">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/templates/login/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/doEx.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/gallery.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/showImg.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3645">
+          <caret line="243" column="9" selection-start-line="243" selection-start-column="9" selection-end-line="243" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/showMyDoneSet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/showMyToDoSet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="63" lean-forward="true" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="73" column="5" lean-forward="true" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload/templates/upload/upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload/templates/addGuideline.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload/templates/upload/upload_guide.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/setArr.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="254" column="18" lean-forward="true" selection-start-line="254" selection-start-column="18" selection-end-line="254" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/makeSet/templates/makeSet/makeSet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="247" column="46" lean-forward="true" selection-start-line="247" selection-start-column="46" selection-end-line="247" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/gen_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="69" column="27" lean-forward="true" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://b11cc150-9570-4915-8a3a-01c4fff752bd/schema/main/table/makeset_questionset">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://b11cc150-9570-4915-8a3a-01c4fff752bd/schema/main/table/show_arrange_set">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/showAllEx.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="637">
+          <caret line="63" column="50" selection-start-line="63" selection-start-column="46" selection-end-line="63" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="24" column="20" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/nav_left.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="65" column="48" selection-start-line="65" selection-start-column="38" selection-end-line="65" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/allGen.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="65" column="36" lean-forward="true" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/allSet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="172" column="39" selection-start-line="172" selection-start-column="29" selection-end-line="172" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/showAllSet.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="43" column="59" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload_and_show/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="33" column="44" lean-forward="true" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
+          <folding>
+            <element signature="e#650#709#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/templates/show/set_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="65" column="51" lean-forward="true" selection-start-line="65" selection-start-column="51" selection-end-line="65" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="878">
+          <caret line="187" column="54" lean-forward="true" selection-start-line="187" selection-start-column="54" selection-end-line="187" selection-end-column="54" />
+          <folding>
+            <element signature="e#882#1846#0" />
+            <element signature="e#1893#2340#0" />
+            <element signature="e#2436#3112#0" />
+            <element signature="e#3167#3393#0" />
+            <element signature="e#7140#7769#0" />
+            <element signature="e#8228#8490#0" />
+            <element signature="e#8557#10984#0" />
+            <element signature="e#11022#11697#0" />
+            <element signature="e#11749#12424#0" />
+            <element signature="e#12474#12652#0" />
+            <element signature="e#12703#12881#0" />
+            <element signature="e#12931#14828#0" />
+            <element signature="e#14635#15816#0" />
+            <element signature="e#15848#16102#0" />
+            <element signature="e#16147#16441#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://b11cc150-9570-4915-8a3a-01c4fff752bd/schema/main/table/upload_ques">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>

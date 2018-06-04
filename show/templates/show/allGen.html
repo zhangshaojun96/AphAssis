@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Responsive Bootstrap Advance Admin Template</title>
+    <title>查看患者</title>
 
     <!-- BOOTSTRAP STYLES-->
     <link href="../static/css/bootstrap.css" rel="stylesheet"/>
@@ -22,59 +22,56 @@
 <div id="wrapper">
     {% include 'nav_left.html' %}
 
-</div>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <!-- /. ROW  -->
+            <div id="port-folio">
+                <div class="row ">
 
-</nav>
-<!-- /. NAV SIDE  -->
-<div id="page-wrapper">
-    <div id="page-inner">
-        <!-- /. ROW  -->
-        <div id="port-folio">
-            <div class="row ">
-
-                <div class="row " style="position:absolute;left:25%;top:18%;width:75%;height:75%">
-                    <table align="center" width="600" border=1 bordercolor="#00ff99">
-                        <tbody>
-                        <tr>
-                            <td colspan="6" align="center">所有病人</td>
-                        </tr>
-                        <tr>
-                            <td width="40%" align="center">患者姓名</td>
-                            <td width="20%" align="center">操作</td>
-                        </tr>
-                        {% for row in posts.object_list %}
+                    <div class="row " style="position:absolute;left:25%;top:18%;width:75%;height:75%">
+                        <table align="center" width="600" border=1 bordercolor="#00ff99">
+                            <tbody>
                             <tr>
-                                <td width="40%" align="center">{{ row.name }}</td>
-                                <td width="20%" align="center"><a href="/gen_detail?p={{ row.id }}">查看详情</a>
-                                </td>
+                                <td colspan="6" align="center">所有病人</td>
                             </tr>
-                        {% endfor %}
-                        <tr>
-                            <td colspan="6" align="center">
-                                {% if posts.has_previous %}
-                                    <a href="/allGen?p={{ posts.previous_page_number }}">上一页</a>
-                                {% else %}
-                                    <a href="#">上一页</a>
-                                {% endif %}
+                            <tr>
+                                <td width="40%" align="center">患者姓名</td>
+                                <td width="20%" align="center">操作</td>
+                            </tr>
+                            {% for row in posts.object_list %}
+                                <tr>
+                                    <td width="40%" align="center">{{ row.name }}</td>
+                                    <td width="20%" align="center"><a href="/gen_detail?p={{ row.id }}">查看详情</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="6" align="center">
+                                    {% if posts.has_previous %}
+                                        <a href="/allGen?p={{ posts.previous_page_number }}">上一页</a>
+                                    {% else %}
+                                        <a href="#">上一页</a>
+                                    {% endif %}
 
-                                {% if posts.has_next %}
-                                    <a href="/allGen?p={{ posts.next_page_number }}">下一页</a>
-                                {% endif %}
+                                    {% if posts.has_next %}
+                                        <a href="/allGen?p={{ posts.next_page_number }}">下一页</a>
+                                    {% endif %}
 
-                                <span>
+                                    <span>
                                        {{ posts.number }} / {{ posts.paginator.num_pages }}
                                     </span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- /. PAGE INNER  -->
     </div>
-    <!-- /. PAGE INNER  -->
-</div>
-<!-- /. PAGE WRAPPER  -->
+    <!-- /. PAGE WRAPPER  -->
 </div>
 <!-- /. WRAPPER  -->
 <!-- /. FOOTER  -->
@@ -181,7 +178,6 @@
     }
 
     get_all();
-
 
 
 </script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Responsive Bootstrap Advance Admin Template</title>
+    <title>编组套题</title>
 
     <!-- BOOTSTRAP STYLES-->
     <link href="../static/css/bootstrap.css" rel="stylesheet"/>
@@ -241,7 +241,7 @@
                     url: "http://127.0.0.1:8000/submit_set/",
                     data: {"quesCheck": String(res), "setDes": String(des.value)},
                     success: function (data) {
-                        alert(data["status"]);
+                        alert("添加成功");
                     },
                     error: function (data) {
                         {#alert("Some error!");#}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Responsive Bootstrap Advance Admin Template</title>
+    <title>分配套题</title>
 
     <!-- BOOTSTRAP STYLES-->
     <link href="../static/css/bootstrap.css" rel="stylesheet"/>
@@ -251,7 +251,7 @@
                 url: "http://127.0.0.1:8000/submit_arr/",
                 data: {"setsCheck": String(res), "userid": String(patientid)},
                 success: function (data) {
-                    alert(data["status"]);
+                    alert("分配成功");
                 },
                 error: function (data) {
                     {#alert("Some error!");#}
