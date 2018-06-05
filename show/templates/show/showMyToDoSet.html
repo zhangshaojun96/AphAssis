@@ -41,35 +41,35 @@
                                 <td id="tdset1" width="10%">Loading..</td>
                                 <td id="tdsetdes1" width="40%"> Loading..</td>
                                 <td id="tdarrtime1" width="20%">Loading..</td>
-                                <td id="tdreview1" width="20%"><a id="op1" href="#">复习</a></td>
+                                <td id="tdreview1" width="20%"><a id="op1" href="#">开始训练</a></td>
                             </tr>
                             <tr>
                                 <td id="id2" width="10%">0</td>
                                 <td id="tdset2" width="10%">Loading..</td>
                                 <td id="tdsetdes2" width="40%"> Loading..</td>
                                 <td id="tdarrtime2" width="20%">Loading..</td>
-                                <td id="tdreview2" width="20%"><a id="op2" href="#">复习</a></td>
+                                <td id="tdreview2" width="20%"><a id="op2" href="#">开始训练</a></td>
                             </tr>
                             <tr>
                                 <td id="id3" width="10%">0</td>
                                 <td id="tdset3" width="10%">Loading..</td>
                                 <td id="tdsetdes3" width="40%"> Loading..</td>
                                 <td id="tdarrtime3" width="20%">Loading..</td>
-                                <td id="tdreview3" width="20%"><a id="op3" href="#">复习</a></td>
+                                <td id="tdreview3" width="20%"><a id="op3" href="#">开始训练</a></td>
                             </tr>
                             <tr>
                                 <td id="id4" width="10%">0</td>
                                 <td id="tdset4" width="10%">Loading..</td>
                                 <td id="tdsetdes4" width="40%"> Loading..</td>
                                 <td id="tdarrtime4" width="20%">Loading..</td>
-                                <td id="tdreview4" width="20%"><a id="op4" href="#">复习</a></td>
+                                <td id="tdreview4" width="20%"><a id="op4" href="#">开始训练</a></td>
                             </tr>
                             <tr>
                                 <td id="id5" width="10%">0</td>
                                 <td id="tdset5" width="10%">Loading..</td>
                                 <td id="tdsetdes5" width="40%"> Loading..</td>
                                 <td id="tdarrtime5" width="20%">Loading..</td>
-                                <td id="tdreview5" width="20%"><a id="op5" href="#">复习</a></td>
+                                <td id="tdreview5" width="20%"><a id="op5" href="#">开始训练</a></td>
                             </tr>
 
                         </table>
@@ -186,7 +186,7 @@
                 tdsetdes.innerText = all_sets["setdes" + (startNum + i)];
                 tdarrtime.innerText = all_sets["arr_datetime" + (startNum + i)];
                 op.innerText = "开始训练";
-                op.href = "/doEx?setid=" + all_sets["arr_set" + (startNum + i)]
+                op.href = "/doEx?id=" + all_sets["id" + (startNum + i)] + "&setid=" + all_sets["arr_set" + (startNum + i)];
             }
 
         }

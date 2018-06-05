@@ -11,22 +11,15 @@ user_id = -1
 Login_user = ''
 
 
-# if(user_id == -1):
-#	login_user = ''
-# user = list(register.objects.filter(id = user_id))
-# data = user.res_username
-
-
-def after_login(request):
-    username = request.session['username']
-    classid = request.session['classid']
-    return render(request, 'index.html', {'username': username, 'classid': classid})
-
 def logout(request):
-    del request.session['userid']
-    del request.session['username']
-    del request.session['classid']
+    if request.session.has_key('userid'):
+        del request.session['userid']
+    if request.session.has_key('username'):
+        del request.session['username']
+    if request.session.has_key('classid'):
+        del request.session['classid']
     return render(request, 'login/login.html')
+
 
 def login(request):
     if request.method == 'POST':

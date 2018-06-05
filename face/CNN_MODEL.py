@@ -7,7 +7,6 @@ IMAGE_SIZE = 48
 CLIPED_SIZE = 42
 EMO_NUM = 7
 NUM_CHANNEL = 1
-#SAVE_PATH = '/home/stones/source/git/AphAssis/face/saved_model'
 SAVE_PATH = 'face/saved_model'
 
 def GetSymmetric(pixel, size):
@@ -85,5 +84,6 @@ def Predict(pixel, sess):
     for i in range(8):
         log += logit[i]
     log = sess.run(tf.nn.softmax(log))
+    #print(log)
     return log
 

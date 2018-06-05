@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">失语症辅助</a>
+        <a class="navbar-brand" href="/index/">失语症辅助</a>
     </div>
     <!--右上角三个
     <div class="header-right">
@@ -32,7 +32,7 @@
                         {% endif %}
 
                         <br/>
-                        <small>Welcome!</small>
+                        <small id="emotions">Welcome!</small>
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
             {#                //医生可见#}
             {% if classid == 1 %}
                 <li>
-                    <a class="active-menu" href="/after_login/"><i class="fa fa-dashboard "></i>菜单</a>
+                    <a class="active-menu" href="/index/"><i class="fa fa-dashboard "></i>菜单</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-desktop "></i>出题 <span class="fa arrow"></span></a>
@@ -87,9 +87,9 @@
                         <li>
                             <a href="/view_allMyDoneSet/"><i class="fa fa-plus"></i>已完成套题</a>
                         </li>
-                        <li>
-                            <a href="/view_allMyDoneSet/"><i class="fa fa-comments-o"></i>可视化分析</a>
-                        </li>
+{#                        <li>#}
+{#                            <a href="/view_allMyDoneSet/"><i class="fa fa-comments-o"></i>可视化分析</a>#}
+{#                        </li>#}
                     </ul>
                 </li>
                 <li>

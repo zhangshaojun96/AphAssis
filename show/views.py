@@ -27,52 +27,24 @@ questions = []
 length = 0
 question = None
 wrong_q = []
+wrong_pair = {}
 
 
 def index(request):
-    return render(request, 'show/index.html')
-
-
-@csrf_exempt
-def get_next(request):
-    global number
-    global questions
-    global length
-    global question
-
-    if number < length:
-        question = questions[number]
-    ques = str(question.question)
-    imageA = str(question.imageA)
-    DesA = str(question.DesA)
-    imageB = str(question.imageB)
-    DesB = str(question.DesB)
-    imageC = str(question.imageC)
-    DesC = str(question.DesC)
-    imageD = str(question.imageD)
-    DesD = str(question.DesD)
-    voice = str(question.voice)
-    if number < length:
-        number += 1
-    else:
-        ques = ""
-    return JsonResponse({"namee": ques,
-                         "imageA": imageA,
-                         "DesA": DesA,
-                         "imageB": imageB,
-                         "DesB": DesB,
-                         "imageC": imageC,
-                         "DesC": DesC,
-                         "imageD": imageD,
-                         "DesD": DesD,
-                         "voice": voice
-                         })
+    username = request.session['username']
+    classid = request.session['classid']
+    userid = request.session['userid']
+    return render(request, 'show/index.html',
+                  {'userid': userid, 'username': username, 'classid': classid})
 
 
 @csrf_exempt
 def error_answer(request):
     error_no = request.POST.get('no', None)
-    wrong_q.append(error_no)
+    if str(error_no) not in wrong_q:
+        wrong_q.append(str(error_no))  # 用来保存顺序
+    wrong_pair[str(error_no)] = -1  # 用来保存错题-有效引导语  对
+
     right = request.POST.get('right', None)
     wrong = request.POST.get('wrong', None)
     Guider = list(guide.objects.filter(right_answer=right, wrong_answer=wrong))
@@ -80,10 +52,10 @@ def error_answer(request):
     if len(Guider) > 0:
         tip = random.sample(Guider, 1)
         result = tip[0].tips
-        return JsonResponse({"guide": result})
+        return JsonResponse({"guide": result, 'id': tip[0].id})
     else:
         tip = ""
-        return JsonResponse({"guide": tip})
+        return JsonResponse({"guide": tip, 'id': -1})
 
 
 '''
@@ -183,13 +155,14 @@ def set_detail(request):
             username = request.session['username']
             classid = request.session['classid']
 
-            return render(request, 'show/set_detail.html', {'posts': posts, 'username': username, 'classid': classid,'setid':id})
+            return render(request, 'show/showSetDetail.html',
+                          {'posts': posts, 'username': username, 'classid': classid, 'setid': id})
         else:
             return render(request, 'login/login.html')
 
 
 # 显示全部题目
-def show(request):
+def showAllEx(request):
     all_ques = Ques.objects.all()
     questions = list(all_ques)
     for ques in questions:
@@ -254,7 +227,7 @@ def setArrange(request):
     patients = list(register.objects.filter(res_id=0))
     username = request.session['username']
     classid = request.session['classid']
-    return render(request, 'show/setArr.html',
+    return render(request, 'show/setArrange.html',
                   {'username': username, 'classid': classid, 'patients': patients})
 
 
@@ -327,10 +300,11 @@ def get_allSets(request):
 # 训练
 def doEx(request):
     setid = request.GET.get('setid')
+    arrid = request.GET.get('id')
     username = request.session['username']
     classid = request.session['classid']
-    # print('do ex set id: ' + str(setid))
-    return render(request, 'show/doEx.html', {'username': username, 'classid': classid, 'setid': setid})
+    print('do ex set id: ' + str(setid))
+    return render(request, 'show/doEx.html', {'username': username, 'classid': classid, 'arrid': arrid, 'setid': setid})
 
 
 # 获取指定id的套题的题目的下一道题
@@ -345,6 +319,12 @@ def get_nextToDo(request):
 
     userid = request.session['userid']
     setid = request.POST.get("setid", None)
+    arrid = request.POST.get("arrid", None)
+    current_ques_id = request.POST.get('cur_ques_id', None)
+    current_valid_guide_id = request.POST.get('cur_valid_guide_id', None)
+    if current_ques_id != -1:
+        # 查找错题号码，更新有效引导语的id
+        wrong_pair[str(current_ques_id)] = current_valid_guide_id
     # print("current set id : " + str(setid))
     typeid = request.POST.get("type", None)  # type==0  初始化
 
@@ -377,17 +357,20 @@ def get_nextToDo(request):
     else:
         # print("store start")
         time_used = request.POST.get("time", None)
-        record_wrong = set(wrong_q)
-        # print(record_wrong)
-        w_str = str(record_wrong)
-        w_str = w_str[4:-1]
-        arrange = list(Arrange_set.objects.filter(userid=userid, set=setid))
-        # print(len(arrange))
-        arrange[0].usedTime = time_used
-        arrange[0].wrong_ques = w_str
-        arrange[0].status = 1
-        arrange[0].save()
-        # print("store end")
+        w_str = ''
+        for ques_id in wrong_q:
+            guide_id = wrong_pair[ques_id]
+            print('fake ques id' + str(ques_id))
+            print('true ques id' + str(questions[int(ques_id) - 1].id))
+            w_str += str(questions[int(ques_id) - 1].id) + '#' + str(guide_id) + ','
+        if w_str.endswith(','):
+            w_str = w_str[0:len(w_str) - 1]
+        arrange = Arrange_set.objects.get(id=arrid)
+        arrange.usedTime = time_used
+        arrange.finTime = datetime.datetime.now()
+        arrange.wrong_ques = w_str
+        arrange.status = 1
+        arrange.save()
         number = 0
         length = 0
         questions = []
@@ -420,7 +403,7 @@ def get_nextToDo(request):
 def get_allMyDoneSet(request):
     userid = request.session['userid']
     # print('current user id ": ' + str(userid))
-    arrs = list(Arrange_set.objects.filter(userid=userid, status=1).order_by("-dateTime"))
+    arrs = list(Arrange_set.objects.filter(userid=userid, status=1).order_by("-arrTime"))
     length = len(arrs)
     ans = {}
     ans["length"] = length
@@ -428,8 +411,11 @@ def get_allMyDoneSet(request):
         ans['id' + str(i)] = str(arrs[i].id)
         ans['setdes' + str(i)] = QuestionSet.objects.get(id=arrs[i].set).setDes
         ans["arr_set" + str(i)] = str(arrs[i].set)
-        dt_new = arrs[i].dateTime.strftime("%Y/%m/%d %H:%M:%S")
-        ans["arr_datetime" + str(i)] = str(dt_new)
+        dt_arr = arrs[i].arrTime.strftime("%Y/%m/%d %H:%M:%S")
+        dt_fin = arrs[i].finTime.strftime("%Y/%m/%d %H:%M:%S")
+        ans["arr_datetime" + str(i)] = str(dt_arr)
+        ans["fin_datetime" + str(i)] = str(dt_fin)
+        ans["used_time" + str(i)] = str(arrs[i].usedTime) + '秒'
         ans["arr_userid" + str(i)] = str(arrs[i].userid)
     # toList.append(deepcopy(ans))
     return JsonResponse(ans)
@@ -439,7 +425,7 @@ def get_allMyDoneSet(request):
 def get_allMyToDoSet(request):
     userid = request.session['userid']
     # print('current user id ": ' + str(userid))
-    arrs = list(Arrange_set.objects.filter(userid=userid, status=0).order_by("-dateTime"))
+    arrs = list(Arrange_set.objects.filter(userid=userid, status=0).order_by("-arrTime"))
     length = len(arrs)
     ans = {}
     ans["length"] = length
@@ -447,7 +433,7 @@ def get_allMyToDoSet(request):
         ans['id' + str(i)] = str(arrs[i].id)
         ans['setdes' + str(i)] = QuestionSet.objects.get(id=arrs[i].set).setDes
         ans["arr_set" + str(i)] = str(arrs[i].set)
-        dt_new = arrs[i].dateTime.strftime("%Y/%m/%d %H:%M:%S")
+        dt_new = arrs[i].arrTime.strftime("%Y/%m/%d %H:%M:%S")
         ans["arr_datetime" + str(i)] = str(dt_new)
         ans["arr_userid" + str(i)] = str(arrs[i].userid)
     # toList.append(deepcopy(ans))
@@ -488,17 +474,28 @@ def gen_detail(request):
             temp['status'] = '未完成'
             temp["time"] = '--'
             temp["wrong"] = '--'
+            temp["fintime"] = '--'
         else:
             temp['status'] = '已完成'
             temp["time"] = str(item.usedTime) + '秒'
-            w_str = str(item.wrong_ques)
+            w_list = str(item.wrong_ques).split(',')
+            w_str = ''
+            for wrong_pair in w_list:
+                ls = str(wrong_pair).split('#')
+                wrong_ques_id = ls[0]
+                w_str += str(wrong_ques_id) + ','
+            if w_str.endswith(','):
+                w_str = w_str[0:len(w_str) - 1]
             if len(w_str) > 10:
                 w_str = w_str[0:6]
                 w_str = w_str + ".."
             temp["wrong"] = w_str
+            temp['fintime'] = item.finTime.strftime("%Y/%m/%d %H:%M:%S")
 
         # print(len(all_sets.filter(setId=item.set)))
         temp["name"] = all_sets.filter(id=item.set)[0].setDes
+        temp["arrtime"] = item.arrTime.strftime("%Y/%m/%d %H:%M:%S")
+
         detail.append(temp)
 
     current_page = request.GET.get('p')
@@ -527,7 +524,7 @@ def gen_detail(request):
 
     username = request.session['username']
     classid = request.session['classid']
-    return render(request, 'show/gen_detail.html', {'detail': posts, 'username': username, 'classid': classid})
+    return render(request, 'show/genDetail.html', {'detail': posts, 'username': username, 'classid': classid})
 
 
 # 所有患者

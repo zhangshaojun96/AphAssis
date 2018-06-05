@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+body,html {
+ font-family:'Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',arial,sans-serif;
+ color:#666;
+ height:100%
+}
+body {
+ margin:0;
+ padding:0;
+ width:100%;
+ min-height:45rem;
+ overflow:hidden;
+ background-color:#F4F4F4;
+ -webkit-transition:-webkit-transform .5s ease-out;
+ -moz-transition:transform .5s ease-out,-moz-transform .5s ease-out;
+ -o-transition:transform .5s ease-out,-o-transform .5s ease-out;
+ transition:transform .5s ease-out;
+ transition:transform .5s ease-out,-webkit-transform .5s ease-out,-moz-transform .5s ease-out,-o-transform .5s ease-out;
+ -webkit-transform:translateY(0);
+ -ms-transform:translateY(0);
+ -moz-transform:translateY(0);
+ -o-transform:translateY(0);
+ transform:translateY(0)
+}
+
+.header {
+ height:3.4375rem;
+ background-color:#2EA3FD;
+ vertical-align:middle;
+ z-index:20
+}
+
+
+.header>.container {
+ width:56rem;
+ min-width:56.25rem
+}
+
+
+.header>.container>.brand {
+ margin:0;
+ padding:0;
+ display:inline-block
+}
+

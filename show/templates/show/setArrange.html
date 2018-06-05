@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>分配套题</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FONTAWESOME STYLES-->
+    <link href="../static/css/font-awesome.css" rel="stylesheet"/>
+    <!-- PAGE LEVEL STYLES -->
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet"/>
+    <!--CUSTOM BASIC STYLES-->
+    <link href="../static/css/basic.css" rel="stylesheet"/>
+    <!--CUSTOM MAIN STYLES-->
+    <link href="../static/css/custom.css" rel="stylesheet"/>
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<div id="wrapper">
+    {% include 'nav_left.html' %}
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <fieldset style="position:absolute;left:30%;top:15%;width:75%;height:75%">
+                    <legend>请给患者分配套题</legend>
+
+                    <form action="">
+                        <p>请在下拉框中选择患者</p>
+                        <select id="patientid">
+                            {% for x in patients %}
+                                <option value="{{ x.id }}">{{ x.res_username }}</option>
+                            {% endfor %}
+                        </select>
+
+                        <p>请在列表中勾选套题</p>
+                        <table border="1" width="80%">
+                            <tr>
+                                <td width="10%">id</td>
+                                <td width="80%">套题的描述</td>
+                                <td width="10%">操作</td>
+                            </tr>
+                            <tr>
+                                <td id="id1" width="10%">0</td>
+                                <td id="td1" width="80%"> Loading..</td>
+                                <td width="10%">
+                                    <input id="v1" align="center" type="checkbox" onclick="store(this,0)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="id2" width="10%">0</td>
+                                <td id="td2" width="80%"> Loading..</td>
+                                <td width="10%">
+                                    <input id="v2" align="center" type="checkbox" onclick="store(this,1)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="id3" width="10%">0</td>
+                                <td id="td3" width="80%"> Loading..</td>
+                                <td width="10%">
+                                    <input id="v3" align="center" type="checkbox" onclick="store(this,2)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="id4" width="10%">0</td>
+                                <td id="td4" width="80%"> Loading..</td>
+                                <td width="10%">
+                                    <input id="v4" align="center" type="checkbox" onclick="store(this,3)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="id5" width="10%">0</td>
+                                <td id="td5" width="80%"> Loading..</td>
+                                <td width="10%">
+                                    <input id="v5" align="center" type="checkbox" onclick="store(this,4)">
+                                </td>
+                            </tr>
+
+                        </table>
+                        <br/>
+                        <div class="row" align="center">
+                            <button type="button" onclick="subPage()"> 上一页</button>
+                            <label id="pageNumber"> &nbsp 1 &nbsp </label>
+                            <button type="button" onclick="addPage()"> 下一页</button>
+                            <br>
+                        </div>
+                        <div class="row">
+                            <button type="submit" onclick="submitArr()"
+                                    style="position:absolute;left:65%;top:60%;width:10%;height:10%">
+                                提交套题
+                            </button>
+
+                        </div>
+
+                    </form>
+                </fieldset>
+            </div>
+
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+    <!-- /. PAGE WRAPPER  -->
+</div>
+<!-- /. WRAPPER  -->
+<!-- /. FOOTER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="../static/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="../static/js/bootstrap.js"></script>
+<!-- PAGE LEVEL SCRIPTS -->
+<script src="../static/js/jquery.prettyPhoto.js"></script>
+<script src="../static/js/jquery.mixitup.min.js"></script>
+<!-- METISMENU SCRIPTS -->
+<script src="../static/js/jquery.metisMenu.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="../static/js/custom.js"></script>
+<!-- CUSTOM Gallery Call SCRIPTS -->
+<script src="../static/js/galleryCustom.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script>
+
+    var pageNum = 1;
+    var all_sets;
+    var all_length = 0;
+    var setsCheck = new Array();
+    var res = new Array();
+
+    function subPage() {
+        if (pageNum <= 1) {
+            alert("这是第一页!");
+        }
+        else {
+            pageNum = pageNum - 1;
+            sets_display();
+            changePage();
+        }
+    }
+
+    function addPage() {
+        if (pageNum > all_length / 5) {
+            alert("这是最后一页");
+        }
+        else {
+            pageNum = pageNum + 1;
+            sets_display();
+            changePage();
+        }
+    }
+
+    function store(vi, id) {
+        if (vi.checked) {
+            setsCheck[(pageNum - 1) * 5 + id] = true;
+        }
+        else {
+            setsCheck[(pageNum - 1) * 5 + id] = false;
+        }
+    }
+
+    function changePage() {
+        var label = document.getElementById('pageNumber');
+        label.innerText = String(pageNum);
+    }
+
+    changePage();
+    //
+    <!-- 可以用checked 这个属性来判断是不是选中了这题 -->
+    //可以用getElementById来获得那个变量，但是一定要放在代码一定会执行到的地方中
+    //input 有一个type域，如果是 "hidden",就是不显示
+
+    function sets_display() {
+        var ques_2_disp = 5;
+        var reduce = all_length % 5;
+        let final = (pageNum === parseInt(((all_length + 4) / 5)));
+        if (final) {
+            if (reduce == 0) {
+                ques_2_disp = 5;
+            }
+            else {
+                ques_2_disp = reduce;
+            }
+
+        }
+        var startNum = (pageNum - 1) * 5;
+        for (let i = 0; i < 5; i++) {
+            var id = document.getElementById('id' + (i + 1));
+            var td = document.getElementById('td' + (i + 1));
+
+            if (final && i >= reduce) {
+                id.innerText = ""
+                td.innerText = "";
+                var vi = document.getElementById('v' + (i + 1));
+                vi.type = "hidden";
+            }
+            else {
+                id.innerText = all_sets["id" + (startNum + i)];
+                td.innerText = all_sets["setDes" + (startNum + i)] + "  " + "----共" + all_sets["count" + (startNum + i)] + "道题";
+
+                var vi = document.getElementById('v' + (i + 1));
+                vi.type = "checkbox";
+                if (setsCheck[startNum + i]) {
+                    vi.checked = true;
+                }
+                else {
+                    vi.checked = false;
+                }
+            }
+
+        }
+    }
+
+    function get_all() {
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8000/get_allSets/",
+            data: {},
+            success: function (data) {
+                //alert(data['ques0']);
+                all_sets = data;
+                all_length = data["length"];
+                sets_display();
+                for (let i = 0; i < all_length; i++) {
+                    setsCheck[i] = false;
+                }
+            },
+            error: function (data) {
+                alert("Some error!");
+            }
+        });
+    }
+
+    get_all();
+
+    function submitArr() {
+        var patientid = document.getElementById('patientid').value;
+        var number = 0;
+
+        for (let i = 0; i < all_length; i++) {
+            if (setsCheck[i] == true) {
+                res.push(all_sets["id" + i]);
+                number = number + 1;
+            }
+        }
+
+        if (number > 0) {
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8000/submit_arr/",
+                data: {"setsCheck": String(res), "userid": String(patientid)},
+                success: function (data) {
+                    alert("分配成功");
+                },
+                error: function (data) {
+                    {#alert("Some error!");#}
+                    alert(data["status"]);
+                }
+            });
+        }
+        else {
+            alert("你还没有选套题!!");
+        }
+
+    }
+
+</script>
+<script>
+    function confirmAct() {
+        var msg = "您真的确定要退出吗？\n\n请确认！";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

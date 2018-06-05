@@ -17,7 +17,7 @@ def makeSet(request):
 
 
 @csrf_exempt
-def get_all(request):
+def get_all_set(request):
     questions = list(Ques.objects.all())
     length = len(questions)
     # toList = []

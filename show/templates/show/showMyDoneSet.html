@@ -32,43 +32,55 @@
                             <tr>
                                 <td width="10%">id</td>
                                 <td width="10%">套题</td>
-                                <td width="40%">描述</td>
-                                <td width="20%">布置时间</td>
+                                <td width="30%">描述</td>
+                                <td width="10%">布置时间</td>
+                                <td width="10%">完成时间</td>
+                                <td width="10%">所用时间</td>
                                 <td width="20%">操作</td>
                             </tr>
                             <tr>
                                 <td id="id1" width="10%">0</td>
                                 <td id="tdset1" width="10%">Loading..</td>
-                                <td id="tdsetdes1" width="40%"> Loading..</td>
-                                <td id="tdarrtime1" width="20%">Loading..</td>
+                                <td id="tdsetdes1" width="30%"> Loading..</td>
+                                <td id="tdarrtime1" width="10%">Loading..</td>
+                                <td id="tdfintime1" width="10%">Loading..</td>
+                                <td id="tdusedtime1" width="10%">Loading..</td>
                                 <td id="tdreview1" width="20%"><a id="op1" href="#">复习</a></td>
                             </tr>
                             <tr>
                                 <td id="id2" width="10%">0</td>
                                 <td id="tdset2" width="10%">Loading..</td>
-                                <td id="tdsetdes2" width="40%"> Loading..</td>
-                                <td id="tdarrtime2" width="20%">Loading..</td>
+                                <td id="tdsetdes2" width="30%"> Loading..</td>
+                                <td id="tdarrtime2" width="10%">Loading..</td>
+                                <td id="tdfintime2" width="10%">Loading..</td>
+                                <td id="tdusedtime2" width="10%">Loading..</td>
                                 <td id="tdreview2" width="20%"><a id="op2" href="#">复习</a></td>
                             </tr>
                             <tr>
                                 <td id="id3" width="10%">0</td>
                                 <td id="tdset3" width="10%">Loading..</td>
-                                <td id="tdsetdes3" width="40%"> Loading..</td>
-                                <td id="tdarrtime3" width="20%">Loading..</td>
+                                <td id="tdsetdes3" width="30%"> Loading..</td>
+                                <td id="tdarrtime3" width="10%">Loading..</td>
+                                <td id="tdfintime3" width="10%">Loading..</td>
+                                <td id="tdusedtime3" width="10%">Loading..</td>
                                 <td id="tdreview3" width="20%"><a id="op3" href="#">复习</a></td>
                             </tr>
                             <tr>
                                 <td id="id4" width="10%">0</td>
                                 <td id="tdset4" width="10%">Loading..</td>
-                                <td id="tdsetdes4" width="40%"> Loading..</td>
-                                <td id="tdarrtime4" width="20%">Loading..</td>
+                                <td id="tdsetdes4" width="30%"> Loading..</td>
+                                <td id="tdarrtime4" width="10%">Loading..</td>
+                                <td id="tdfintime4" width="10%">Loading..</td>
+                                <td id="tdusedtime4" width="10%">Loading..</td>
                                 <td id="tdreview4" width="20%"><a id="op4" href="#">复习</a></td>
                             </tr>
                             <tr>
                                 <td id="id5" width="10%">0</td>
                                 <td id="tdset5" width="10%">Loading..</td>
-                                <td id="tdsetdes5" width="40%"> Loading..</td>
-                                <td id="tdarrtime5" width="20%">Loading..</td>
+                                <td id="tdsetdes5" width="30%"> Loading..</td>
+                                <td id="tdarrtime5" width="10%">Loading..</td>
+                                <td id="tdfintime5" width="10%">Loading..</td>
+                                <td id="tdusedtime5" width="10%">Loading..</td>
                                 <td id="tdreview5" width="20%"><a id="op5" href="#">复习</a></td>
                             </tr>
 
@@ -171,6 +183,8 @@
             var tdset = document.getElementById('tdset' + (i + 1));
             var tdsetdes = document.getElementById('tdsetdes' + (i + 1));
             var tdarrtime = document.getElementById('tdarrtime' + (i + 1));
+            var tdfintime = document.getElementById('tdfintime' + (i + 1));
+            var tdusedtime = document.getElementById('tdusedtime' + (i + 1));
             var op = document.getElementById('op' + (i + 1));
 
             if ((final && i >= reduce) || all_length == 0) {
@@ -178,6 +192,8 @@
                 tdset.innerText = "";
                 tdsetdes.innerText = "";
                 tdarrtime.innerText = "";
+                tdfintime.innerText = "";
+                tdusedtime.innerText = "";
                 op.innerText = "";
             }
             else {
@@ -185,6 +201,8 @@
                 tdset.innerText = all_sets["arr_set" + (startNum + i)];
                 tdsetdes.innerText = all_sets["setdes" + (startNum + i)];
                 tdarrtime.innerText = all_sets["arr_datetime" + (startNum + i)];
+                tdfintime.innerText = all_sets["fin_datetime" + (startNum + i)];
+                tdusedtime.innerText = all_sets["used_time" + (startNum + i)];
                 op.innerText = "复习";
                 op.href = "####" + all_sets["id" + (startNum + i)]
 

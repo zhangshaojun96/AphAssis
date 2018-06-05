@@ -42,7 +42,7 @@ def upload(request):
         new_Ques.save()
     username = request.session['username']
     classid = request.session['classid']
-    return render(request, 'upload/upload1.html', {'username': username, 'classid': classid})
+    return render(request, 'upload/uploadEx.html', {'username': username, 'classid': classid})
 
 
 @csrf_exempt

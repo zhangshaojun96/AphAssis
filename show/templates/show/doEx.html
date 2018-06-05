@@ -29,7 +29,7 @@
                 <div class="col-md-10">
                     <h3 class="page-head-line">请按照语音提示选择图片</h3>
                     <p>
-                        <audio id="play" src="{{ question.voice }}" controls='controls'></audio>
+                        <audio id="play" src="" controls='controls'></audio>
                     </p>
                     <p>
                         <audio id="play1" src=""></audio>
@@ -48,7 +48,6 @@
 
                             <div class="portfolio-item awesome mix_all" data-cat="awesome">
 
-                                <!--<img id="img1" src="{{ question.imageA.url }}" width="35%" height="35%" style="position:absolute;left:10%;top:15%"> -->
                                 <img id="img1" src="" class="img-responsive " alt=""/>
                             </div>
                         </div>
@@ -110,51 +109,72 @@
     var oImg2 = document.getElementById('img2');
     var oImg3 = document.getElementById('img3');
     var oImg4 = document.getElementById('img4');
+    var current_ques_id = -1; // 当前问题的id
+    var current_ques_status = 0;// 当前问题的状态 0 未出错过  1 出错过
+    var current_valid_guide_id = -1;//当前问题出错后，使得患者答对题目的引导语 id
+
+
+    function reset() {
+        current_ques_id = -1; // 当前问题的id
+        current_ques_status = 0;// 当前问题的状态 0 未出错过  1 出错过
+        current_valid_guide_id = -1;//当前问题出错后，使得患者答对题目的引导语 id
+    }
 
     function get_next(typeid) {
-        console.log({{ setid }})
+        if (current_ques_status == 0) {
+            reset();
+        }
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:8000/get_nextToDo/",
             data: {
+                'arrid':{{ arrid }},
                 'type': typeid,
                 'time': used_time,
-                'setid':{{setid}}
+                'setid':{{setid}},
+                'cur_ques_id': current_ques_id,
+                'cur_valid_guide_id': current_valid_guide_id
             },
             success: function (data) {
+                reset();
                 no = no + 1;
+                current_ques_id = no;
                 Answer = data.namee;
                 if (Answer == "") {
+                    timer = null;
                     alert("题目已经做完了");
-                    location.href = '/after_login/';
+                    location.href = '/view_allMyDoneSet/';
+                } else {
+                    pathA = data.imageA;
+                    desA = data.DesA;
+                    pathA = "/media/" + pathA;
+                    oImg1.src = pathA;
+
+                    pathB = data.imageB;
+                    desB = data.DesB;
+                    pathB = "/media/" + pathB;
+                    oImg2.src = pathB;
+
+                    pathC = data.imageC;
+                    desC = data.DesC;
+                    pathC = "/media/" + pathC;
+                    oImg3.src = pathC;
+
+                    pathD = data.imageD;
+                    desD = data.DesD;
+                    pathD = "/media/" + pathD;
+                    oImg4.src = pathD;
+
+                    pathVoice = data.voice;
+
+                    pathVoice = "/" + pathVoice;
+                    audio1.src = pathVoice;
+                    console.log(pathVoice);
                 }
-                pathA = data.imageA;
-                desA = data.DesA;
-                pathA = "/media/" + pathA;
-                oImg1.src = pathA;
 
-                pathB = data.imageB;
-                desB = data.DesB;
-                pathB = "/media/" + pathB;
-                oImg2.src = pathB;
-
-                pathC = data.imageC;
-                desC = data.DesC;
-                pathC = "/media/" + pathC;
-                oImg3.src = pathC;
-
-                pathD = data.imageD;
-                desD = data.DesD;
-                pathD = "/media/" + pathD;
-                oImg4.src = pathD;
-
-                pathVoice = data.voice;
-
-                pathVoice = "/" + pathVoice;
-                audio1.src = pathVoice;
             },
             error: function (data) {
-                alert("Some error!");
+                {#alert("Some error!");#}
             }
         });
     }
@@ -163,26 +183,31 @@
 
 
     function error_answer(des) {
+        current_ques_status = 1;
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:8000/error_answer/",
             data: {
+                'arrid':{{ arrid }},
                 "no": no,
                 "right": Answer,
                 "wrong": des
             },
             success: function (data) {
                 if (data.guide == "") {
+                    current_valid_guide_id = -1;
                     alert("还没有这种情况的引导语");
                 }
                 else {
+                    current_valid_guide_id = data.id;
                     guidePath = "/" + data.guide;
                     audio.src = guidePath;
+                    console.log(guidePath);
                     audio.play();
                 }
             },
             error: function (data) {
-                alert("Some error!");
+                {#alert("Some error!");#}
             }
         });
     }
@@ -279,13 +304,15 @@
             ss = 0;
         }
 
-        if (ss % 5 == 0) {
+        if (ss % 10 == 0) {
             ctx.drawImage(aVideo, 0, 0, 640, 480);
             {#截取前面#}
             snap_base64 = aCanvas.toDataURL("image/png").substring(22);
             {#console.log(image.src);#}
             {#上传截图#}
             upload_snap(snap_base64);
+
+        } else if (ss % 15 == 0) {
             get_feeling();
         }
 
@@ -302,7 +329,7 @@
                 console.log("Success ! 结果为".concat(data.face_reg.toString()))
             },
             error: function (data) {
-                alert("Some error!");
+                {#alert("Some error!");#}
             }
         });
     }
@@ -332,7 +359,7 @@
 
             },
             error: function (data) {
-                alert("Some error!");
+                {#alert("Some error!");#}
             }
         });
     }
