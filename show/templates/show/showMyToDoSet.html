@@ -151,6 +151,7 @@
     changePage();
 
     function sets_display() {
+
         var ques_2_disp = 5;
         var reduce = all_length % 5;
         let final = (pageNum === parseInt(((all_length + 4) / 5)));
@@ -174,11 +175,12 @@
             var op = document.getElementById('op' + (i + 1));
 
             if ((final && i >= reduce) || all_length == 0) {
-                id.innerText = ""
+                id.innerText = "";
                 tdset.innerText = "";
                 tdsetdes.innerText = "";
                 tdarrtime.innerText = "";
                 op.innerText = "";
+                 console.log("########");
             }
             else {
                 id.innerText = all_sets["id" + (startNum + i)];
@@ -201,6 +203,7 @@
                 //alert(data['ques0']);
                 all_sets = data;
                 all_length = data["length"];
+                console.log('all length: '+all_length);
                 sets_display();
             },
             error: function (data) {

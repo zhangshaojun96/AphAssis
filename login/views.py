@@ -49,7 +49,6 @@ def nregister(request):
         age = request.POST.get('age', None)
         profession = request.POST.get('profession', None)
         education = request.POST.get('education', None)
-        print(education)
         a = register.objects.filter(Q(res_username=res_username))
         flag = 0
         for e in a:

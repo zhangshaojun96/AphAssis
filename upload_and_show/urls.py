@@ -63,7 +63,7 @@ urlpatterns = [
                   url(r'^submit_set/', Set_views.submit_set, name="submit_set"),
                   url(r'^submit_arr/', show_views.submit_arr, name="submit_arr"),
                   url(r'^makeSet/', Set_views.makeSet),
-                  url(r'^upload_snap/', show_views.upload_snap, name="upload_snap"),
-                  url(r'^get_feeling/', show_views.get_feeling, name="get_feeling"),
+                  # url(r'^upload_snap/', show_views.upload_snap, name="upload_snap"),
+                  # url(r'^get_feeling/', show_views.get_feeling, name="get_feeling"),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

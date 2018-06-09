@@ -31,5 +31,14 @@ class Arrange_set(models.Model):
     status = models.IntegerField(default=0)
     # 如果做了的话,记录时间
     usedTime = models.FloatField(default=0.0)
-    # 格式：按照答题顺序排序，'q#rg,q#rg,q#rg'，其中q指的是问题id，rq指的是使得患者答对问题的引导语id
+    # 格式：按照答题顺序排序，
+    # q@w#rg<w#rq<w#rq,
+    # q@w#rg<w#rq<w#rq,
+    # q@w#rg<w#rq<w#rq'，其中q指的是问题id，w是错误选项相对id，rq指的是系统提示的问题的引导语id
     wrong_ques = models.CharField(max_length=300, null=True)
+
+class wrong_record(models.Model):
+    userid=models.IntegerField(default=0)
+    question_id=models.IntegerField(default=0)  # 题目在总题库里面的索引
+    wrong_choice=models.IntegerField(default=0) # A,B,C,D 对应 1,2,3,4
+    guide=models.CharField(max_length=300,null=True)# 引导语路径
