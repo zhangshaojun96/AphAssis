@@ -189,7 +189,7 @@
             var id = document.getElementById('id' + (i + 1));
             var td = document.getElementById('td' + (i + 1));
 
-            if (final && i >= reduce) {
+             if ((final && i >= reduce && ques_2_disp != 5) || all_length == 0) {
                 id.innerText = ""
                 td.innerText = "";
                 var vi = document.getElementById('v' + (i + 1));

@@ -38,7 +38,7 @@
                         <td width="10%">所花时间</td>
                         <td width="30%">错题</td>
                     </tr>
-                    {% for row in detail.object_list %}
+                    {% for row in posts.object_list %}
                         <tr>
                             <td width="30%">{{ row.name }}</td>
                             <td width="10%">{{ row.arrtime }}</td>
@@ -52,13 +52,11 @@
                     <tr>
                         <td colspan="6" align="center">
                             {% if posts.has_previous %}
-                                <a href="/gen_detail?p={{ posts.previous_page_number }}">上一页</a>
-                            {% else %}
-                                <a href="#">上一页</a>
+                                <a href="/gen_detail?id={{ genid }}&p={{ posts.previous_page_number }}">上一页</a>
                             {% endif %}
 
                             {% if posts.has_next %}
-                                <a href="/gen_detail?p={{ posts.next_page_number }}">下一页</a>
+                                <a href="/gen_detail?id={{ genid }}&p={{ posts.next_page_number }}">下一页</a>
                             {% endif %}
 
                             <span>

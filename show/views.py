@@ -507,12 +507,11 @@ def view_allMyDoneSet(request):
 
 # 显示患者的详细信息
 def gen_detail(request):
-    need_gen_str = request.GET.get('p')
-    need_gen_no = int(need_gen_str, 10)
+    need_gen_str = request.GET.get('id')
+    need_gen_no = int(need_gen_str)
     all_sets = QuestionSet.objects.all()
-    gens = list(register.objects.filter(res_id=0))  # 获取所有患者,为了之后显示患者的其他信息
-    need_gen = gens[need_gen_no]
-    # print(need_gen.id)
+    need_gen = register.objects.get(res_id=0,id=need_gen_no) # 获取患者
+    print('show gen id : '+str(need_gen.id))
     sets = list(Arrange_set.objects.filter(userid=need_gen.id))  # 获取这个人对应的所有套题
     # print("len %d\n",len(sets))
     detail = []
@@ -542,17 +541,14 @@ def gen_detail(request):
                 w_str = w_str[0:6]
                 w_str = w_str + ".."
             temp["wrong"] = w_str
-
-
-
             temp['fintime'] = item.finTime.strftime("%Y/%m/%d %H:%M:%S")
 
         # print(len(all_sets.filter(setId=item.set)))
         temp["name"] = all_sets.filter(id=item.set)[0].setDes
         temp["arrtime"] = item.arrTime.strftime("%Y/%m/%d %H:%M:%S")
-
         detail.append(temp)
 
+    print("show gen detail len: "+str(len(detail)))
     current_page = request.GET.get('p')
     # Paginator对象，里面封装了上面那些值，把USER_LIST对象传过来了，显示10页
     paginator = Paginator(detail, 3)
@@ -579,24 +575,23 @@ def gen_detail(request):
 
     username = request.session['username']
     classid = request.session['classid']
-    return render(request, 'show/genDetail.html', {'detail': posts, 'username': username, 'classid': classid})
+    return render(request, 'show/genDetail.html', {'posts': posts,'genid':need_gen_no, 'username': username, 'classid': classid})
 
 
 # 所有患者
 def allGen(request):
-    i = 0
     gens = list(register.objects.filter(res_id=0))
-    genList = []
-    for item in gens:
-        temp = {}
-        temp['id'] = i
-        temp['name'] = item.res_username
-        genList.append(temp)
-        i = i + 1
+    # genList = []
+    # for item in gens:
+    #     temp = {}
+    #     temp['id'] = i
+    #     temp['name'] = item.res_username
+    #     genList.append(temp)
+    #     i = i + 1
 
     current_page = request.GET.get('p')
     # Paginator对象，里面封装了上面那些值，把USER_LIST对象传过来了，显示10页
-    paginator = Paginator(genList, 3)
+    paginator = Paginator(gens, 3)
 
     try:
         # page对象
