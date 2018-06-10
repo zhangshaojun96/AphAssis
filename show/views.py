@@ -20,7 +20,7 @@ import datetime
 import time
 import os
 import base64
-# from face.run import get_emotion
+from face.run import get_emotion
 from show.models import Recom_guide
 
 # 全局变量
@@ -65,13 +65,13 @@ def upload_snap(request):
         # print("截图保存在" + dest)
         # 分析图片，记录表情
 
-        # res = get_emotion(snap_base64)
-        # regs.extend(res)
+        res = get_emotion(snap_base64)
+        regs.extend(res)
 
-        ##print("表情为： ")
-        ##print(res)
-        # return JsonResponse({"face_reg_test": res})
-    return JsonResponse({"face_reg_test": []})
+        #print("表情为： ")
+        #print(res)
+        return JsonResponse({"face_reg_test": res})
+    # return JsonResponse({"face_reg_test": []})
 
 
 # 获取表情列表
@@ -196,18 +196,6 @@ def showAllEx(request):
 
 # 套题的分配
 def setArrange(request):
-    # 获取全部的套题
-    # sets = list(QuestionSet.objects.all())
-    # setlist = []
-    #
-    # for item in sets:
-    #     tmp = {}
-    #     tmp['id'] = item.setId
-    #     tmp['setDes'] = item.setDes
-    #     tmp['count'] = len(str(item.questions).split(','))
-    #     tmp['questions'] = str(item.questions).split(',')
-    #     setlist.append(tmp)
-
     # 获取全部的患者
     patients = list(register.objects.filter(res_id=0))
     username = request.session['username']
@@ -333,6 +321,7 @@ def error_answer(request):
 
 
             tip = random.sample(Guider, 1)
+            print('random guide id :'+tip[0].id)
             recom_guide_id=tip[0].id
             result = tip[0].tips
         # 完善答错题记录
@@ -416,8 +405,8 @@ def get_nextToDo(request):
         w_str = ''
         # 保存全部答错题记录
         for ques_id in wrong_q:
-            print('fake ques id' + str(ques_id))
-            print('true ques id' + str(questions[int(ques_id) - 1].id))
+            # print('fake ques id' + str(ques_id))
+            # print('true ques id' + str(questions[int(ques_id) - 1].id))
 
             wrong_chice_guide_pairs = wrong_pair[ques_id]
             if wrong_chice_guide_pairs.endswith('<'):

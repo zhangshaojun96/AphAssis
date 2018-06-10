@@ -138,7 +138,7 @@
                 'cur_ques_id': current_ques_id,
                 'cur_valid_guide_id': current_valid_guide_id,
                 'current_wrong_option': current_ques_wrong_option,
-                'current_valid_guide_path':current_valid_guide_path,
+                'current_valid_guide_path': current_valid_guide_path,
                 'user_id':{{ userid }}
             },
             success: function (data) {
@@ -189,7 +189,7 @@
 
 
     function error_answer(des) {
-        console.log("wrong"+des);
+        console.log("wrong" + des);
         current_ques_status = 1;
         $.ajax({
             type: "POST",
@@ -230,7 +230,7 @@
         var checkA = (desA == Answer);
         if (checkA) {
             {#表情识别#}
-            {#get_feeling();#}
+            get_feeling();
             {#表情识别#}
             get_next(1);
 
@@ -244,7 +244,7 @@
         var checkB = (desB == Answer);
         if (checkB) {
             {#表情识别#}
-            {#get_feeling();#}
+            get_feeling();
             {#表情识别#}
             get_next(1);
         }
@@ -258,7 +258,7 @@
         var checkC = (desC == Answer);
         if (checkC) {
             {#表情识别#}
-            {#get_feeling();#}
+            get_feeling();
             {#表情识别#}
             get_next(1);
         } else {
@@ -271,7 +271,7 @@
         var checkD = (desD == Answer);
         if (checkD) {
             {#表情识别#}
-            {#get_feeling();#}
+            get_feeling();
             {#表情识别#}
             get_next(1);
         } else {
@@ -289,97 +289,97 @@
     var aCanvas = document.getElementById('canvas');
     var ctx = aCanvas.getContext('2d');
 
-    {#navigator.getUserMedia = navigator.getUserMedia ||#}
-    {#    navigator.webkitGetUserMedia ||#}
-    {#    navigator.mozGetUserMedia ||#}
-    {#    navigator.msGetUserMedia;//获取媒体对象（这里指摄像头）#}
-    {#navigator.getUserMedia({video: true}, gotStream, noStream);//参数1获取用户打开权限；参数二成功打开后调用，并传一个视频流对象，参数三打开失败后调用，传错误信息#}
-    {##}
-    {#function gotStream(stream) {#}
-    {#    video.src = URL.createObjectURL(stream);#}
-    {#    video.onerror = function () {#}
-    {#        stream.stop();#}
-    {#    };#}
-    {#    stream.onended = noStream;#}
-    {#    video.onloadedmetadata = function () {#}
-    {#alert('摄像头成功打开！');#}
-    {#    };#}
-    {#}#}
+    navigator.getUserMedia = navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia;//获取媒体对象（这里指摄像头）
+    navigator.getUserMedia({video: true}, gotStream, noStream);//参数1获取用户打开权限；参数二成功打开后调用，并传一个视频流对象，参数三打开失败后调用，传错误信息
 
-        {#function noStream(err) {#}
-        {#    alert(err);#}
-        {#}#}
+    function gotStream(stream) {
+        video.src = URL.createObjectURL(stream);
+        video.onerror = function () {
+            stream.stop();
+        };
+        stream.onended = noStream;
+        {#video.onloadedmetadata = function () {#}
+        {#    alert('摄像头成功打开！');#}
+        {#};#}
+    }
 
-            var timer = setInterval(function () {
-                used_time++;
-                str = "";
-                if (++ss == 60) {
-                    if (++mm == 60) {
-                        HH++;
-                        mm = 0;
-                    }
-                    ss = 0;
+    function noStream(err) {
+        alert(err);
+    }
+
+    var timer = setInterval(function () {
+        used_time++;
+        str = "";
+        if (++ss == 60) {
+            if (++mm == 60) {
+                HH++;
+                mm = 0;
+            }
+            ss = 0;
+        }
+
+        if (ss % 10 == 0) {
+            ctx.drawImage(aVideo, 0, 0, 640, 480);
+            {#截取前面#}
+            snap_base64 = aCanvas.toDataURL("image/png").substring(22);
+            console.log(image.src);
+            {#上传截图#}
+            upload_snap(snap_base64);
+
+        } else if (ss % 15 == 0) {
+            get_feeling();
+        }
+
+    }, 1000);
+
+    function upload_snap(snap_base64) {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "http://127.0.0.1:8000/upload_snap/",
+            data: {"snap_base64": snap_base64},
+            success: function (data) {
+                {#alert("Success ! 结果为".concat(data.face_reg_test));#}
+                console.log("Success ! 结果为".concat(data.face_reg.toString()))
+            },
+            error: function (data) {
+                {#alert("Some error!");#}
+            }
+        });
+    }
+
+    function get_feeling() {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "http://127.0.0.1:8000/get_feeling/",
+            data: {},
+            success: function (data) {
+                var emotions = document.getElementById('emotions');
+                var res = data.feeling[0];
+                var show_emotion = "loading..";
+                if (res == 0) {
+                    show_emotion = "表情为：平常"
+                } else if (res == 1) {
+                    show_emotion = "表情为：高兴"
+                } else {
+                    show_emotion = "表情为：不高兴"
                 }
 
-                if (ss % 10 == 0) {
-                    {#ctx.drawImage(aVideo, 0, 0, 640, 480);#}
-                    {#截取前面#}
-                    {#snap_base64 = aCanvas.toDataURL("image/png").substring(22);#}
-                    {#console.log(image.src);#}
-                    {#上传截图#}
-                    {#upload_snap(snap_base64);#}
 
-                } else if (ss % 15 == 0) {
-                    {#get_feeling();#}
-                }
+                emotions.innerText = show_emotion;
+                {#alert("Success ! 历史结果为".concat(data.feeling.toString()));#}
+                console.log("Success ! 历史结果为".concat(data.feeling.toString()))
 
-            }, 1000);
-
-            function upload_snap(snap_base64) {
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "http://127.0.0.1:8000/upload_snap/",
-                    data: {"snap_base64": snap_base64},
-                    success: function (data) {
-                        {#alert("Success ! 结果为".concat(data.face_reg_test));#}
-                        console.log("Success ! 结果为".concat(data.face_reg.toString()))
-                    },
-                    error: function (data) {
-                        {#alert("Some error!");#}
-                    }
-                });
+            },
+            error: function (data) {
+                {#alert("Some error!");#}
             }
-
-            function get_feeling() {
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "http://127.0.0.1:8000/get_feeling/",
-                    data: {},
-                    success: function (data) {
-                        var emotions = document.getElementById('emotions');
-                        var res = data.feeling[0];
-                        var show_emotion = "loading..";
-                        if (res == 0) {
-                            show_emotion = "表情为：平常"
-                        } else if (res == 1) {
-                            show_emotion = "表情为：高兴"
-                        } else {
-                            show_emotion = "表情为：不高兴"
-                        }
-
-
-                        emotions.innerText = show_emotion;
-                        {#alert("Success ! 历史结果为".concat(data.feeling.toString()));#}
-                        console.log("Success ! 历史结果为".concat(data.feeling.toString()))
-
-                    },
-                    error: function (data) {
-                        {#alert("Some error!");#}
-                    }
-                });
-            }
+        });
+    }
 
     {#表情识别#}
 </script>

@@ -81,7 +81,9 @@ def collaborative_filtering(userid, questionid, wronganswer):
     # 按相似度高低输出用户在userset中的位置
     recomm = collab(thisuser_matrix, usermatrix, 1)
     guideid = list(wrong_record.objects.filter(userid=userlist[recomm[0]], question_id=questionid, wrong_choice=wronganswer))[0].guide
-    if guideid==0:
+    if guideid==0 or guideid==-1:
+        print('colla guide no id ')
         return None
     else:
+        print('colla guide id '+str(guideid))
         return guideid
