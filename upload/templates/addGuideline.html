@@ -236,7 +236,7 @@
             var tdwrong = document.getElementById('tdwrong' + (i + 1));
             var tdguide = document.getElementById('tdguide' + (i + 1));
 
-            if (final && i >= reduce || all_length == 0) {
+            if ((final && i >= reduce && ques_2_disp != 5) || all_length == 0) {
                 id.innerText = ""
                 tdright.innerText = "";
                 tdwrong.innerText = "";

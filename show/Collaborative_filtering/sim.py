@@ -4,7 +4,7 @@ from show.models import Arrange_set
 from show.Collaborative_filtering.collab import collab
 from show.models import wrong_record
 from numpy import mat
-import numpy as np
+from numpy import *
 
 
 def turn(s):
@@ -26,7 +26,8 @@ def turn(s):
 
 #
 def getsimmatrix(userlist):
-    usermatrix = mat(np.zeros((len(userlist), 3)))
+    s = (len(userlist), 3)
+    usermatrix = zeros(s)
     for i in range(0, len(userlist)):
         # 获得用户信息矩阵
         usermatrix[i][0] = (int)(userlist[i].age / 15)
@@ -35,24 +36,33 @@ def getsimmatrix(userlist):
     return usermatrix
 
 
-def collaborative_filtering(user, questionid, wronganswer):
+def collaborative_filtering(userid, questionid, wronganswer):
     # 通过questionid wronganswer查找相同记录用户
-    userset = set(wrong_record.objects.userid(question_id=questionid, wrong_choice=wronganswer))
+    users = list(wrong_record.objects.filter(question_id=questionid, wrong_choice=wronganswer))
+    userset=list()
+    for u in users:
+        if u.userid not in userset:
+            userset.append(u.userid)
     if len(userset) == 0:
         return None
     # useridlist =  list(Arrange_set.objects.userid(wrong_ques__contains=questionid+'#'+wronganswer))
-    matrixlen = None
+    matrixlen = 0
     for i in range(0, len(userset)):
-        if (userset[i] == user):
+        if (userset[i] == userid):
             matrixlen = len(userset) - 1
             break
         else:
             matrixlen = len(userset)
-    usermatrix = mat(np.zeros(matrixlen, 3))
+    if matrixlen <= 0:
+        return None
+    print('matrixlen: '+str(matrixlen))
+    s=(matrixlen,3)
+    usermatrix = zeros(s)
+    print(usermatrix)
     userlist = []
     # 用户相似度矩阵
     for i in range(0, len(userset)):
-        if (user != userset[i]):
+        if (userid != userset[i]):
             user = register.objects.get(id=userset[i])
             for j in range(0, matrixlen):
                 # 获得用户信息矩阵
@@ -62,11 +72,16 @@ def collaborative_filtering(user, questionid, wronganswer):
                 userlist.append(user.id)
 
     # 当前用户信息
-    this_user = register.objects.get(id=user)
-    thisuser_matrix = mat(np.zeros(1, 3))
+    print('user '+str(userid))
+    this_user = register.objects.get(id=int(userid))
+    s=(1,3)
+    thisuser_matrix = zeros(s)
     thisuser_matrix[0][0] = (int)(this_user.age / 15)
     thisuser_matrix[0][1] = turn(this_user.education)
     # 按相似度高低输出用户在userset中的位置
     recomm = collab(thisuser_matrix, usermatrix, 1)
-    guideid = wrong_record(userid=userlist[recomm[0]], question_id=questionid, wrong_choice=wronganswer)
-    return guideid
+    guideid = list(wrong_record.objects.filter(userid=userlist[recomm[0]], question_id=questionid, wrong_choice=wronganswer))[0].guide
+    if guideid==0:
+        return None
+    else:
+        return guideid

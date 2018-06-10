@@ -41,4 +41,4 @@ class wrong_record(models.Model):
     userid=models.IntegerField(default=0)
     question_id=models.IntegerField(default=0)  # 题目在总题库里面的索引
     wrong_choice=models.IntegerField(default=0) # A,B,C,D 对应 1,2,3,4
-    guide=models.CharField(max_length=300,null=True)# 引导语路径
+    guide=models.IntegerField(default=0)# 引导语id

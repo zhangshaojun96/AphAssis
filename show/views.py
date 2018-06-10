@@ -14,6 +14,7 @@ import datetime, time
 # Create your views here.
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from show.models import wrong_record
+from show.Collaborative_filtering.sim import  collaborative_filtering
 
 import datetime
 import time
@@ -319,15 +320,23 @@ def error_answer(request):
 
     if len(Guider) > 0:
         ###算法调用
-        tip = random.sample(Guider, 1)
-        result = tip[0].tips
-        ###
+        ### 1, collab filter
+        collab_tip_id=collaborative_filtering(user_id,ques_id,current_wrong_option)
+        if collab_tip_id is not None:
+            recom_guide_id=collab_tip_id
+            # 查具体引导语信息
+            result=guide.objects.get(id=recom_guide_id).tips
+        else:
+            ### 2, 多臂老虎机，random
+            tip = random.sample(Guider, 1)
+            recom_guide_id=tip[0].id
+            result = tip[0].tips
         # 完善答错题记录
         if current_ques_id != -1:
             # 查找错题号码，追加 错选项-引导语的id
-            wrong_pair[str(current_ques_id)] += str(current_wrong_option) + str('#') + str(tip[0].id) + str('<')
+            wrong_pair[str(current_ques_id)] += str(current_wrong_option) + str('#') + str(recom_guide_id) + str('<')
 
-        return JsonResponse({"guide": result, 'id': tip[0].id})
+        return JsonResponse({"guide": result, 'id': recom_guide_id})
     else:
         tip = ""
         # 完善答错题记录
@@ -391,7 +400,7 @@ def get_nextToDo(request):
             userid=user_id,
             question_id=current_ques_id,
             wrong_choice=current_wrong_option,
-            guide=current_valid_guide_path
+            guide=current_valid_guide_id
         )
         wrong_item.save()
 
