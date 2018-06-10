@@ -18,13 +18,13 @@ def getAllSentences(questionId,wrong_choice):
 	guideC = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesC))
 	guideD = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesD))
     if wrong_choice == 1:
-        result = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesA))
+        result = list(guide.objects.filter(right_answer=needQues[0].question,wrong_answer=needQues[0].DesA))
     elif wrong_choice == 2:
-        result = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesB))
+        result = list(guide.objects.filter(right_answer=needQues[0].question,wrong_answer=needQues[0].DesB))
     elif wrong_choice == 3:
-        result = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesC))
+        result = list(guide.objects.filter(right_answer=needQues[0].question,wrong_answer=needQues[0].DesC))
     elif wrong_choice == 4:
-        result = list(guide.objects.filter(right_answer=needQues.question,wrong_answer=needQues.DesD))
+        result = list(guide.objects.filter(right_answer=needQues[0].question,wrong_answer=needQues[0].DesD))
     else 
         result = None
     return result
@@ -148,28 +148,28 @@ def update(userId,questionId,sentences,algo,chosen_arm,value_dict,my_algo,reward
     value_dict[sentences[chosen_arm]]["weight"] = value_dict[sentences[chosen_arm]]["weight"] * growth_factor
     return {"userId":userId,"questionId":questionId,"sentences":sentences,"algo":algo,"chosen_arm":chosen_arm,"value_dict":value_dict,"my_algo":my_algo,"reward":random.random()}
     
-def updateGet(questionId,chosen_arm,value_dict):
+def updateGet(questionId,chosen_arm,value_dict,wrong_choice):
     chosen_arm = int(chosen_arm)
-    sentences = getAllSentences(questionId)
+    sentences = getAllSentences(questionId,wrong_choice)
     sentence = sentences[chosen_arm] 
     return {"questionId":questionId,"sentence":sentence,"value": value_dict[sentence]}
 
 #磊哥你好
-def dataInsert(questionId,sentence,value):
+def dataInsert(questionId,sentence,value,wrong_choice):
 	recommand = list(Recom_guide.objects.filter(questionId=questionId,sentense=sentense))
 	if len(recommand)
 		recommand[0] = value
     return 0
 
-def updateInsert(questionId,chosen_arm,value_dict):
-    updateValue = updateGet(questionId,chosen_arm,value_dict)
+def updateInsert(questionId,chosen_arm,value_dict,wrong_choice):
+    updateValue = updateGet(questionId,chosen_arm,value_dict,wrong_choice)
     dataInsert(updateValue["questionId"],updateValue["sentence"],updateValue["value"])
 
     
 if __name__ == "__main__":
     #print (getValue(3,'6516'))
     #print (algoSelect(15,18))
-    select_dict = select_arm(15,18,1)
+    select_dict = select_arm(15,18,1) #参数分别是userid,题目id(这里用的是题目在所有题目中的索引,从0开始),选错的选项(1,2,3,4对应A,B,C,D)
     userId = select_dict["userId"]
     questionId = select_dict["questionId"]
     sentences = select_dict["sentences"]
@@ -179,5 +179,5 @@ if __name__ == "__main__":
     my_algo = select_dict["my_algo"]
     reward = getReward(userId,questionId,sentences,algo,chosen_arm,value_dict,my_algo)["reward"]    
     print (update(userId,questionId,sentences,algo,chosen_arm,value_dict,my_algo,reward))
-    print updateGet(questionId,chosen_arm,value_dict)
+    print updateGet(questionId,chosen_arm,value_dict,1)  #这个的最后一个参数是选错的选项(1,2,3,4)
 
