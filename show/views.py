@@ -327,7 +327,11 @@ def error_answer(request):
             # 查具体引导语信息
             result=guide.objects.get(id=recom_guide_id).tips
         else:
-            ### 2, 多臂老虎机，random
+            ### 2, 多臂老虎机
+            ### 3，random
+
+
+
             tip = random.sample(Guider, 1)
             recom_guide_id=tip[0].id
             result = tip[0].tips
