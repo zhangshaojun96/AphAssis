@@ -321,7 +321,7 @@ def error_answer(request):
 
 
             tip = random.sample(Guider, 1)
-            print('random guide id :'+tip[0].id)
+            print('random guide id :'+str(tip[0].id))
             recom_guide_id=tip[0].id
             result = tip[0].tips
         # 完善答错题记录

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import os
 import sys
+if '/opt/ros/kinetic/lib/python2.7/dist-packages' in sys.path:
+    sys.path.remove("/opt/ros/kinetic/lib/python2.7/dist-packages")
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "upload_and_show.settings")
